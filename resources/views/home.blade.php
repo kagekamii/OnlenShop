@@ -1,220 +1,170 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <!--Bootstrap JS-->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-      $(document).ready(function() {
+<head>
+  <meta charset="utf-8">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <!--Bootstrap JS-->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
         $('input').attr('autocomplete','off');
       });
-    </script>
+  </script>
 
-    <title></title>
-  </head>
+  <title></title>
+</head>
 
-  <style media="screen">
-    /* COLORS */
-    .text-ungu1:hover{
-      color: #b602b6 ;
-    }
-    .bg-kuning{
-      background-color: #ffd94a ;
-    }
-    .bg-kuning2{
-      background-color: #e8c747 ;
-    }
-    .btn-orange1{
-      background-color: #feaa60 ;
-      border: 0;
-      border-radius: 0 5px 5px 0;
-      height: 30px;
-    }
-    .btn-orange2{
-      background-color: #feaa60 ;
-    }
-    .bg-sky{
-      background-color: #75dafd ;
-    }
-    .bg-green1{
-      background-color: #bbfd75 ;
-    }
-    .bg-green2{
-      background-color: #99d756 ;
-    }
-    .bg-orangreen{
-      background-image: linear-gradient(to bottom right, #feaa60, #99d756);
-    }
-    .bg-navy{
-      background-color: #001f3f;
-    }
-    .bg-blue1{
-      background: rgba(131, 170, 205, 0.5);
-    }
+<style media="screen">
+  /* COLORS */
+  .text-ungu1:hover {
+    color: #b602b6;
+  }
 
-    /* UTILITIES */
-    .searchbox{
-      width: 450px;
-      margin-left: 80px;
-      border-radius: 5px 0 0 5px;
-      height: 30px;
-    }
-    .separator{
-      border-left: 1px solid;
-    }
-    .kanan{
-      margin-left: 100px;
-    }
-    .no-border{
-      border: 0;
-    }
+  .bg-kuning {
+    background-color: #ffd94a;
+  }
 
-    /* CAROUSEL */
-    .carousel-inner img{
-      margin: 0px 0px 0px 48px;
-      width: 90%;
-    }
-    .carousel.carousel-fade .carousel-item {
-      display: block;
-      opacity: 0;
-      transition: opacity ease-out .7s;
-    }
-    .carousel.carousel-fade .carousel-item.active {
-      opacity: 1 !important;
-    }
-  </style>
+  .bg-kuning2 {
+    background-color: #e8c747;
+  }
 
-  <header>
-    <div class="col-md bg-kuning text-right">
-      <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
-    </div>
+  .btn-orange1 {
+    background-color: #feaa60;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    height: 30px;
+  }
 
-    <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
-      <! LOGO >
+  .btn-orange2 {
+    background-color: #feaa60;
+  }
+
+  .bg-sky {
+    background-color: #75dafd;
+  }
+
+  .bg-green1 {
+    background-color: #bbfd75;
+  }
+
+  .bg-green2 {
+    background-color: #99d756;
+  }
+
+  .bg-orangreen {
+    background-image: linear-gradient(to bottom right, #feaa60, #99d756);
+  }
+
+  .bg-navy {
+    background-color: #001f3f;
+  }
+
+  .bg-blue1 {
+    background: rgba(131, 170, 205, 0.5);
+  }
+
+  /* UTILITIES */
+  .searchbox {
+    width: 450px;
+    margin-left: 80px;
+    border-radius: 5px 0 0 5px;
+    height: 30px;
+  }
+
+  .separator {
+    border-left: 1px solid;
+  }
+
+  .kanan {
+    margin-left: 100px;
+  }
+
+  .no-border {
+    border: 0;
+  }
+
+  /* CAROUSEL */
+  .carousel-inner img {
+    margin: 0px 0px 0px 48px;
+    width: 90%;
+  }
+
+  .carousel.carousel-fade .carousel-item {
+    display: block;
+    opacity: 0;
+    transition: opacity ease-out .7s;
+  }
+
+  .carousel.carousel-fade .carousel-item.active {
+    opacity: 1 !important;
+  }
+</style>
+
+<header>
+  <div class="col-md bg-kuning text-right">
+    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+  </div>
+
+  <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
+    <! LOGO>
       <a href="#" class="mr-5"> Logo </a>
 
-      <! KATEGORI >
-      <div class="dropdown">
-        <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori </button>
-        <div class="dropdown-menu bg-sky">
-          <a href="#" class="dropdown-item"> Komputer </a>
-          <a href="#" class="dropdown-item"> Handphone </a>
-          <a href="#" class="dropdown-item"> Makanan & Minuman </a>
+      <! KATEGORI>
+        <div class="dropdown">
+          <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
+          </button>
+          <div class="dropdown-menu bg-sky">
+            <a href="#" class="dropdown-item"> Komputer </a>
+            <a href="#" class="dropdown-item"> Handphone </a>
+            <a href="#" class="dropdown-item"> Makanan & Minuman </a>
+          </div>
         </div>
-      </div>
 
-      <! SEARCH BOX >
-      <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
-      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20"> </button>
+        <! SEARCH BOX>
+          <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
+          <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
+          </button>
 
-      <! KERANJANG & CHAT >
-      <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20"> </button>
-      <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
+          <! KERANJANG & CHAT>
+            <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
+            </button>
+            <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
 
-      <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
-          <! DAFTAR MODAL >
-          <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal" href="#myRegister"> Daftar </button>
+            {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
+              btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
+            <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
 
-          <!-- The Modal -->
-          <div class="modal" id="myRegister">
-            <div class="modal-dialog">
-              <div class="modal-content">
+              {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
+              @if(Session::get('username') != null)
+              {{-- kalo ada valuenya tampilin tombol logout --}}
+              {{-- anjing cssnya ancur maaf ji gua ubah tadinya (button) jadi (a) tolong benerin --}}
+              <a class="kanan mr-2 no-border bg-kuning2 rounded" href="/logout"> Logout </a>
+              @else
+              {{-- kallo null tampilin tombol daftar dan login --}}
+              <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"
+                href="#myRegister"> Daftar </button>
+              <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin"> Login
+              </button>
+              @endif
 
-                <!-- Modal Header -->
-                <div class="modal-header bg-kuning">
-                  <h5 class="modal-title">Daftar</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
 
-                <!-- Modal body -->
-                <div class="modal-body bg-kuning2">
-                  <div class="container">
-
-                    {{ Form::open(['url' => 'home/daftar']) }}
-                      {{ csrf_field() }}
-                      <div class="form-group">
-                        {{ Form::label('username', 'Username:') }}
-                        {{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
-                      </div>
-
-                      <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
-                      </div>
-
-                      {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
-                    {{ Form::close() }}
-
-                  </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer bg-kuning">
-                </div>
-
-              </div>
             </div>
-          </div>
 
-          <! LOGIN MODAL >
-          <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin"> Login </button>
 
-          <!-- The Modal -->
-          <div class="modal" id="myLogin">
-            <div class="modal-dialog">
-              <div class="modal-content">
+  </nav>
+</header>
 
-                <!-- Modal Header -->
-                <div class="modal-header bg-green1">
-                  <h5 class="modal-title">Login</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+<body class="bg-navy">
 
-                <!-- Modal body -->
-                <div class="modal-body bg-green2">
-                  <div class="container">
+  <div class="row m-4">
 
-                    <form action="/home/login" method="post">
-                      {{ csrf_field() }}
-                      <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
-                      </div>
-
-                      <button id="loginClick" type="submit" class="btn btn-primary">Login</button>
-                    </form>
-
-                  </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer bg-green1">
-                </div>
-
-              </div>
-            </div>
-          </div>
-      </div>
-
-    </nav>
-  </header>
-
-  <body class="bg-navy">
-
-    <div class="row m-4">
-
-      <! Slideshow >
+    <! Slideshow>
       <div id="demo" class="col-md carousel carousel-fade bg-orangreen rounded" data-ride="carousel">
         <!--Indicator-->
         <ul class="carousel-indicators">
@@ -225,28 +175,28 @@
 
         <!--slideshow-->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="img/slide1.jpg" alt="pic-1">
-              <div class="carousel-caption">
-                <h3 class=""> </h3>
-                <h5 class=""> </h5>
-              </div>
+          <div class="carousel-item active">
+            <img src="img/slide1.jpg" alt="pic-1">
+            <div class="carousel-caption">
+              <h3 class=""> </h3>
+              <h5 class=""> </h5>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <img src="img/slide2.jpg" alt="pic-2">
-              <div class="carousel-caption">
-                <h4 class=""> </h4>
-              </div>
+          <div class="carousel-item">
+            <img src="img/slide2.jpg" alt="pic-2">
+            <div class="carousel-caption">
+              <h4 class=""> </h4>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <img src="img/slide3.jpg" alt="pic-3">
-              <div class="carousel-caption">
-                <h4 class=""> </h4>
-                <p></p>
-              </div>
+          <div class="carousel-item">
+            <img src="img/slide3.jpg" alt="pic-3">
+            <div class="carousel-caption">
+              <h4 class=""> </h4>
+              <p></p>
             </div>
+          </div>
         </div>
 
         <!--slideshow Left & Right controls-->
@@ -258,33 +208,119 @@
         </a>
       </div>
 
-      <! Profile Akun >
-      <div id="profil_user" class="col-md-3 bg-blue1 ml-4 rounded">
-        <p class="text-light tambah-text">
-          Nama :
-            @if(Session('username'))
-              {{ Session('username') }}
+      <! Profile Akun>
+        <div id="profil_user" class="col-md-3 bg-blue1 ml-4 rounded">
+          <p class="text-light tambah-text">
+            Nama :
+            {{-- if ini sama kaya yang di atas --}}
+            @if(Session::get('username') != null)
+            {{Session::get('username')}}
+            @else
+            <a data-toggle="modal" href="#myLogin">silahkan login</a>
             @endif
-          <strong style="color:red">
-            @if(Session('username2'))
-              {{ Session('username2') }}
-            @endif
-          </strong> <br>
-          Sisa Saldo : 0 <br>
-          Kupon Saya : 0
-        </p>
-      </div>
 
+            <br>
+            Sisa Saldo : 0 <br>
+            Kupon Saya : 0
+          </p>
+        </div>
+
+  </div>
+
+  {{-- modal gua pindahin ke bawah ga usah deketan sama buttonya ko pusing aing liatnya disimpen diatas --}}
+  <! DAFTAR MODAL>
+    <!-- The Modal -->
+    <div class="modal" id="myRegister">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header bg-kuning">
+            <h5 class="modal-title">Daftar</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body bg-kuning2">
+            <div class="container">
+
+              {{ Form::open(['url' => 'home/daftar']) }}
+              {{ csrf_field() }}
+              <div class="form-group">
+                {{ Form::label('username', 'Username:') }}
+                {{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
+              </div>
+
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
+              </div>
+
+              {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
+              {{ Form::close() }}
+
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer bg-kuning">
+          </div>
+
+        </div>
+      </div>
     </div>
 
-  </body>
+    <! LOGIN MODAL>
+      <!-- The Modal -->
+      <div class="modal" id="myLogin">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-  <script type="text/javascript">
-    $(function() {
+            <!-- Modal Header -->
+            <div class="modal-header bg-green1">
+              <h5 class="modal-title">Login</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body bg-green2">
+              <div class="container">
+
+                <form action="/home/login" method="post">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password"
+                      required>
+                  </div>
+
+                  <button id="loginClick" type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer bg-green1">
+            </div>
+
+          </div>
+        </div>
+      </div>
+</body>
+
+<script type="text/javascript">
+  // edannnnnnnnnnnnnn logoutnya pusing bet
+  $(function() {
       if( $('#ubahLogout').hasClass("active") ) {
         $("#ubahLogout").load("js/logoutButton.php");
       }
     });
-  </script>
+</script>
 
 </html>

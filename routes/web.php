@@ -18,4 +18,6 @@ Route::get('/', function () {
 Route::get('/home', 'ShopController@index');
 Route::post('/home/daftar', 'ShopController@daftar');
 Route::post('/home/login', 'ShopController@login');
+// route baru buat logout
+Route::get('/logout', 'ShopController@logout');
 // Route::post('/home/ajax_profil_user', 'ShopController@login');
