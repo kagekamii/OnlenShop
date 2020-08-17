@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Akun;
-use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -28,11 +27,12 @@ class ShopController extends Controller
       $password = $request->session()->get('password');
       if (Akun::where('username',$username)->exists() &&
           Akun::where('password',$password)->exists()) {
-        return redirect('/home')->with(compact('username'));
+        return redirect('/home')->with(compact('username'))->with('tab2_active', true);
       }
       else {
         session()->flash('username2', 'data tdk sesuai');
         return redirect('/home')->with(compact('username2'));
       }
     }
+
 }

@@ -2,10 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!--Bootstrap JS-->
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -118,92 +117,94 @@
       <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20"> </button>
       <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
 
-      <! DAFTAR MODAL >
-      <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal" href="#myRegister"> Daftar </button>
+      <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
+          <! DAFTAR MODAL >
+          <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal" href="#myRegister"> Daftar </button>
 
-      <!-- The Modal -->
-      <div class="modal" id="myRegister">
-        <div class="modal-dialog">
-          <div class="modal-content">
+          <!-- The Modal -->
+          <div class="modal" id="myRegister">
+            <div class="modal-dialog">
+              <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header bg-kuning">
-              <h5 class="modal-title">Daftar</h5>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+                <!-- Modal Header -->
+                <div class="modal-header bg-kuning">
+                  <h5 class="modal-title">Daftar</h5>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-            <!-- Modal body -->
-            <div class="modal-body bg-kuning2">
-              <div class="container">
+                <!-- Modal body -->
+                <div class="modal-body bg-kuning2">
+                  <div class="container">
 
-                {{ Form::open(['url' => 'home/daftar']) }}
-                  {{ csrf_field() }}
-                  <div class="form-group">
-                    {{ Form::label('username', 'Username:') }}
-                    {{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
+                    {{ Form::open(['url' => 'home/daftar']) }}
+                      {{ csrf_field() }}
+                      <div class="form-group">
+                        {{ Form::label('username', 'Username:') }}
+                        {{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
+                      </div>
+
+                      {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
+                    {{ Form::close() }}
+
                   </div>
+                </div>
 
-                  <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
-                  </div>
-
-                  {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
-                {{ Form::close() }}
+                <!-- Modal footer -->
+                <div class="modal-footer bg-kuning">
+                </div>
 
               </div>
             </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer bg-kuning">
-            </div>
-
           </div>
-        </div>
-      </div>
 
-      <! LOGIN MODAL >
-      <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin"> Login </button>
+          <! LOGIN MODAL >
+          <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin"> Login </button>
 
-      <!-- The Modal -->
-      <div class="modal" id="myLogin">
-        <div class="modal-dialog">
-          <div class="modal-content">
+          <!-- The Modal -->
+          <div class="modal" id="myLogin">
+            <div class="modal-dialog">
+              <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header bg-green1">
-              <h5 class="modal-title">Login</h5>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+                <!-- Modal Header -->
+                <div class="modal-header bg-green1">
+                  <h5 class="modal-title">Login</h5>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-            <!-- Modal body -->
-            <div class="modal-body bg-green2">
-              <div class="container">
+                <!-- Modal body -->
+                <div class="modal-body bg-green2">
+                  <div class="container">
 
-                <form action="/home/login" method="post">
-                  {{ csrf_field() }}
-                  <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
+                    <form action="/home/login" method="post">
+                      {{ csrf_field() }}
+                      <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
+                      </div>
+
+                      <button id="loginClick" type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
                   </div>
+                </div>
 
-                  <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
-                  </div>
-
-                  <button id="" type="submit" class="btn btn-primary">Login</button>
-                </form>
+                <!-- Modal footer -->
+                <div class="modal-footer bg-green1">
+                </div>
 
               </div>
             </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer bg-green1">
-            </div>
-
           </div>
-        </div>
       </div>
 
     </nav>
@@ -259,7 +260,7 @@
 
       <! Profile Akun >
       <div id="profil_user" class="col-md-3 bg-blue1 ml-4 rounded">
-        <p class="text-light">
+        <p class="text-light tambah-text">
           Nama :
             @if(Session('username'))
               {{ Session('username') }}
@@ -276,7 +277,14 @@
 
     </div>
 
-
   </body>
+
+  <script type="text/javascript">
+    $(function() {
+      if( $('#ubahLogout').hasClass("active") ) {
+        $("#ubahLogout").load("js/logoutButton.php");
+      }
+    });
+  </script>
 
 </html>
