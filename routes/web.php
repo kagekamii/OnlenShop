@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'ShopController@index');
+Route::post('/home/daftar', 'ShopController@daftar');
+Route::post('/home/login', 'ShopController@login');
+// Route::post('/home/ajax_profil_user', 'ShopController@login');

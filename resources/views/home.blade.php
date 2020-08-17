@@ -11,6 +11,12 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('input').attr('autocomplete','off');
+      });
+    </script>
+
     <title></title>
   </head>
 
@@ -130,10 +136,11 @@
             <div class="modal-body bg-kuning2">
               <div class="container">
 
-                <form action="cek_register.php" method="post">
+                {{ Form::open(['url' => 'home/daftar']) }}
+                  {{ csrf_field() }}
                   <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
+                    {{ Form::label('username', 'Username:') }}
+                    {{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
                   </div>
 
                   <div class="form-group">
@@ -141,8 +148,8 @@
                     <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Register</button>
-                </form>
+                  {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
+                {{ Form::close() }}
 
               </div>
             </div>
@@ -173,7 +180,8 @@
             <div class="modal-body bg-green2">
               <div class="container">
 
-                <form action="#" method="post">
+                <form action="/home/login" method="post">
+                  {{ csrf_field() }}
                   <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" placeholder="maks. 20 karakter" name="username" required>
@@ -184,7 +192,7 @@
                     <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Login</button>
+                  <button id="" type="submit" class="btn btn-primary">Login</button>
                 </form>
 
               </div>
@@ -206,7 +214,7 @@
     <div class="row m-4">
 
       <! Slideshow >
-      <div id="demo" class="col-md-9 carousel carousel-fade bg-orangreen rounded" data-ride="carousel">
+      <div id="demo" class="col-md carousel carousel-fade bg-orangreen rounded" data-ride="carousel">
         <!--Indicator-->
         <ul class="carousel-indicators">
           <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -250,8 +258,20 @@
       </div>
 
       <! Profile Akun >
-      <div class="col-md bg-blue1 ml-5 rounded">
-        <p class="text-light"> test </p>
+      <div id="profil_user" class="col-md-3 bg-blue1 ml-4 rounded">
+        <p class="text-light">
+          Nama :
+            @if(Session('username'))
+              {{ Session('username') }}
+            @endif
+          <strong style="color:red">
+            @if(Session('username2'))
+              {{ Session('username2') }}
+            @endif
+          </strong> <br>
+          Sisa Saldo : 0 <br>
+          Kupon Saya : 0
+        </p>
       </div>
 
     </div>
