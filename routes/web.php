@@ -20,4 +20,5 @@ Route::post('/home/daftar', 'ShopController@daftar');
 Route::post('/home/login', 'ShopController@login');
 // route baru buat logout
 Route::get('/logout', 'ShopController@logout');
+Route::get('/kategori-komputer', 'ShopController@komputer');
 // Route::post('/home/ajax_profil_user', 'ShopController@login');

@@ -49,7 +49,7 @@ class ShopController extends Controller
 
     // check ke db sama ga datanya                     belajar perbedaan get() sama first() ji sekalian
     $data = Akun::where('username', $username)->where('password', $password)->first();
-    
+
     // ini if buat ngecheck ada ga datanya
     // btw if ini returnnya false/true jadi kalo ada data (hasil search ga kosong) return nya True
     if ($data) {
@@ -68,8 +68,13 @@ class ShopController extends Controller
 
   public function logout()
   {
-    // ini 
+    // ini
     Session::flush();
     return redirect('/home');
+  }
+
+  public function komputer()
+  {
+    return view('kategori-komputer');
   }
 }

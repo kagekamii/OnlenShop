@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <link rel="stylesheet" type="text/css" href="css/master.css">
+
   <!--Bootstrap JS-->
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -20,92 +22,6 @@
   <title></title>
 </head>
 
-<style media="screen">
-  /* COLORS */
-  .text-ungu1:hover {
-    color: #b602b6;
-  }
-
-  .bg-kuning {
-    background-color: #ffd94a;
-  }
-
-  .bg-kuning2 {
-    background-color: #e8c747;
-  }
-
-  .btn-orange1 {
-    background-color: #feaa60;
-    border: 0;
-    border-radius: 0 5px 5px 0;
-    height: 30px;
-  }
-
-  .btn-orange2 {
-    background-color: #feaa60;
-  }
-
-  .bg-sky {
-    background-color: #75dafd;
-  }
-
-  .bg-green1 {
-    background-color: #bbfd75;
-  }
-
-  .bg-green2 {
-    background-color: #99d756;
-  }
-
-  .bg-orangreen {
-    background-image: linear-gradient(to bottom right, #feaa60, #99d756);
-  }
-
-  .bg-navy {
-    background-color: #001f3f;
-  }
-
-  .bg-blue1 {
-    background: rgba(131, 170, 205, 0.5);
-  }
-
-  /* UTILITIES */
-  .searchbox {
-    width: 450px;
-    margin-left: 80px;
-    border-radius: 5px 0 0 5px;
-    height: 30px;
-  }
-
-  .separator {
-    border-left: 1px solid;
-  }
-
-  .kanan {
-    margin-left: 100px;
-  }
-
-  .no-border {
-    border: 0;
-  }
-
-  /* CAROUSEL */
-  .carousel-inner img {
-    margin: 0px 0px 0px 48px;
-    width: 90%;
-  }
-
-  .carousel.carousel-fade .carousel-item {
-    display: block;
-    opacity: 0;
-    transition: opacity ease-out .7s;
-  }
-
-  .carousel.carousel-fade .carousel-item.active {
-    opacity: 1 !important;
-  }
-</style>
-
 <header>
   <div class="col-md bg-kuning text-right">
     <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
@@ -113,49 +29,63 @@
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
     <! LOGO>
-      <a href="#" class="mr-5"> Logo </a>
+    <a href="/home" class="mr-5"> Logo </a>
 
-      <! KATEGORI>
-        <div class="dropdown">
-          <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
-          </button>
-          <div class="dropdown-menu bg-sky">
-            <a href="#" class="dropdown-item"> Komputer </a>
-            <a href="#" class="dropdown-item"> Handphone </a>
-            <a href="#" class="dropdown-item"> Makanan & Minuman </a>
-          </div>
-        </div>
+    <! KATEGORI>
+    <div class="dropdown">
+      <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
+      </button>
+      <div class="dropdown-menu bg-sky">
+        <a href=
+        "@if(Session::get('username') != null)
+           /kategori-komputer
+         @else
+           #
+         @endif" class="dropdown-item"> Komputer </a>
+        <a href=
+        "@if(Session::get('username') != null)
+           /kategori-handphone
+         @else
+           #
+         @endif" class="dropdown-item"> Handphone </a>
+        <a href=
+        "@if(Session::get('username') != null)
+           /kategori-makan&minum
+         @else
+           #
+         @endif" class="dropdown-item"> Makanan & Minuman </a>
+      </div>
+    </div>
 
-        <! SEARCH BOX>
-          <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
-          <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
-          </button>
+    <! SEARCH BOX>
+      <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
+      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
+      </button>
 
-          <! KERANJANG & CHAT>
-            <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
-            </button>
-            <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
+    <! KERANJANG & CHAT>
+      <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
+      </button>
+      <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
 
-            {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
-              btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
-            <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
+      {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
+        btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
+      <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
 
-              {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
-              @if(Session::get('username') != null)
-              {{-- kalo ada valuenya tampilin tombol logout --}}
-              {{-- anjing cssnya ancur maaf ji gua ubah tadinya (button) jadi (a) tolong benerin --}}
-              <a class="kanan mr-2 no-border bg-kuning2 rounded" href="/logout"> Logout </a>
-              @else
-              {{-- kallo null tampilin tombol daftar dan login --}}
-              <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"
-                href="#myRegister"> Daftar </button>
-              <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin"> Login
-              </button>
-              @endif
+        {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
+        @if(Session::get('username') != null)
+        {{-- kalo ada valuenya tampilin tombol logout --}}
+        <button id="routeLogout" class="kanan mr-2 no-border bg-kuning2 rounded"> Logout </button>
+        @else
+        {{-- kallo null tampilin tombol daftar dan login --}}
+        <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
+          Daftar
+        </button>
+        <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin">
+          Login
+        </button>
+        @endif
 
-
-            </div>
-
+      </div>
 
   </nav>
 </header>
@@ -224,6 +154,76 @@
             Kupon Saya : 0
           </p>
         </div>
+
+  </div>
+
+  <div class="row m-4">
+    <! List Barang >
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/handphone-chargerBaseus.jfif" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> Charger Baseus Fast Charging </a>
+        <h5 class="card-text"> Rp 83.000 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Jakarta Selatan </span>
+      </div>
+    </div>
+    &emsp;
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/handphone-iphoneCase6&7.jpg" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> Case Iphone 6/6s/7 </a>
+        <h5 class="card-text"> Rp 25.500 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Depok </span>
+      </div>
+    </div>
+    &emsp;
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> Logitech G402 Hyperion Fury </a>
+        <h5 class="card-text"> Rp 497.000 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Kab. Tangerang </span>
+      </div>
+    </div>
+    &emsp;
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> WD SSD Green Sata3 240gb </a>
+        <h5 class="card-text"> Rp 458.000 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Bandung </span>
+      </div>
+    </div>
+    &emsp;
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> Baso Aci Tulang Rungu </a>
+        <h5 class="card-text"> Rp 32.000 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Ciamis </span>
+      </div>
+    </div>
+    &emsp;
+    <div class="card" style="width:200px">
+      <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <a href="#" class="text-dark"> Kombucha HEAL X BURGREENS </a>
+        <h5 class="card-text"> Rp 46.500 </h5>
+      </div>
+      <div class="card-footer">
+        <span class="small"> Lampung </span>
+      </div>
+    </div>
 
   </div>
 
@@ -314,6 +314,13 @@
       </div>
 </body>
 
+<footer>
+  <div class="bg-info">
+    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
+    <strong> [Copyright, Master Paladin 2020] </strong>
+  </div>
+</footer>
+
 <script type="text/javascript">
   // edannnnnnnnnnnnnn logoutnya pusing bet
   $(function() {
@@ -321,6 +328,10 @@
         $("#ubahLogout").load("js/logoutButton.php");
       }
     });
+
+  $('#routeLogout').click(function(){
+    window.location.href='/logout';
+  });
 </script>
 
 </html>

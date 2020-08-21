@@ -1,0 +1,83 @@
+/* COLORS */
+.text-ungu1:hover {
+  color: #b602b6;
+}
+
+.bg-kuning {
+  background-color: #ffd94a;
+}
+
+.bg-kuning2 {
+  background-color: #e8c747;
+}
+
+.btn-orange1 {
+  background-color: #feaa60;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+  height: 30px;
+}
+
+.btn-orange2 {
+  background-color: #feaa60;
+}
+
+.bg-sky {
+  background-color: #75dafd;
+}
+
+.bg-green1 {
+  background-color: #bbfd75;
+}
+
+.bg-green2 {
+  background-color: #99d756;
+}
+
+.bg-orangreen {
+  background-image: linear-gradient(to bottom right, #feaa60, #99d756);
+}
+
+.bg-navy {
+  background-color: #001f3f;
+}
+
+.bg-blue1 {
+  background: rgba(131, 170, 205, 0.5);
+}
+
+/* UTILITIES */
+.searchbox {
+  width: 450px;
+  margin-left: 80px;
+  border-radius: 5px 0 0 5px;
+  height: 30px;
+}
+
+.separator {
+  border-left: 1px solid;
+}
+
+.kanan {
+  margin-left: 100px;
+}
+
+.no-border {
+  border: 0;
+}
+
+/* CAROUSEL */
+.carousel-inner img {
+  margin: 0px 0px 0px 48px;
+  width: 90%;
+}
+
+.carousel.carousel-fade .carousel-item {
+  display: block;
+  opacity: 0;
+  transition: opacity ease-out .7s;
+}
+
+.carousel.carousel-fade .carousel-item.active {
+  opacity: 1 !important;
+}
