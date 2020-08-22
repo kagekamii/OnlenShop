@@ -98,79 +98,100 @@
 <body class="bg-navy">
 
   <div class="row m-4">
-
+    <! FILTER AMPAS >
     <div class="col-md-2 bg-info text-light">
       Filter
       <div class="bg-light text-dark text-left">
-
         <ul class="tanpa-dot" id="filters">
           Harga
           <li>
-            <input type="checkbox" id="filter-kategoria" value="400-lebih" checked>
-            <label for="filter-eksekutif"> > Rp 400.000 </label>
+            <input class="check" type="checkbox" value="50lebih" checked >
+            <label for="filter-eksekutif"> > Rp 50.000 </label>
           </li>
           <li>
-            <input type="checkbox" id="filter-kategorib" value="400-kurang" checked>
-            <label for="filter-ekonomi"> < Rp 400.000 </label>
+            <input class="check" type="checkbox" value="50kurang" checked >
+            <label for="filter-ekonomi"> < Rp 50.000 </label>
+          </li>
+          Jenis
+          <li>
+            <input class="check" type="checkbox" value="makanan" checked >
+            <label for="filter-eksekutif"> Makanan </label>
+          </li>
+          <li>
+            <input class="check" type="checkbox" value="minuman" checked >
+            <label for="filter-ekonomi"> Minuman </label>
           </li>
         </ul>
 
+        <!-- <ul class="tanpa-dot" id="filters2">
+          Jenis
+          <li>
+            <input class="check" type="checkbox" value="makanan" checked >
+            <label for="filter-eksekutif"> Makanan </label>
+          </li>
+          <li>
+            <input class="check" type="checkbox" value="minuman" checked >
+            <label for="filter-ekonomi"> Minuman </label>
+          </li>
+        </ul> -->
       </div>
+
     </div>
 
-    <div class="col-md row ml-2">
+    <! DAFTAR BARANG >
+    <div id="susah" class="col-md row ml-2">
 
       <table>
         <tr>
 
-          <td class="400-lebih">
+          <td class="50kurang" data-name="makanan">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image">
+              <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
-                <a href="#" class="text-dark"> Logitech G402 Hyperion Fury </a>
-                <h5 class="card-text"> Rp 497.000 </h5>
+                <a href="#" class="text-dark"> Baso Aci Tulang Rungu </a>
+                <h5 class="card-text"> Rp 32.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Kab. Tangerang </span>
+                <span class="small"> Ciamis </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-lebih">
+          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
+          <td class="50kurang" data-name="minuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image">
+              <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
-                <a href="#" class="text-dark"> WD SSD Green Sata3 240gb </a>
-                <h5 class="card-text"> Rp 458.000 </h5>
+                <a href="#" class="text-dark"> Kombucha HEAL X BURGREENS </a>
+                <h5 class="card-text"> Rp 46.500 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Bandung </span>
+                <span class="small"> Lampung </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-kurang">
+          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
+          <td class="50kurang" data-name="makanan">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-monitorDell19inch.jpg" alt="Card image">
+              <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
               <div class="card-body">
-                <a href="#" class="text-dark"> Monitor Dell 19 inch </a>
-                <h5 class="card-text"> Rp 356.000 </h5>
+                <a href="#" class="text-dark"> Chikiballs Keju </a>
+                <h5 class="card-text"> Rp 15.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Semarang </span>
+                <span class="small"> Serang </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-lebih">
+          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
+          <td class="50lebih" data-name="minuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-vga650.jfif" alt="Card image">
+              <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
               <div class="card-body">
-                <a href="#" class="text-dark"> Nvidia GTX650 </a>
-                <h5 class="card-text"> Rp 537.000 </h5>
+                <a href="#" class="text-dark"> Susu F&N evaporasi 390gr </a>
+                <h5 class="card-text"> Rp 67.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Jakarta Utara </span>
+                <span class="small"> Tangerang Kota </span>
               </div>
             </div>
           </td>
@@ -179,6 +200,7 @@
       </table>
 
     </div>
+    <p id="test" class="text-light"></p>
 
   </div>
 
@@ -189,9 +211,19 @@
   $("#filters :checkbox").click(function() {
      $("td").hide();
      $("#filters :checkbox:checked").each(function() {
-         $("." + $(this).val()).show();
+         $("td[data-name="+$(this).val()+"],"+"." + $(this).val()).show();
      });
   });
 </script>
+
+<!-- <script type="text/javascript">
+  $("#filters2 :checkbox").click(function() {
+     $("td").hide();
+     $("#filters2 :checkbox:checked").each(function() {
+         $("td[data-name="+$(this).val()+"]" ).show();
+     });
+  });
+</script> -->
+
 
 </html>

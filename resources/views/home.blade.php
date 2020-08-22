@@ -50,7 +50,7 @@
          @endif" class="dropdown-item"> Handphone </a>
         <a href=
         "@if(Session::get('username') != null)
-           /kategori-makan&minum
+           /kategori-makanminum
          @else
            #
          @endif" class="dropdown-item"> Makanan & Minuman </a>
@@ -317,17 +317,17 @@
 <footer>
   <div class="bg-info">
     &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
-    <strong> [Copyright, Master Paladin 2020] </strong>
+    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
   </div>
 </footer>
 
 <script type="text/javascript">
   // edannnnnnnnnnnnnn logoutnya pusing bet
   $(function() {
-      if( $('#ubahLogout').hasClass("active") ) {
-        $("#ubahLogout").load("js/logoutButton.php");
-      }
-    });
+    if( $('#ubahLogout').hasClass("active") ) {
+      $("#ubahLogout").load("js/logoutButton.php");
+    }
+  });
 
   $('#routeLogout').click(function(){
     window.location.href='/logout';

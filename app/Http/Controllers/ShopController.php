@@ -77,4 +77,14 @@ class ShopController extends Controller
   {
     return view('kategori-komputer');
   }
+
+  public function handphone()
+  {
+    return view('kategori-handphone');
+  }
+
+  public function makanminum()
+  {
+    return view('kategori-makanminum');
+  }
 }

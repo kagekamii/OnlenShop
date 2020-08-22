@@ -106,12 +106,12 @@
         <ul class="tanpa-dot" id="filters">
           Harga
           <li>
-            <input type="checkbox" id="filter-kategoria" value="400-lebih" checked>
-            <label for="filter-eksekutif"> > Rp 400.000 </label>
+            <input type="checkbox" id="filter-kategoria" value="100-lebih" checked>
+            <label for="filter-eksekutif"> > Rp 100.000 </label>
           </li>
           <li>
-            <input type="checkbox" id="filter-kategorib" value="400-kurang" checked>
-            <label for="filter-ekonomi"> < Rp 400.000 </label>
+            <input type="checkbox" id="filter-kategorib" value="100-kurang" checked>
+            <label for="filter-ekonomi"> < Rp 100.000 </label>
           </li>
         </ul>
 
@@ -123,54 +123,54 @@
       <table>
         <tr>
 
-          <td class="400-lebih">
+          <td class="100-kurang">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image">
+              <img class="card-img-top" src="img/handphone-chargerBaseus.jfif" alt="Card image" style="width:100%">
               <div class="card-body">
-                <a href="#" class="text-dark"> Logitech G402 Hyperion Fury </a>
-                <h5 class="card-text"> Rp 497.000 </h5>
+                <a href="#" class="text-dark"> Charger Baseus Fast Charging </a>
+                <h5 class="card-text"> Rp 83.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Kab. Tangerang </span>
+                <span class="small"> Jakarta Selatan </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-lebih">
+          <td class="100-lebih 100-kurang">&emsp;</td>
+          <td class="100-kurang">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image">
+              <img class="card-img-top" src="img/handphone-iphoneCase6&7.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
-                <a href="#" class="text-dark"> WD SSD Green Sata3 240gb </a>
-                <h5 class="card-text"> Rp 458.000 </h5>
+                <a href="#" class="text-dark"> Case Iphone 6/6s/7 </a>
+                <h5 class="card-text"> Rp 25.500 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Bandung </span>
+                <span class="small"> Depok </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-kurang">
+          <td class="100-lebih 100-kurang">&emsp;</td>
+          <td class="100-lebih">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-monitorDell19inch.jpg" alt="Card image">
+              <img class="card-img-top" src="img/handphone-powerbankUNEED10kMAH.png" alt="Card image">
               <div class="card-body">
-                <a href="#" class="text-dark"> Monitor Dell 19 inch </a>
-                <h5 class="card-text"> Rp 356.000 </h5>
+                <a href="#" class="text-dark"> Powerbank UNEED 10k mAH </a>
+                <h5 class="card-text"> Rp 151.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Semarang </span>
+                <span class="small"> Tangerang Selatan </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
-          <td class="400-lebih">
+          <td class="100-lebih 100-kurang">&emsp;</td>
+          <td class="100-lebih">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-vga650.jfif" alt="Card image">
+              <img class="card-img-top" src="img/handphone-redminote9-4gb64gb.jfif" alt="Card image">
               <div class="card-body">
-                <a href="#" class="text-dark"> Nvidia GTX650 </a>
-                <h5 class="card-text"> Rp 537.000 </h5>
+                <a href="#" class="text-dark"> Redmi Note 9 4/64 </a>
+                <h5 class="card-text"> Rp 2.137.000 </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Jakarta Utara </span>
+                <span class="small"> Jakarta Barat </span>
               </div>
             </div>
           </td>
