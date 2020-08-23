@@ -102,16 +102,20 @@
     <div class="col-md-2 bg-info text-light">
       Filter
       <div class="bg-light text-dark text-left">
+
         <ul class="tanpa-dot" id="filters">
           Harga
           <li>
-            <input class="check" type="checkbox" value="50lebih" checked >
+            <input name="50lebih" type="checkbox" value="50lebih" checked >
             <label for="filter-eksekutif"> > Rp 50.000 </label>
           </li>
           <li>
-            <input class="check" type="checkbox" value="50kurang" checked >
+            <input name="50kurang" type="checkbox" value="50kurang" checked >
             <label for="filter-ekonomi"> < Rp 50.000 </label>
           </li>
+        </ul>
+
+        <ul class="tanpa-dot" id="filters2">
           Jenis
           <li>
             <input class="check" type="checkbox" value="makanan" checked >
@@ -123,17 +127,6 @@
           </li>
         </ul>
 
-        <!-- <ul class="tanpa-dot" id="filters2">
-          Jenis
-          <li>
-            <input class="check" type="checkbox" value="makanan" checked >
-            <label for="filter-eksekutif"> Makanan </label>
-          </li>
-          <li>
-            <input class="check" type="checkbox" value="minuman" checked >
-            <label for="filter-ekonomi"> Minuman </label>
-          </li>
-        </ul> -->
       </div>
 
     </div>
@@ -141,10 +134,11 @@
     <! DAFTAR BARANG >
     <div id="susah" class="col-md row ml-2">
 
-      <table>
+      <table cellpadding='5'>
         <tr>
 
-          <td class="50kurang" data-name="makanan">
+          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan"
+              data-c="50lebih50kurangmakanan" data-d="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
@@ -156,8 +150,8 @@
               </div>
             </div>
           </td>
-          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
-          <td class="50kurang" data-name="minuman">
+          <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman"
+              data-c="50lebih50kurangminuman" data-d="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
@@ -169,8 +163,8 @@
               </div>
             </div>
           </td>
-          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
-          <td class="50kurang" data-name="makanan">
+          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan"
+              data-c="50lebih50kurangmakanan" data-d="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
               <div class="card-body">
@@ -182,8 +176,8 @@
               </div>
             </div>
           </td>
-          <td class="50lebih 50kurang makanan minuman">&emsp;</td>
-          <td class="50lebih" data-name="minuman">
+          <td data-x="50lebih" data-a="minuman" data-b="50lebihminuman"
+              data-c="50lebih50kurangminuman" data-d="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
               <div class="card-body">
@@ -208,22 +202,23 @@
 
 <!checkbox filter>
 <script type="text/javascript">
-  $("#filters :checkbox").click(function() {
+  $("input[type=checkbox]").click(function() {
      $("td").hide();
-     $("#filters :checkbox:checked").each(function() {
-         $("td[data-name="+$(this).val()+"],"+"." + $(this).val()).show();
+     var val = [];
+     $(":checkbox:checked").each(function(i) {
+         val[i] = $(this).val();
+         var val2 = val.join('');
+         $('#test').html(val2);
+
+         if ( $("td[data-b="+val2+"]") )
+            $("td[data-b="+val2+"]").show();
+
+         if ( $("td[data-c="+val2+"]") )
+            $("td[data-c="+val2+"]").show();
+
+         if ( $("td[data-d="+val2+"]") )
+            $("td[data-d="+val2+"]").show();
      });
   });
 </script>
-
-<!-- <script type="text/javascript">
-  $("#filters2 :checkbox").click(function() {
-     $("td").hide();
-     $("#filters2 :checkbox:checked").each(function() {
-         $("td[data-name="+$(this).val()+"]" ).show();
-     });
-  });
-</script> -->
-
-
 </html>
