@@ -55,7 +55,7 @@
          @endif" class="dropdown-item"> Handphone </a>
         <a href=
         "@if(Session::get('username') != null)
-           /kategori-makan&minum
+           /kategori-makanminum
          @else
            #
          @endif" class="dropdown-item"> Makanan & Minuman </a>
@@ -79,7 +79,10 @@
         {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
         @if(Session::get('username') != null)
         {{-- kalo ada valuenya tampilin tombol logout --}}
-        <button id="routeLogout" class="kanan mr-2 no-border bg-kuning2 rounded"> Logout </button>
+        <div class="kanan">
+          {{ Session::get('username') }}
+          <button id="routeLogout" class="no-border bg-kuning2 rounded"> Logout </button>
+        </div>
         @else
         {{-- kallo null tampilin tombol daftar dan login --}}
         <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
@@ -107,11 +110,11 @@
           Harga
           <li>
             <input type="checkbox" id="filter-kategoria" value="400-lebih" checked>
-            <label for="filter-eksekutif"> > Rp 400.000 </label>
+            <label for="filter-kategoria"> > Rp 400.000 </label>
           </li>
           <li>
             <input type="checkbox" id="filter-kategorib" value="400-kurang" checked>
-            <label for="filter-ekonomi"> < Rp 400.000 </label>
+            <label for="filter-kategorib"> < Rp 400.000 </label>
           </li>
         </ul>
 
@@ -120,14 +123,16 @@
 
     <div class="col-md row ml-2">
 
-      <table>
+      <table cellpadding='5'>
         <tr>
 
           <td class="400-lebih">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image">
+              <a href="/kategori-komputer/item/{{ $barang[0]->id }}">
+                <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Logitech G402 Hyperion Fury </a>
+                <a href="/kategori-komputer/item/{{ $barang[0]->id }}" class="text-dark"> Logitech G402 Hyperion Fury </a>
                 <h5 class="card-text"> Rp 497.000 </h5>
               </div>
               <div class="card-footer">
@@ -135,12 +140,13 @@
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
           <td class="400-lebih">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image">
+              <a href="/kategori-komputer/item/{{ $barang[1]->id }}">
+                <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> WD SSD Green Sata3 240gb </a>
+                <a href="/kategori-komputer/item/{{ $barang[1]->id }}" class="text-dark"> WD SSD Green Sata3 240gb </a>
                 <h5 class="card-text"> Rp 458.000 </h5>
               </div>
               <div class="card-footer">
@@ -148,12 +154,13 @@
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
           <td class="400-kurang">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-monitorDell19inch.jpg" alt="Card image">
+              <a href="/kategori-komputer/item/{{ $barang[2]->id }}">
+                <img class="card-img-top" src="img/komputer-monitorDell19inch.jpg" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Monitor Dell 19 inch </a>
+                <a href="/kategori-komputer/item/{{ $barang[2]->id }}" class="text-dark"> Monitor Dell 19 inch </a>
                 <h5 class="card-text"> Rp 356.000 </h5>
               </div>
               <div class="card-footer">
@@ -161,12 +168,13 @@
               </div>
             </div>
           </td>
-          <td class="400-lebih 400-kurang">&emsp;</td>
           <td class="400-lebih">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/komputer-vga650.jfif" alt="Card image">
+              <a href="/kategori-komputer/item/{{ $barang[3]->id }}">
+                <img class="card-img-top" src="img/komputer-vga650.jfif" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Nvidia GTX650 </a>
+                <a href="/kategori-komputer/item/{{ $barang[3]->id }}" class="text-dark"> Nvidia GTX650 </a>
                 <h5 class="card-text"> Rp 537.000 </h5>
               </div>
               <div class="card-footer">
@@ -184,6 +192,14 @@
 
 </body>
 
+<footer>
+  <div class="bg-info">
+    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
+    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+  </div>
+</footer>
+
+<script src="js/logoutButton.js"></script>
 <!checkbox filter>
 <script type="text/javascript">
   $("#filters :checkbox").click(function() {

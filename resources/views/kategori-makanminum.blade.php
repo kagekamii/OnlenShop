@@ -55,7 +55,7 @@
          @endif" class="dropdown-item"> Handphone </a>
         <a href=
         "@if(Session::get('username') != null)
-           /kategori-makan&minum
+           /kategori-makanminum
          @else
            #
          @endif" class="dropdown-item"> Makanan & Minuman </a>
@@ -79,7 +79,10 @@
         {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
         @if(Session::get('username') != null)
         {{-- kalo ada valuenya tampilin tombol logout --}}
-        <button id="routeLogout" class="kanan mr-2 no-border bg-kuning2 rounded"> Logout </button>
+        <div class="kanan">
+          {{ Session::get('username') }}
+          <button id="routeLogout" class="no-border bg-kuning2 rounded"> Logout </button>
+        </div>
         @else
         {{-- kallo null tampilin tombol daftar dan login --}}
         <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
@@ -99,31 +102,31 @@
 
   <div class="row m-4">
     <! FILTER AMPAS >
-    <div class="col-md-2 bg-info text-light">
-      Filter
+    <div class="col-md-2 bg-info text-light text-center rounded">
+      <strong> Filter </strong>
       <div class="bg-light text-dark text-left">
 
         <ul class="tanpa-dot" id="filters">
           Harga
           <li>
-            <input name="50lebih" type="checkbox" value="50lebih" checked >
-            <label for="filter-eksekutif"> > Rp 50.000 </label>
+            <input id="50lebih-id" type="checkbox" value="50lebih" checked >
+            <label for="50lebih-id"> > Rp 50.000 </label>
           </li>
           <li>
-            <input name="50kurang" type="checkbox" value="50kurang" checked >
-            <label for="filter-ekonomi"> < Rp 50.000 </label>
+            <input id="50kurang-id" type="checkbox" value="50kurang" checked >
+            <label for="50kurang-id"> < Rp 50.000 </label>
           </li>
         </ul>
 
         <ul class="tanpa-dot" id="filters2">
           Jenis
           <li>
-            <input class="check" type="checkbox" value="makanan" checked >
-            <label for="filter-eksekutif"> Makanan </label>
+            <input id="makanan-id" type="checkbox" value="makanan" checked >
+            <label for="makanan-id"> Makanan </label>
           </li>
           <li>
-            <input class="check" type="checkbox" value="minuman" checked >
-            <label for="filter-ekonomi"> Minuman </label>
+            <input id="minuman-id" type="checkbox" value="minuman" checked >
+            <label for="minuman-id"> Minuman </label>
           </li>
         </ul>
 
@@ -137,8 +140,8 @@
       <table cellpadding='5'>
         <tr>
 
-          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan"
-              data-c="50lebih50kurangmakanan" data-d="50lebih50kurangmakananminuman">
+          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
+              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
@@ -150,8 +153,8 @@
               </div>
             </div>
           </td>
-          <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman"
-              data-c="50lebih50kurangminuman" data-d="50lebih50kurangmakananminuman">
+          <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman" data-c="50lebih50kurangminuman"
+              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
               <div class="card-body">
@@ -163,8 +166,8 @@
               </div>
             </div>
           </td>
-          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan"
-              data-c="50lebih50kurangmakanan" data-d="50lebih50kurangmakananminuman">
+          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
+              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
               <div class="card-body">
@@ -176,8 +179,8 @@
               </div>
             </div>
           </td>
-          <td data-x="50lebih" data-a="minuman" data-b="50lebihminuman"
-              data-c="50lebih50kurangminuman" data-d="50lebih50kurangmakananminuman">
+          <td data-x="50lebih" data-a="minuman" data-b="50lebihminuman" data-c="50lebih50kurangminuman"
+          data-d="50lebih50kurangmakananminuman" data-e="50lebihmakananminuman">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
               <div class="card-body">
@@ -198,8 +201,25 @@
 
   </div>
 
+  <div class="row ml-4 mr-4">
+    <div class="col-md-2 bg-warning small rounded">
+      <strong> >> READ ME! << </strong> <br>
+      Untuk filter, minimal centang <br>
+      1 harga dan 1 jenis. Karna filternya tidak sempurna.
+    </div>
+  </div>
+
+
 </body>
 
+<footer>
+  <div class="bg-info">
+    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
+    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+  </div>
+</footer>
+
+<script src="js/logoutButton.js"></script>
 <!checkbox filter>
 <script type="text/javascript">
   $("input[type=checkbox]").click(function() {
@@ -208,7 +228,7 @@
      $(":checkbox:checked").each(function(i) {
          val[i] = $(this).val();
          var val2 = val.join('');
-         $('#test').html(val2);
+         // $('#test').html(val2);
 
          if ( $("td[data-b="+val2+"]") )
             $("td[data-b="+val2+"]").show();
@@ -218,6 +238,9 @@
 
          if ( $("td[data-d="+val2+"]") )
             $("td[data-d="+val2+"]").show();
+
+         if ( $("td[data-e="+val2+"]") )
+            $("td[data-e="+val2+"]").show();
      });
   });
 </script>

@@ -55,7 +55,7 @@
          @endif" class="dropdown-item"> Handphone </a>
         <a href=
         "@if(Session::get('username') != null)
-           /kategori-makan&minum
+           /kategori-makanminum
          @else
            #
          @endif" class="dropdown-item"> Makanan & Minuman </a>
@@ -79,7 +79,10 @@
         {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
         @if(Session::get('username') != null)
         {{-- kalo ada valuenya tampilin tombol logout --}}
-        <button id="routeLogout" class="kanan mr-2 no-border bg-kuning2 rounded"> Logout </button>
+        <div class="kanan">
+          {{ Session::get('username') }}
+          <button id="routeLogout" class="no-border bg-kuning2 rounded"> Logout </button>
+        </div>
         @else
         {{-- kallo null tampilin tombol daftar dan login --}}
         <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
@@ -120,7 +123,7 @@
 
     <div class="col-md row ml-2">
 
-      <table>
+      <table cellpadding='5'>
         <tr>
 
           <td class="100-kurang">
@@ -135,7 +138,6 @@
               </div>
             </div>
           </td>
-          <td class="100-lebih 100-kurang">&emsp;</td>
           <td class="100-kurang">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/handphone-iphoneCase6&7.jpg" alt="Card image" style="width:100%">
@@ -148,7 +150,6 @@
               </div>
             </div>
           </td>
-          <td class="100-lebih 100-kurang">&emsp;</td>
           <td class="100-lebih">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/handphone-powerbankUNEED10kMAH.png" alt="Card image">
@@ -161,7 +162,6 @@
               </div>
             </div>
           </td>
-          <td class="100-lebih 100-kurang">&emsp;</td>
           <td class="100-lebih">
             <div class="card" style="width:200px">
               <img class="card-img-top" src="img/handphone-redminote9-4gb64gb.jfif" alt="Card image">
@@ -184,6 +184,14 @@
 
 </body>
 
+<footer>
+  <div class="bg-info">
+    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
+    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+  </div>
+</footer>
+
+<script src="js/logoutButton.js"></script>
 <!checkbox filter>
 <script type="text/javascript">
   $("#filters :checkbox").click(function() {

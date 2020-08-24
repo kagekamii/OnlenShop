@@ -20,7 +20,13 @@ Route::post('/home/daftar', 'ShopController@daftar');
 Route::post('/home/login', 'ShopController@login');
 // route baru buat logout
 Route::get('/logout', 'ShopController@logout');
+// route kategori
 Route::get('/kategori-komputer', 'ShopController@komputer');
 Route::get('/kategori-handphone', 'ShopController@handphone');
 Route::get('/kategori-makanminum', 'ShopController@makanminum');
+// route barang
+Route::get('/kategori-komputer/item/{id}', 'ShopController@komputerItem');
+Route::get('/kategori-handphone/item/{id}', 'ShopController@handphoneItem');
+Route::get('/kategori-makanminum/item/{id}', 'ShopController@makanminumItem');
+
 // Route::post('/home/ajax_profil_user', 'ShopController@login');

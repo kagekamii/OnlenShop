@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Akun;
+use App\Barang;
 use Session;
 
 class ShopController extends Controller
@@ -42,12 +43,10 @@ class ShopController extends Controller
     // }
 
 
-
-
     $username = $request->input('username');
     $password = $request->input('password');
 
-    // check ke db sama ga datanya                     belajar perbedaan get() sama first() ji sekalian
+    // check ke db sama ga datanya, belajar perbedaan get() sama first() ji sekalian
     $data = Akun::where('username', $username)->where('password', $password)->first();
 
     // ini if buat ngecheck ada ga datanya
@@ -75,16 +74,37 @@ class ShopController extends Controller
 
   public function komputer()
   {
-    return view('kategori-komputer');
+    $komputer = Barang::find([1,2,3,4]);
+    return view('kategori-komputer', ['barang'=>$komputer]);
   }
 
   public function handphone()
   {
-    return view('kategori-handphone');
+    $handphone = Barang::find([5,6,7,8]);
+    return view('kategori-handphone', ['barang'=>$handphone]);
   }
 
   public function makanminum()
   {
-    return view('kategori-makanminum');
+    $makanminum = Barang::find([9,10,11,12]);
+    return view('kategori-makanminum', ['barang'=>$makanminum]);
+  }
+
+  public function komputerItem($id)
+  {
+    $komputerItem = Barang::where('id',$id)->get();
+    return view('komputer-item', ['barang2'=>$komputerItem]);
+  }
+
+  public function handphoneItem($id)
+  {
+    $handphoneItem = Barang::where('id',$id)->get();
+    return view('handphone-item', ['barang2'=>$handphoneItem]);
+  }
+
+  public function makanminumItem($id)
+  {
+    $makanminumItem = Barang::where('id',$id)->get();
+    return view('makanminum-item', ['barang2'=>$makanminumItem]);
   }
 }

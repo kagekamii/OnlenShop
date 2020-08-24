@@ -74,7 +74,10 @@
         {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
         @if(Session::get('username') != null)
         {{-- kalo ada valuenya tampilin tombol logout --}}
-        <button id="routeLogout" class="kanan mr-2 no-border bg-kuning2 rounded"> Logout </button>
+        <div class="kanan">
+          {{ Session::get('username') }}
+          <button id="routeLogout" class="no-border bg-kuning2 rounded"> Logout </button>
+        </div>
         @else
         {{-- kallo null tampilin tombol daftar dan login --}}
         <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
@@ -321,16 +324,13 @@
   </div>
 </footer>
 
+<script src="js/logoutButton.js"></script>
 <script type="text/javascript">
   // edannnnnnnnnnnnnn logoutnya pusing bet
   $(function() {
     if( $('#ubahLogout').hasClass("active") ) {
       $("#ubahLogout").load("js/logoutButton.php");
     }
-  });
-
-  $('#routeLogout').click(function(){
-    window.location.href='/logout';
   });
 </script>
 
