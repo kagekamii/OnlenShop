@@ -25,6 +25,9 @@
   td {
     vertical-align: top;
   }
+  a > img {
+    height: 230px;
+  }
 </style>
 
 <header>
@@ -121,68 +124,26 @@
       </div>
     </div>
 
-    <div class="col-md row ml-2">
+    <div class="col-md ml-2">
 
-      <table cellpadding='5'>
+      <table cellpadding='5' >
         <tr>
-
-          <td class="400-lebih">
+          @foreach($barang as $b)
+          <td class="{{ $b->filter1 }}">
             <div class="card" style="width:200px">
-              <a href="/kategori-komputer/item/{{ $barang[0]->id }}">
-                <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image">
+              <a href="/kategori-komputer/item/{{ $b->id }}">
+                <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image">
               </a>
               <div class="card-body">
-                <a href="/kategori-komputer/item/{{ $barang[0]->id }}" class="text-dark"> Logitech G402 Hyperion Fury </a>
-                <h5 class="card-text"> Rp 497.000 </h5>
+                <a href="/kategori-komputer/item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
+                <h5 class="card-text"> Rp {{ number_format($b->harga) }} </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Kab. Tangerang </span>
+                <span class="small"> {{ $b->lokasi }} </span>
               </div>
             </div>
           </td>
-          <td class="400-lebih">
-            <div class="card" style="width:200px">
-              <a href="/kategori-komputer/item/{{ $barang[1]->id }}">
-                <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image">
-              </a>
-              <div class="card-body">
-                <a href="/kategori-komputer/item/{{ $barang[1]->id }}" class="text-dark"> WD SSD Green Sata3 240gb </a>
-                <h5 class="card-text"> Rp 458.000 </h5>
-              </div>
-              <div class="card-footer">
-                <span class="small"> Bandung </span>
-              </div>
-            </div>
-          </td>
-          <td class="400-kurang">
-            <div class="card" style="width:200px">
-              <a href="/kategori-komputer/item/{{ $barang[2]->id }}">
-                <img class="card-img-top" src="img/komputer-monitorDell19inch.jpg" alt="Card image">
-              </a>
-              <div class="card-body">
-                <a href="/kategori-komputer/item/{{ $barang[2]->id }}" class="text-dark"> Monitor Dell 19 inch </a>
-                <h5 class="card-text"> Rp 356.000 </h5>
-              </div>
-              <div class="card-footer">
-                <span class="small"> Semarang </span>
-              </div>
-            </div>
-          </td>
-          <td class="400-lebih">
-            <div class="card" style="width:200px">
-              <a href="/kategori-komputer/item/{{ $barang[3]->id }}">
-                <img class="card-img-top" src="img/komputer-vga650.jfif" alt="Card image">
-              </a>
-              <div class="card-body">
-                <a href="/kategori-komputer/item/{{ $barang[3]->id }}" class="text-dark"> Nvidia GTX650 </a>
-                <h5 class="card-text"> Rp 537.000 </h5>
-              </div>
-              <div class="card-footer">
-                <span class="small"> Jakarta Utara </span>
-              </div>
-            </div>
-          </td>
-
+          @endforeach
         </tr>
       </table>
 

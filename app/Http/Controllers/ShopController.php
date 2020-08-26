@@ -93,18 +93,30 @@ class ShopController extends Controller
   public function komputerItem($id)
   {
     $komputerItem = Barang::where('id',$id)->get();
-    return view('komputer-item', ['barang2'=>$komputerItem]);
+    return view('item-komputer', ['barang2'=>$komputerItem]);
   }
 
   public function handphoneItem($id)
   {
     $handphoneItem = Barang::where('id',$id)->get();
-    return view('handphone-item', ['barang2'=>$handphoneItem]);
+    return view('item-handphone', ['barang2'=>$handphoneItem]);
   }
 
   public function makanminumItem($id)
   {
     $makanminumItem = Barang::where('id',$id)->get();
-    return view('makanminum-item', ['barang2'=>$makanminumItem]);
+    return view('item-makanminum', ['barang2'=>$makanminumItem]);
+  }
+
+  public function keranjangSatu(Request $request)
+  {
+    $nama_barang = $request->nama_barang;
+    $jml_barang = $request->jml_barang;
+    $harga_barang = filter_var($request->harga_barang, FILTER_SANITIZE_NUMBER_INT);
+    $gbr_barang = $request->gbr_barang;
+    return view('keranjang-satu', ['nama_barang'=>$nama_barang,
+                                  'jml_barang'=>$jml_barang,
+                                  'harga_barang'=>$harga_barang,
+                                  'gbr_barang'=>$gbr_barang]);
   }
 }

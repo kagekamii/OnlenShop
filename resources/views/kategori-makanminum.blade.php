@@ -25,6 +25,9 @@
   td {
     vertical-align: top;
   }
+  a > img {
+    height: 230px;
+  }
 </style>
 
 <header>
@@ -135,7 +138,7 @@
     </div>
 
     <! DAFTAR BARANG >
-    <div id="susah" class="col-md row ml-2">
+    <div id="susah" class="col-md ml-2">
 
       <table cellpadding='5'>
         <tr>
@@ -143,9 +146,11 @@
           <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
               data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
+              <a href="/kategori-makanminum/item/{{ $barang[0]->id }}">
+                <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Baso Aci Tulang Rungu </a>
+                <a href="/kategori-makanminum/item/{{ $barang[0]->id }}" class="text-dark"> Baso Aci Tulang Rungu </a>
                 <h5 class="card-text"> Rp 32.000 </h5>
               </div>
               <div class="card-footer">
@@ -156,9 +161,11 @@
           <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman" data-c="50lebih50kurangminuman"
               data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
+              <a href="/kategori-makanminum/item/{{ $barang[1]->id }}">
+                <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Kombucha HEAL X BURGREENS </a>
+                <a href="/kategori-makanminum/item/{{ $barang[1]->id }}" class="text-dark"> Kombucha HEAL X BURGREENS </a>
                 <h5 class="card-text"> Rp 46.500 </h5>
               </div>
               <div class="card-footer">
@@ -169,9 +176,11 @@
           <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
               data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
+              <a href="/kategori-makanminum/item/{{ $barang[2]->id }}">
+                <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Chikiballs Keju </a>
+                <a href="/kategori-makanminum/item/{{ $barang[2]->id }}" class="text-dark"> Chikiballs Keju </a>
                 <h5 class="card-text"> Rp 15.000 </h5>
               </div>
               <div class="card-footer">
@@ -182,9 +191,11 @@
           <td data-x="50lebih" data-a="minuman" data-b="50lebihminuman" data-c="50lebih50kurangminuman"
           data-d="50lebih50kurangmakananminuman" data-e="50lebihmakananminuman">
             <div class="card" style="width:200px">
-              <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
+              <a href="/kategori-makanminum/item/{{ $barang[3]->id }}">
+                <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
+              </a>
               <div class="card-body">
-                <a href="#" class="text-dark"> Susu F&N evaporasi 390gr </a>
+                <a href="/kategori-makanminum/item/{{ $barang[3]->id }}" class="text-dark"> Susu F&N evaporasi 390gr </a>
                 <h5 class="card-text"> Rp 67.000 </h5>
               </div>
               <div class="card-footer">

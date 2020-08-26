@@ -28,5 +28,8 @@ Route::get('/kategori-makanminum', 'ShopController@makanminum');
 Route::get('/kategori-komputer/item/{id}', 'ShopController@komputerItem');
 Route::get('/kategori-handphone/item/{id}', 'ShopController@handphoneItem');
 Route::get('/kategori-makanminum/item/{id}', 'ShopController@makanminumItem');
+// route keranjang
+Route::post('/keranjang-satu', 'ShopController@keranjangSatu');
+
 
 // Route::post('/home/ajax_profil_user', 'ShopController@login');

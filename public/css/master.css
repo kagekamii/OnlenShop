@@ -3,6 +3,18 @@
   color: #b602b6;
 }
 
+.text-green1 {
+  color: #b3f164;
+}
+
+.text-green1:hover {
+  color: #8fc24f;
+}
+
+.text-green2 {
+  color: #b3f164;
+}
+
 .bg-kuning {
   background-color: #ffd94a;
 }
@@ -45,6 +57,7 @@
 .bg-blue1 {
   background: rgba(131, 170, 205, 0.5);
 }
+
 
 /* UTILITIES */
 .searchbox {
@@ -90,6 +103,28 @@ footer {
     clear: both;
     position: relative;
     margin-top: 150px;
+}
+
+.sticky {
+  top: 50px;
+  position: sticky;
+}
+
+@font-face {
+  font-family: inconsolata;
+  src: url(font/Inconsolata-Regular.ttf);
+}
+
+.inconsolata {
+  font-family: inconsolata;
+}
+
+.alamat {
+  font-family: Arial;
+  border: 0;
+  background-color: inherit;
+  color: yellow;
+  text-align: right;
 }
 
 /* CAROUSEL */

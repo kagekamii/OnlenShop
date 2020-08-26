@@ -5,12 +5,13 @@
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/master.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/master.css') }}">
+
   <!--Bootstrap JS-->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -23,10 +24,13 @@
 
 <style media="screen">
   td {
-    vertical-align: top;
+    padding-left: 30px;
+    padding-right: 5px;
   }
-  a > img {
-    height: 230px;
+  input[type='text'] {
+    border: 0;
+    background-color: inherit;
+    color: white;
   }
 </style>
 
@@ -67,13 +71,13 @@
 
     <! SEARCH BOX>
       <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
-      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
+      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="{{ asset('img/search.png') }}" width="20">
       </button>
 
     <! KERANJANG & CHAT>
-      <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
+      <button type="button" class="no-border kanan mr-2" name="button"> <img src="{{ asset('img/keranjang.png') }}" width="20">
       </button>
-      <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
+      <button type="button" class="no-border" name="button"> <img src="{{ asset('img/message.png') }}" width="20"> </button>
 
       {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
         btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
@@ -103,52 +107,54 @@
 
 <body class="bg-navy">
 
-  <div class="row m-4">
+  <div class="m-4 text-light">
+    {{ Form::open(['url' => '/keranjang-satu']) }}
+    {{ csrf_field() }}
+    <table >
+      <tr>
+        <td rowspan="7">
+          <img id="gbr_barang" class="rounded" src="{{ asset('img/').'/'.$barang2[0]->gambar }}" alt="a gambar" width="400px">
+        </td>
+      </tr>
 
-    <div class="col-md-2 bg-info text-light">
-      Filter
-      <div class="bg-light text-dark text-left">
-
-        <ul class="tanpa-dot" id="filters">
-          Harga
-          <li>
-            <input type="checkbox" id="filter-kategoria" value="100-lebih" checked>
-            <label for="filter-eksekutif"> > Rp 100.000 </label>
-          </li>
-          <li>
-            <input type="checkbox" id="filter-kategorib" value="100-kurang" checked>
-            <label for="filter-ekonomi"> < Rp 100.000 </label>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-
-    <div class="col-md ml-2">
-
-      <table cellpadding='5'>
-        <tr>
-          @foreach($barang as $b)
-          <td class="{{ $b->filter1 }}">
-            <div class="card" style="width:200px">
-              <a href="/kategori-handphone/item/{{ $b->id }}">
-                <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image" style="width:100%">
-              </a>
-              <div class="card-body">
-                <a href="/kategori-handphone/item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
-                <h5 class="card-text"> Rp {{ number_format($b->harga) }} </h5>
-              </div>
-              <div class="card-footer">
-                <span class="small"> {{ $b->lokasi }} </span>
-              </div>
-            </div>
-          </td>
-          @endforeach
-        </tr>
-      </table>
-
-    </div>
-
+      <! DETAIL BARANG >
+      <tr>
+        <td class="nama-barang" colspan="6">
+          <input class="w-100" type="text" name="nama_barang" value="{{ $barang2[0]->nama }}" readonly>
+          <input id="test" type="hidden" name="gbr_barang" value="">
+        </td>
+      </tr>
+      <tr class="tr-line">
+        <td>Terjual 0 Produk</td>
+        <td colspan="5">0x Dilihat</td>
+      </tr>
+      <tr class="tr-line">
+        <td colspan="6">
+          Harga: Rp <input type="text" name="harga_barang" value="{{ number_format($barang2[0]->harga) }}" readonly>
+        </td>
+      </tr>
+      <tr class="tr-line">
+        <td colspan="5">
+          Jumlah: <input class="rounded" type="number" name="jml_barang" value="0" min="1" max="99">
+        </td>
+      </tr>
+      <tr class="tr-line">
+        <td> Info Produk </td>
+        <td> Berat <br> {{ $barang2[0]->berat }} </td>
+        <td> Kondisi <br> {{ $barang2[0]->kondisi }} </td>
+        <td> Asuransi <br> <font color='lime'> Tentu tidak </font> </td>
+        <td> Kategori <br> {{ $barang2[0]->kategori }} </td>
+      </tr>
+      <tr>
+        <td colspan="5"> Ongkos Kirim:
+          <font color='yellow'>klik beli dulu, biar tau</font>
+        </td>
+        <td>
+          <button class="btn bg-green1 float-right" type="submit" name="lanjutBeli"> Beli </button>
+        </td>
+      </tr>
+    </table>
+    {{ Form::close() }}
   </div>
 
 </body>
@@ -160,14 +166,11 @@
   </div>
 </footer>
 
-<script src="js/logoutButton.js"></script>
-<!checkbox filter>
+<script src="{{ asset('js/logoutButton.js') }}"></script>
 <script type="text/javascript">
-  $("#filters :checkbox").click(function() {
-     $("td").hide();
-     $("#filters :checkbox:checked").each(function() {
-         $("." + $(this).val()).show();
-     });
+  $(document).ready(function() {
+    var src = $('#gbr_barang').attr('src');
+    document.getElementById('test').value = src;
   });
 </script>
 
