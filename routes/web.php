@@ -30,6 +30,10 @@ Route::get('/kategori-handphone/item/{id}', 'ShopController@handphoneItem');
 Route::get('/kategori-makanminum/item/{id}', 'ShopController@makanminumItem');
 // route keranjang
 Route::post('/keranjang-satu', 'ShopController@keranjangSatu');
-
+Route::get('/keranjang-satuhalf', 'ShopController@keranjangSatuHalf');
+Route::get('/keranjang-dua', 'ShopController@keranjangDua');
+Route::get('/insertData', 'ShopController@insertData');
+Route::post('/insertData2', 'ShopController@insertData2');
+Route::get('/keranjang-tiga', 'ShopController@keranjangTiga');
 
 // Route::post('/home/ajax_profil_user', 'ShopController@login');

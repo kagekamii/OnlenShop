@@ -15,6 +15,12 @@
   color: #b3f164;
 }
 
+.text-turquoise {
+  -webkit-text-stroke: 0.3px black;
+  /* text-shadow: 1px 1px 0 #000; */
+  color: turquoise;
+}
+
 .bg-kuning {
   background-color: #ffd94a;
 }
@@ -58,6 +64,13 @@
   background: rgba(131, 170, 205, 0.5);
 }
 
+.invert { filter: invert(100%); }
+
+.footer-text {
+  background-image: linear-gradient(to right, lime, yellow, yellow);
+  color: transparent;
+  background-clip: text;
+}
 
 /* UTILITIES */
 .searchbox {
@@ -123,8 +136,28 @@ footer {
   font-family: Arial;
   border: 0;
   background-color: inherit;
-  color: yellow;
+  color: lime;
   text-align: right;
+  cursor: default;
+}
+
+.subhargaBarang {
+  width: 75%;
+  background-color: inherit;
+  border: 0;
+  color: white;
+}
+.subhargaBarang2 {
+  width: 50%;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  text-align: right;
+}
+
+.caraBayar:hover {
+  border-radius: 5px;
+  background-color: rgba(191,255,79, 0.4);
 }
 
 /* CAROUSEL */

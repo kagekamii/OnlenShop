@@ -259,6 +259,11 @@
                 <input type="password" class="form-control" placeholder="maks. 20 karakter" name="password" required>
               </div>
 
+              <div class="form-group">
+                {{ Form::label('nohp', 'No. Handphone:') }}
+                {{ Form::text('nohp', '', ['class'=>'form-control', 'placeholder'=>'maks. 20 karakter', 'required']) }}
+              </div>
+
               {{ Form::submit('Daftar', ['class'=>'btn btn-primary']) }}
               {{ Form::close() }}
 

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Akun extends Model
 {
     protected $table = "tb_akun";
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['username', 'password', 'nohp'];
     public $timestamps = false;
 }
