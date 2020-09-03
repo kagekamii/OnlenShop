@@ -58,14 +58,24 @@
     </div>
 
     <! SEARCH BOX>
-      <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
-      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
-      </button>
+      {{ Form::open(['url'=>'/pencarian-item']) }}
+      {{ csrf_field() }}
+        <div class="input-group">
+          <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
+          placeholder="masukkan nama/kategori barang" required>
+          <button type="submit" class="btn-orange1 mr-5" name="submitCari">
+            <img src="img/search.png" width="20">
+          </button>
+        </div>
+      {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
+      <button type="button" class="no-border bg-light kanan mr-2" name="button">
+        <img src="img/keranjang.png" width="20">
       </button>
-      <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
+      <button type="button" class="no-border bg-light" name="button">
+        <img src="img/message.png" width="20">
+      </button>
 
       {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
         btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
@@ -162,71 +172,21 @@
 
   <div class="row m-4">
     <! List Barang >
+    @foreach($apaan as $a)
     <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/handphone-chargerBaseus.jfif" alt="Card image" style="width:100%">
+      <a href="/kategori-item/{{ $a->id }}">
+        <img class="card-img-top" src="img/{{ $a->gambar }}" alt="Card image" style="width:100%">
+      </a>
       <div class="card-body">
-        <a href="#" class="text-dark"> Charger Baseus Fast Charging </a>
-        <h5 class="card-text"> Rp 83.000 </h5>
+        <a href="/kategori-item/{{ $a->id }}" class="text-dark"> {{ $a->nama }} </a>
+        <h5 class="card-text"> Rp {{ number_format($a->harga) }} </h5>
       </div>
       <div class="card-footer">
-        <span class="small"> Jakarta Selatan </span>
+        <span class="small"> {{ $a->lokasi }} </span>
       </div>
     </div>
     &emsp;
-    <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/handphone-iphoneCase6&7.jpg" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <a href="#" class="text-dark"> Case Iphone 6/6s/7 </a>
-        <h5 class="card-text"> Rp 25.500 </h5>
-      </div>
-      <div class="card-footer">
-        <span class="small"> Depok </span>
-      </div>
-    </div>
-    &emsp;
-    <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/komputer-logitechg402.jfif" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <a href="#" class="text-dark"> Logitech G402 Hyperion Fury </a>
-        <h5 class="card-text"> Rp 497.000 </h5>
-      </div>
-      <div class="card-footer">
-        <span class="small"> Kab. Tangerang </span>
-      </div>
-    </div>
-    &emsp;
-    <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/komputer-ssdWDgreenSata3.jfif" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <a href="#" class="text-dark"> WD SSD Green Sata3 240gb </a>
-        <h5 class="card-text"> Rp 458.000 </h5>
-      </div>
-      <div class="card-footer">
-        <span class="small"> Bandung </span>
-      </div>
-    </div>
-    &emsp;
-    <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <a href="#" class="text-dark"> Baso Aci Tulang Rungu </a>
-        <h5 class="card-text"> Rp 32.000 </h5>
-      </div>
-      <div class="card-footer">
-        <span class="small"> Ciamis </span>
-      </div>
-    </div>
-    &emsp;
-    <div class="card" style="width:200px">
-      <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <a href="#" class="text-dark"> Kombucha HEAL X BURGREENS </a>
-        <h5 class="card-text"> Rp 46.500 </h5>
-      </div>
-      <div class="card-footer">
-        <span class="small"> Lampung </span>
-      </div>
-    </div>
+    @endforeach
 
   </div>
 

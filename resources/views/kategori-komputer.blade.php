@@ -131,11 +131,11 @@
           @foreach($barang as $b)
           <td class="{{ $b->filter1 }}">
             <div class="card" style="width:200px">
-              <a href="/kategori-komputer/item/{{ $b->id }}">
+              <a href="/kategori-item/{{ $b->id }}">
                 <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image">
               </a>
               <div class="card-body">
-                <a href="/kategori-komputer/item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
+                <a href="/kategori-item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
                 <h5 class="card-text"> Rp {{ number_format($b->harga) }} </h5>
               </div>
               <div class="card-footer">

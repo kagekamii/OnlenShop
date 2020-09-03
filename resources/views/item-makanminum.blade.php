@@ -27,6 +27,11 @@
     padding-left: 30px;
     padding-right: 5px;
   }
+  input[type='text'] {
+    border: 0;
+    background-color: inherit;
+    color: white;
+  }
 </style>
 
 <header>
@@ -103,26 +108,34 @@
 <body class="bg-navy">
 
   <div class="m-4 text-light">
-
+    {{ Form::open(['url' => '/keranjang-satu']) }}
+    {{ csrf_field() }}
     <table >
       <tr>
-        <td rowspan="7"> <img class="rounded" src="{{ asset('img/').'/'.$barang2[0]->gambar }}" alt="a gambar" width="400px"> </td>
+        <td rowspan="7">
+          <img id="gbr_barang" class="rounded" src="{{ asset('img/').'/'.$barang2[0]->gambar }}" alt="a gambar" width="400px">
+        </td>
       </tr>
 
       <! DETAIL BARANG >
       <tr>
-        <td class="nama-barang" colspan="5"> {{ $barang2[0]->nama }} </td>
+        <td class="nama-barang" colspan="6">
+          <input class="w-100" type="text" name="nama_barang" value="{{ $barang2[0]->nama }}" readonly>
+          <input id="test" type="hidden" name="gbr_barang" value="">
+        </td>
       </tr>
       <tr class="tr-line">
         <td>Terjual 0 Produk</td>
         <td colspan="5">0x Dilihat</td>
       </tr>
       <tr class="tr-line">
-        <td colspan="5">Harga: Rp {{ number_format($barang2[0]->harga) }}</td>
+        <td colspan="6">
+          Harga: Rp <input type="text" name="harga_barang" value="{{ number_format($barang2[0]->harga) }}" readonly>
+        </td>
       </tr>
       <tr class="tr-line">
         <td colspan="5">
-          Jumlah: <input class="rounded" type="number" name="jumlah" value="0" min="1" max="99">
+          Jumlah: <input class="rounded" type="number" name="jml_barang" value="0" min="1" max="99">
         </td>
       </tr>
       <tr class="tr-line">
@@ -137,11 +150,11 @@
           <font color='yellow'>klik beli dulu, biar tau</font>
         </td>
         <td>
-          <button class="btn bg-green1 float-right" type="button" name="button"> Beli </button>
+          <button class="btn bg-green1 float-right" type="submit" name="lanjutBeli"> Beli </button>
         </td>
       </tr>
     </table>
-
+    {{ Form::close() }}
   </div>
 
 </body>
@@ -149,10 +162,16 @@
 <footer>
   <div class="bg-info">
     &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
-    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+    <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
   </div>
 </footer>
 
 <script src="{{ asset('js/logoutButton.js') }}"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var src = $('#gbr_barang').attr('src');
+    document.getElementById('test').value = src;
+  });
+</script>
 
 </html>

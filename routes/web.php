@@ -18,17 +18,22 @@ Route::get('/', function () {
 Route::get('/home', 'ShopController@index');
 Route::post('/home/daftar', 'ShopController@daftar');
 Route::post('/home/login', 'ShopController@login');
-// route baru buat logout
+
+//----------------------ROUTE LOGOUT------------------
 Route::get('/logout', 'ShopController@logout');
-// route kategori
+
+//--------------------ROUTE KATEGORI------------------
 Route::get('/kategori-komputer', 'ShopController@komputer');
 Route::get('/kategori-handphone', 'ShopController@handphone');
 Route::get('/kategori-makanminum', 'ShopController@makanminum');
-// route barang
-Route::get('/kategori-komputer/item/{id}', 'ShopController@komputerItem');
-Route::get('/kategori-handphone/item/{id}', 'ShopController@handphoneItem');
-Route::get('/kategori-makanminum/item/{id}', 'ShopController@makanminumItem');
-// route keranjang
+
+//----------------ROUTE BARANG---------------------
+Route::get('/kategori-item/{id}', 'ShopController@kategoriesItem');
+// Route::get('/kategori-komputer/item/{id}', 'ShopController@komputerItem');
+// Route::get('/kategori-handphone/item/{id}', 'ShopController@handphoneItem');
+// Route::get('/kategori-makanminum/item/{id}', 'ShopController@makanminumItem');
+
+//----------------ROUTE KERANJANG----------------------
 Route::post('/keranjang-satu', 'ShopController@keranjangSatu');
 Route::get('/keranjang-satuhalf', 'ShopController@keranjangSatuHalf');
 Route::get('/keranjang-dua', 'ShopController@keranjangDua');
@@ -36,4 +41,5 @@ Route::get('/insertData', 'ShopController@insertData');
 Route::post('/insertData2', 'ShopController@insertData2');
 Route::get('/keranjang-tiga', 'ShopController@keranjangTiga');
 
-// Route::post('/home/ajax_profil_user', 'ShopController@login');
+//--------------ROUTE SEARCH-------------
+Route::post('/pencarian-item', 'ShopController@pencarianItem');

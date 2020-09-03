@@ -12,7 +12,9 @@ class ShopController extends Controller
 {
   public function index()
   {
-    return view('home');
+    $apaan = Barang::find([1,2,5,6,9,10]);
+    $apaan2 = $apaan->shuffle();
+    return view('home', ['apaan'=>$apaan2]);
   }
 
   public function daftar(Request $request)
@@ -93,18 +95,24 @@ class ShopController extends Controller
     return view('kategori-makanminum', ['barang'=>$makanminum]);
   }
 
-  public function komputerItem($id)
+  public function kategoriesItem($id)
   {
-    $komputerItem = Barang::where('id',$id)->get();
-    return view('item-komputer', ['barang2'=>$komputerItem]);
+    $kategoriesItem = Barang::where('id',$id)->get();
+    return view('item-kategories', ['barang2'=>$kategoriesItem]);
   }
 
-  public function handphoneItem($id)
-  {
-    $handphoneItem = Barang::where('id',$id)->get();
-    return view('item-handphone', ['barang2'=>$handphoneItem]);
-  }
-
+  // public function komputerItem($id)
+  // {
+  //   $komputerItem = Barang::where('id',$id)->get();
+  //   return view('item-komputer', ['barang2'=>$komputerItem]);
+  // }
+  //
+  // public function handphoneItem($id)
+  // {
+  //   $handphoneItem = Barang::where('id',$id)->get();
+  //   return view('item-handphone', ['barang2'=>$handphoneItem]);
+  // }
+  //
   public function makanminumItem($id)
   {
     $makanminumItem = Barang::where('id',$id)->get();
@@ -206,9 +214,16 @@ class ShopController extends Controller
   public function keranjangTiga(Request $request)
   {
     $getData = Master::latest('id')->first();
-    return view('keranjang-tiga',
-    ['getTime'=>$getData->batas_waktu,
-      'getTagihan'=>$getData->total_bayar,
-      'getKode'=>$getData->kode_transaksi]);
+    return view('keranjang-tiga', ['getTime'=>$getData->batas_waktu,
+                                  'getTagihan'=>$getData->total_bayar,
+                                  'getKode'=>$getData->kode_transaksi]);
+  }
+
+  public function pencarianItem(Request $request)
+  {
+    $keyword = $request->kolomCari;
+    $barangs = Barang::where('nama', 'like', '%'.$keyword.'%')->orWhere('kategori', 'like', '%'.$keyword.'%')->get();
+    // $acakBarangs = $barangs->shuffle();
+    return view('pencarian-item', ['acakBarangs'=>$barangs, 'keyword'=>$keyword]);
   }
 }

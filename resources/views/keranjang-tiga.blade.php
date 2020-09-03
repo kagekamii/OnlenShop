@@ -124,7 +124,7 @@
 
     <div class="col-md-8 bg-light content-center border p-3 mt-4">
       <span class="text-dark" style="font-size: large; font-weight: 600;">
-        Pembayaran via aaa <input type="hidden" id="user" value="{{ Session::get('username') }}">
+        Pembayaran via {{ Session::get('metode_bayar') }}
       </span>
     </div>
     <div class="col-md-8 bg-secondary text-center content-center border p-3">
@@ -170,22 +170,5 @@
 </footer>
 
 <script src="{{ asset('js/popover.js') }}"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var tanggal = new Date().getDate()+1;
-    var namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
-                      "Agustus", "September", "Oktober", "November", "Desember"];
-    var bulan = namaBulan[new Date().getMonth()];
-    var waktu = new Date().toLocaleTimeString('it-IT');
-    var batasWaktu = waktu+', '+tanggal+' '+bulan+' 2020';
-
-    $('#timer').html( batasWaktu );
-
-    // var x = setInterval(function() {
-    //   var sekarang = new Date().getTime();
-    //   $('#timer').html(sekarang);
-    // }, 1000);
-  });
-</script>
 
 </html>

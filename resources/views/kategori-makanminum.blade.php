@@ -142,24 +142,25 @@
 
       <table cellpadding='5'>
         <tr>
-
-          <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
-              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
+          @foreach($barang as $b)
+          <td data-x="50kurang" data-a="{{ $b->filter1 }}" data-b="{{ $b->filter2 }}" data-c="{{ $b->filter3 }}"
+              data-d="{{ $b->filter4 }}" data-e="{{ $b->filter5 }}">
             <div class="card" style="width:200px">
-              <a href="/kategori-makanminum/item/{{ $barang[0]->id }}">
-                <img class="card-img-top" src="img/makanminum-basoAciTulangRangu.jpg" alt="Card image" style="width:100%">
+              <a href="/kategori-item/{{ $b->id }}">
+                <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image" style="width:100%">
               </a>
               <div class="card-body">
-                <a href="/kategori-makanminum/item/{{ $barang[0]->id }}" class="text-dark"> Baso Aci Tulang Rungu </a>
-                <h5 class="card-text"> Rp 32.000 </h5>
+                <a href="/kategori-item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
+                <h5 class="card-text"> Rp {{ number_format($b->harga) }} </h5>
               </div>
               <div class="card-footer">
-                <span class="small"> Ciamis </span>
+                <span class="small"> {{ $b->lokasi }} </span>
               </div>
             </div>
           </td>
-          <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman" data-c="50lebih50kurangminuman"
-              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
+          @endforeach
+          <!-- <td data-x="50kurang" data-a="minuman" data-b="50kurangminuman" data-c="50lebih50kurangminuman"
+              data-d="50kurangmakananminuman" data-e="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <a href="/kategori-makanminum/item/{{ $barang[1]->id }}">
                 <img class="card-img-top" src="img/makanminum-kombuchaHealBurgreens.jpg" alt="Card image" style="width:100%">
@@ -174,7 +175,7 @@
             </div>
           </td>
           <td data-x="50kurang" data-a="makanan" data-b="50kurangmakanan" data-c="50lebih50kurangmakanan"
-              data-d="50lebih50kurangmakananminuman" data-e="50kurangmakananminuman">
+              data-d="50kurangmakananminuman" data-e="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <a href="/kategori-makanminum/item/{{ $barang[2]->id }}">
                 <img class="card-img-top" src="img/makanminum-chikiballskeju.jfif" alt="Card image">
@@ -189,7 +190,7 @@
             </div>
           </td>
           <td data-x="50lebih" data-a="minuman" data-b="50lebihminuman" data-c="50lebih50kurangminuman"
-          data-d="50lebih50kurangmakananminuman" data-e="50lebihmakananminuman">
+          data-d="50lebihmakananminuman" data-e="50lebih50kurangmakananminuman">
             <div class="card" style="width:200px">
               <a href="/kategori-makanminum/item/{{ $barang[3]->id }}">
                 <img class="card-img-top" src="img/makanminum-susuF&Nevaporasi390gr.jpg" alt="Card image">
@@ -202,7 +203,7 @@
                 <span class="small"> Tangerang Kota </span>
               </div>
             </div>
-          </td>
+          </td> -->
 
         </tr>
       </table>
@@ -215,8 +216,8 @@
   <div class="row ml-4 mr-4">
     <div class="col-md-2 bg-warning small rounded">
       <strong> >> READ ME! << </strong> <br>
-      Untuk filter, minimal centang <br>
-      1 harga dan 1 jenis. Karna filternya tidak sempurna.
+      Untuk filter, centang salah satu jenis (tidak bisa keduanya).
+      Karna filternya tidak sempurna.
     </div>
   </div>
 
@@ -230,29 +231,8 @@
   </div>
 </footer>
 
-<script src="js/logoutButton.js"></script>
 <!checkbox filter>
-<script type="text/javascript">
-  $("input[type=checkbox]").click(function() {
-     $("td").hide();
-     var val = [];
-     $(":checkbox:checked").each(function(i) {
-         val[i] = $(this).val();
-         var val2 = val.join('');
-         // $('#test').html(val2);
+<script src="js/multipleFilter.js"></script>
+<script src="js/logoutButton.js"></script>
 
-         if ( $("td[data-b="+val2+"]") )
-            $("td[data-b="+val2+"]").show();
-
-         if ( $("td[data-c="+val2+"]") )
-            $("td[data-c="+val2+"]").show();
-
-         if ( $("td[data-d="+val2+"]") )
-            $("td[data-d="+val2+"]").show();
-
-         if ( $("td[data-e="+val2+"]") )
-            $("td[data-e="+val2+"]").show();
-     });
-  });
-</script>
 </html>
