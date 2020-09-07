@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/home', 'ShopController@index');
 Route::post('/home/daftar', 'ShopController@daftar');
 Route::post('/home/login', 'ShopController@login');
+Route::get('/about', 'ShopController@about');
 
 //----------------------ROUTE LOGOUT------------------
 Route::get('/logout', 'ShopController@logout');
@@ -42,4 +43,9 @@ Route::post('/insertData2', 'ShopController@insertData2');
 Route::get('/keranjang-tiga', 'ShopController@keranjangTiga');
 
 //--------------ROUTE SEARCH-------------
-Route::post('/pencarian-item', 'ShopController@pencarianItem');
+Route::get('/pencarian-item', 'ShopController@pencarianItem');
+
+//-------------ROUTE TRANSAKSI------------
+Route::get('/transaksi', 'ShopController@transaksi');
+Route::get('/transaksi2', 'ShopController@transaksi2');
+Route::get('/transaksi-detail', 'ShopController@transaksiDetail');

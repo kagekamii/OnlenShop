@@ -63,10 +63,10 @@
       {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <a href="/transaksi" class="keranjangchat kanan mr-3" name="keranjang">
+      <a href="/transaksi" class="keranjangchat kanan mr-3" title="Transaksi">
         <img src="{{ asset('img/keranjang.png') }}" width="20">
       </a>
-      <a href="#" class="keranjangchat" name="chat">
+      <a href="#" class="keranjangchat" title="Chat">
         <img src="{{ asset('img/message.png') }}" width="20">
       </a>
 
@@ -98,58 +98,119 @@
 
 <body class="bg-navy">
 
-  <div class="m-5 text-light">
+  <div class="row m-4 justify-content-center text-light">
 
-    <div class="col-md-8 row content-center border p-3">
+    <div class="col-md-3 text-center text-light border p-2 mt-5 h-100">
       <img src="{{ asset('img/privasi.png') }}" alt="gambar" width="120px">
-      <div class="col-md" style="word-wrap: normal;">
-        <strong class="ml-4"> Selalu waspada terhadap pihak tidak bertanggung jawab </strong> <br>
-        <ul class="mb-1">
+      <div class="col-md text-left" style="word-wrap: normal;">
+        <strong> Selalu waspada terhadap pihak tidak bertanggung jawab </strong> <br>
+        <ul class="ml-n4 mb-1">
           <li> Jangan lakukan pembayaran dengan nominal yang berbeda dengan yang tertera pada tagihan kamu. </li>
           <li> Jangan lakukan transfer di luar nomor rekening atas nama Abang Iggy. </li>
         </ul>
-        <a href="#" class="text-green1 ml-4" data-toggle="popover" data-trigger="focus"
+        <a href="#" class="text-green1 ml-3" data-toggle="popover" data-trigger="focus"
         data-placement="right" data-content="Cari sendiri bos.">
           Pelajari selengkapnya
         </a>
       </div>
     </div>
 
-    <div class="col-md-8 bg-light content-center border p-3 mt-4">
-      <span class="text-dark" style="font-size: large; font-weight: 600;">
-        Pembayaran via {{ Session::get('metode_bayar') }}
-      </span>
-    </div>
-    <div class="col-md-8 bg-secondary text-center content-center border p-3">
-      <p>
-        Batas pembayaran: <strong> {{ $getTime }} </strong>
-        <br><br>
-
-        Jumlah Tagihan:
-        <h4 class="mt-n3"> Rp {{ $getTagihan}} </h4>
-        <br>
-
-        Nomor tagihan:
-        <h4 class="text-turquoise"> {{ $getKode }} </h4>
-      </p>
-    </div>
-    <div class="col-md-8 bg-light content-center border p-3">
-      <span class="text-dark" style="font-size: large; font-weight: 600;">
-        Petunjuk pembayaran
-      </span>
-      <div class="col-md bg-secondary content-center p-3 mt-2">
-        <ul>
-          <li> 1. Yes </li>
-          <li> 2. No </li>
-          <li> 3. Yes'nt </li>
-        </ul>
+    <div class="col-md-6 text-right">
+      <h4> Transaksi Detail </h4>
+      <br>
+      <div class="bg-wat text-dark p-3">
+        <strong> Daftar Pembelian </strong>
       </div>
-      <p class="text-dark mt-2">
-        Pembelianmu dicatat dengan nomor tagihan pembayaran <span class="text-turquoise">{{ $getKode }}</span>.
-        Jika kamu menghadapi kendala mengenai pembayaran, silahkan langsung berdoa kepada Yang Maha Kuasa.
-      </p>
-      <button class="btn btn-danger w-100" type="button" name="button"> Lihat Tagihan Pembayaran </button>
+      <div class="bg-blue2 text-dark p-3">
+        <div class="bg-wheat p-2">
+
+          <table class="table-striped text-left w-100" cellpadding="15">
+            <tr>
+              <td>
+                <span class="small text-secondary"> NO. TRANSAKSI </span> <br>
+                <span> {{ $status[0]->id }} </span>
+              </td>
+              <td>
+                <span class="small text-secondary"> PELAPAK </span> <br>
+                <span> Abang Iggy </span>
+              </td>
+              <td class=""> <a href="#">Chat Pelapak</a> </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <span class="small text-secondary"> CATATAN UNTUK PELAPAK </span> <br>
+                <span> ~ </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <div class="row ml-n1">
+                  <img src="{{ asset('img/komputer-logitechg402.jfif') }}" alt="gambar" width="100px">
+
+                  <div class="ml-2 w-75">
+                    {{ $status[0]->nama_barang }}
+                    <span class="float-right"> Rp 11,111.111 </span> <br>
+                    <span class="smaller"> Jumlah: {{ $status[0]->jml_barang }} </span> <br>
+                    <span class="smaller"> Berat: - </span>
+                  </div>
+
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="small text-secondary"> STATUS PEMBELIAN </span> <br>
+                <span>
+                  @if( $status[0]->batas_waktu3 == 'Kedaluwarsa' )
+                    Dibatalkan ({{ $status[0]->batas_waktu3 }})
+                  @else
+                    Niat beli bos?
+                  @endif
+                </span>
+              </td>
+              <td>
+                <span class="small text-secondary"> JASA PENGIRIMAN </span> <br>
+                <span> ~ </span>
+              </td>
+              <td>
+                <span class="small text-secondary"> NO. RESI </span> <br>
+                <span> yakali ada </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <span class="small text-secondary"> KETERANGAN </span> <br>
+                <span>
+                  @if( $status[0]->batas_waktu3 == 'Kedaluwarsa' )
+                    Transaksi tidak dapat diproses karna anda ni
+                    memang <span class="text-danger">betuah tak nak bayar!</span>
+                  @else
+                    Kalo niat ya bayar anjay
+                  @endif
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Butuh bantuan?
+                <a href="#" class="stay" data-toggle="popover" data-trigger="hover"
+                data-placement="right" data-content="h3h3 anda tertipu.">
+                  FAQ
+                </a>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+
     </div>
+
 
   </div>
 
@@ -165,6 +226,12 @@
   </div>
 </footer>
 
+<script src="js/logoutButton.js"></script>
 <script src="{{ asset('js/popover.js') }}"></script>
+<script type="text/javascript">
+  $('.stay').click(function(e) {
+    e.preventDefault();
+  });
+</script>
 
 </html>

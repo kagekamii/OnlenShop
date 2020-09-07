@@ -7,6 +7,9 @@ use App\Akun;
 use App\Barang;
 use App\Master;
 use Session;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 
 class ShopController extends Controller
 {
@@ -17,6 +20,11 @@ class ShopController extends Controller
     return view('home', ['apaan'=>$apaan2]);
   }
 
+  public function about()
+  {
+    return view('about');
+  }
+
   public function daftar(Request $request)
   {
     //DAFTAR AKUN
@@ -25,7 +33,7 @@ class ShopController extends Controller
       'password' => $request->password,
       'nohp' => $request->nohp
     ]);
-    return redirect('/home');
+    return redirect()->back();
   }
 
   public function login(Request $request)
@@ -61,12 +69,12 @@ class ShopController extends Controller
       // session::put artinya nyimpen value ($data->username) ke Session username
       Session::put('username', $data->username);
       Session::put('nohp', $data->nohp);
-      return redirect('/home');
+      return redirect()->back();
     } else {
       // false (data kosong)
 
       // nanti gua bikin contoh buat ngasih pesan jika username / pass salah. sementara redirect tanpa pesan
-      return redirect('/home');
+      return redirect()->back();
     }
   }
 
@@ -143,6 +151,7 @@ class ShopController extends Controller
     Session::put('kota', $request->kota);
     Session::put('provinsi', $request->provinsi);
 
+    Session::put('catatan', $request->catatan);
     $kurir = $request->kurir;
     $kurirOnly = explode('-',$kurir);
     Session::put('kurir', $kurirOnly[0]);
@@ -160,12 +169,6 @@ class ShopController extends Controller
 
   public function insertData(Request $request)
   {
-    Session::put('metode_bayar', $request->caraBayar);
-    return view('insertData');
-  }
-
-  public function insertData2(Request $request)
-  {
     // IDENTITAS
     $username3 = $request->username3;
     $nohp3 = $request->nohp3;
@@ -177,14 +180,16 @@ class ShopController extends Controller
     // DETAIL BARANG
     $nama_barang3 = $request->nama_barang3;
     $jml_barang3 = $request->jml_barang3;
+    $catatan3 = $request->catatan3;
     $kurir3 = $request->kurir3;
     // RINCIAN BAYAR
     $total_harga3 = $request->total_harga3;
     $ongkos_kirim3 = $request->ongkos_kirim3;
     $total_bayar3 = $request->total_bayar3;
     // ENTAHLAH APAAN NAMANYA
-    $metode_bayar3 = $request->metode_bayar3;
+    $metode_bayar3 = $request->caraBayar;
     $batas_waktu3 = $request->batas_waktu3;
+    $batas_waktu4 = $request->batas_waktu4;
     $kode_transaksi3 = $request->kode_transaksi3;
 
     Master::create([
@@ -206,7 +211,10 @@ class ShopController extends Controller
 
       'metode_bayar' => $metode_bayar3,
       'batas_waktu' => $batas_waktu3,
-      'kode_transaksi' => $kode_transaksi3
+      'batas_waktu2' => $batas_waktu4,
+      'batas_waktu3' => 'Buruan bayar atuh',
+      'kode_transaksi' => $kode_transaksi3,
+      'catatan' => $catatan3
     ]);
     return redirect('keranjang-tiga');
   }
@@ -225,5 +233,34 @@ class ShopController extends Controller
     $barangs = Barang::where('nama', 'like', '%'.$keyword.'%')->orWhere('kategori', 'like', '%'.$keyword.'%')->get();
     // $acakBarangs = $barangs->shuffle();
     return view('pencarian-item', ['acakBarangs'=>$barangs, 'keyword'=>$keyword]);
+  }
+
+  public function transaksi()
+  {
+    $tes = Master::all();
+    foreach($tes as $t) {
+      $waktu2 = Carbon::now('Asia/Jakarta');
+      if ($waktu2 > $t->batas_waktu2) {
+        $t->batas_waktu3 = 'Kedaluwarsa';
+        $t->save();
+      }
+      else {
+        $t->batas_waktu3 = 'Buruan bayar atuh';
+        $t->save();
+      }
+    }
+    return redirect('transaksi2');
+  }
+
+  public function transaksi2()
+  {
+    $status = Master::all();
+    return view('transaksi2', ['status'=>$status]);
+  }
+
+  public function transaksiDetail()
+  {
+    $status1 = Master::all();
+    return view('transaksi-detail', ['status'=>$status1]);
   }
 }

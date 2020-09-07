@@ -25,9 +25,9 @@
   td {
     vertical-align: top;
   }
-  a > img {
+  /* a > img {
     height: 230px;
-  }
+  } */
 </style>
 
 <header>
@@ -37,43 +37,40 @@
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
     <! LOGO>
-    <a href="/home" class="mr-5"> Logo </a>
+    <a href="/home" class="mr-5">
+      <img src="{{ asset('img/logo2.png') }}" alt="" width="70px">
+    </a>
 
     <! KATEGORI>
     <div class="dropdown">
       <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
       </button>
       <div class="dropdown-menu bg-sky">
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-komputer
-         @else
-           #
-         @endif" class="dropdown-item"> Komputer </a>
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-handphone
-         @else
-           #
-         @endif" class="dropdown-item"> Handphone </a>
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-makanminum
-         @else
-           #
-         @endif" class="dropdown-item"> Makanan & Minuman </a>
+        <a href="/kategori-komputer" class="dropdown-item"> Komputer </a>
+        <a href="/kategori-handphone" class="dropdown-item"> Handphone </a>
+        <a href="/kategori-makanminum" class="dropdown-item"> Makanan & Minuman </a>
       </div>
     </div>
 
     <! SEARCH BOX>
-      <input class="searchbox" type="text" name="kolomCari" placeholder="masukkan kata kunci...">
-      <button type="button" class="btn-orange1 mr-5" name="submitCari"> <img src="img/search.png" width="20">
-      </button>
+      {{ Form::open(['url'=>'/pencarian-item', 'method'=>'get']) }}
+      {{ csrf_field() }}
+        <div class="input-group">
+          <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
+          placeholder="masukkan nama/kategori barang" required>
+          <button type="submit" class="btn-orange1 mr-5">
+            <img src="img/search.png" width="20">
+          </button>
+        </div>
+      {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <button type="button" class="no-border kanan mr-2" name="button"> <img src="img/keranjang.png" width="20">
-      </button>
-      <button type="button" class="no-border" name="button"> <img src="img/message.png" width="20"> </button>
+      <a href="/transaksi" class="keranjangchat kanan mr-3" name="keranjang">
+        <img src="{{ asset('img/keranjang.png') }}" width="20">
+      </a>
+      <a href="#" class="keranjangchat" name="chat">
+        <img src="{{ asset('img/message.png') }}" width="20">
+      </a>
 
       {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
         btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
@@ -132,7 +129,7 @@
           <td class="{{ $b->filter1 }}">
             <div class="card" style="width:200px">
               <a href="/kategori-item/{{ $b->id }}">
-                <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image">
+                <img class="card-img-top" src="img/{{ $b->gambar }}" alt="Card image" height="210px">
               </a>
               <div class="card-body">
                 <a href="/kategori-item/{{ $b->id }}" class="text-dark"> {{ $b->nama }} </a>
@@ -151,12 +148,15 @@
 
   </div>
 
+  @include('modal-login')
+  @include('modal-register')
+
 </body>
 
 <footer>
   <div class="bg-info">
     &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
-    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+    <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
   </div>
 </footer>
 

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <meta name="csrf-token" value="{{ csrf_token() }}" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/master.css') }}">
@@ -23,14 +23,8 @@
 </head>
 
 <style media="screen">
-  td {
-    padding-left: 30px;
-    padding-right: 5px;
-  }
-  .input-hide {
-    border: 0;
-    background-color: inherit;
-    color: white;
+  hr {
+    background-color: #ddd;
   }
 </style>
 
@@ -63,13 +57,13 @@
           <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
           placeholder="masukkan nama/kategori barang" required>
           <button type="submit" class="btn-orange1 mr-5">
-            <img src="{{ asset('img/search.png') }}" width="20">
+            <img src="img/search.png" width="20">
           </button>
         </div>
       {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <a href="/transaksi" class="keranjangchat kanan mr-3" name="keranjang">
+      <a href="#" class="keranjangchat kanan mr-3" name="keranjang">
         <img src="{{ asset('img/keranjang.png') }}" width="20">
       </a>
       <a href="#" class="keranjangchat" name="chat">
@@ -104,59 +98,59 @@
 
 <body class="bg-navy">
 
-  <div class="m-4 text-light">
-    {{ Form::open(['url' => '/keranjang-satu']) }}
-    {{ csrf_field() }}
-    <table >
-      <tr>
-        <td rowspan="7">
-          <img id="gbr_barang" class="rounded" src="{{ asset('img/').'/'.$barang2[0]->gambar }}" alt="a gambar" width="400px">
-        </td>
-      </tr>
+  <div class="m-5 text-light">
 
-      <! DETAIL BARANG >
-      <tr>
-        <td class="nama-barang" colspan="6">
-          <input class="w-100 input-hide" type="text" name="nama_barang" value="{{ $barang2[0]->nama }}" readonly>
-          <input id="test" type="hidden" name="gbr_barang" value="">
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td>Terjual 0 Produk</td>
-        <td colspan="5">0x Dilihat</td>
-      </tr>
-      <tr class="tr-line">
-        <td colspan="6">
-          Harga: Rp <input class="input-hide" type="text" name="harga_barang" value="{{ number_format($barang2[0]->harga) }}" readonly>
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td colspan="5">
-          Jumlah: <input class="rounded" type="number" name="jml_barang" value="0" min="1" max="99">
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td> Info Produk </td>
-        <td> Berat <br> {{ $barang2[0]->berat }} </td>
-        <td> Kondisi <br> {{ $barang2[0]->kondisi }} </td>
-        <td> Asuransi <br> <font color='lime'> Tentu tidak </font> </td>
-        <td> Kategori <br> {{ $barang2[0]->kategori }} </td>
-      </tr>
-      <tr>
-        <td colspan="5"> Ongkos Kirim:
-          <font color='yellow'>klik beli dulu, biar tau</font>
-        </td>
-        <td>
-          @if( Session::get('username') )
-            <button class="btn bg-green1 float-right" type="submit" name="lanjutBeli"> Beli </button>
-          @else
-            <button class="btn bg-green1 float-right" type="button" data-toggle="popover"
-              data-trigger="focus" data-placement="top" data-content="Login dulu bos."> Beli </button>
-          @endif
-        </td>
-      </tr>
-    </table>
-    {{ Form::close() }}
+    <div class="col-md-8 row content-center border p-3">
+      <img src="{{ asset('img/privasi.png') }}" alt="gambar" width="120px">
+      <div class="col-md" style="word-wrap: normal;">
+        <strong class="ml-4"> Selalu waspada terhadap pihak tidak bertanggung jawab </strong> <br>
+        <ul class="mb-1">
+          <li> Jangan lakukan pembayaran dengan nominal yang berbeda dengan yang tertera pada tagihan kamu. </li>
+          <li> Jangan lakukan transfer di luar nomor rekening atas nama Abang Iggy. </li>
+        </ul>
+        <a href="#" class="text-green1 ml-4" data-toggle="popover" data-trigger="focus"
+        data-placement="right" data-content="Cari sendiri bos.">
+          Pelajari selengkapnya
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-8 bg-light content-center border p-3 mt-4">
+      <span class="text-dark" style="font-size: large; font-weight: 600;">
+        Pembayaran via {{ Session::get('metode_bayar') }}
+      </span>
+    </div>
+    <div class="col-md-8 bg-secondary text-center content-center border p-3">
+      <p>
+        Batas pembayaran: <strong> {{ $getTime }} </strong>
+        <br><br>
+
+        Jumlah Tagihan:
+        <h4 class="mt-n3"> Rp {{ $getTagihan}} </h4>
+        <br>
+
+        Nomor tagihan:
+        <h4 class="text-turquoise"> {{ $getKode }} </h4>
+      </p>
+    </div>
+    <div class="col-md-8 bg-light content-center border p-3">
+      <span class="text-dark" style="font-size: large; font-weight: 600;">
+        Petunjuk pembayaran
+      </span>
+      <div class="col-md bg-secondary content-center p-3 mt-2">
+        <ul>
+          <li> 1. Yes </li>
+          <li> 2. No </li>
+          <li> 3. Yes'nt </li>
+        </ul>
+      </div>
+      <p class="text-dark mt-2">
+        Pembelianmu dicatat dengan nomor tagihan pembayaran <span class="text-turquoise">{{ $getKode }}</span>.
+        Jika kamu menghadapi kendala mengenai pembayaran, silahkan langsung berdoa kepada Yang Maha Kuasa.
+      </p>
+      <button class="btn btn-danger w-100" type="button" name="button"> Lihat Tagihan Pembayaran </button>
+    </div>
+
   </div>
 
   @include('modal-login')
@@ -171,14 +165,6 @@
   </div>
 </footer>
 
-<script src="{{ asset('js/logoutButton.js') }}"></script>
 <script src="{{ asset('js/popover.js') }}"></script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    var src = $('#gbr_barang').attr('src');
-    document.getElementById('test').value = src;
-  });
-</script>
 
 </html>

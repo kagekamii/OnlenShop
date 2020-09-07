@@ -1,4 +1,6 @@
-/* COLORS */
+/* ---------------------------------------- */
+/*------------------ COLORS ---------------*/
+/* ---------------------------------------- */
 .text-ungu1:hover {
   color: #b602b6;
 }
@@ -19,6 +21,14 @@
   -webkit-text-stroke: 0.3px black;
   /* text-shadow: 1px 1px 0 #000; */
   color: turquoise;
+}
+
+.text-blue {
+  color: DarkSlateBlue;
+}
+
+.text-brown {
+  color: saddlebrown;
 }
 
 .bg-kuning {
@@ -64,6 +74,22 @@
   background: rgba(131, 170, 205, 0.5);
 }
 
+.bg-blue2 {
+  background-color: #5ccbb6;
+}
+
+.bg-green3 {
+  background-color: #5ccb83;
+}
+
+.bg-wat {
+  background-color: khaki;
+}
+
+.bg-wheat {
+  background-color: wheat;
+}
+
 .invert { filter: invert(100%); }
 
 .footer-text {
@@ -71,8 +97,9 @@
   color: transparent;
   background-clip: text;
 }
-
-/* UTILITIES */
+/* ----------------------------------------------- */
+/*----------------- UTILITIES ---------------------*/
+/* ----------------------------------------------- */
 .searchbox {
   width: 450px;
   margin-left: 80px;
@@ -110,12 +137,13 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 
 footer {
-    clear: both;
-    position: relative;
-    margin-top: 150px;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
 }
 
 .sticky {
@@ -160,7 +188,21 @@ footer {
   background-color: rgba(191,255,79, 0.4);
 }
 
-/* CAROUSEL */
+.keranjangchat {
+  padding: 0 5px 0 5px;
+}
+
+.content-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.smaller {
+  font-size: 11px;
+}
+/* ------------------------------------------------ */
+/*------------------ CAROUSEL ----------------------*/
+/* ------------------------------------------------ */
 .carousel-inner img {
   margin: 0px 0px 0px 46px;
   width: 90%;

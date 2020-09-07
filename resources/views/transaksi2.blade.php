@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <meta name="csrf-token" value="{{ csrf_token() }}" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/master.css') }}">
@@ -23,14 +23,8 @@
 </head>
 
 <style media="screen">
-  td {
-    padding-left: 30px;
-    padding-right: 5px;
-  }
-  input[type='text'] {
-    border: 0;
-    background-color: inherit;
-    color: white;
+  hr {
+    background-color: #ddd;
   }
 </style>
 
@@ -50,46 +44,31 @@
       <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
       </button>
       <div class="dropdown-menu bg-sky">
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-komputer
-         @else
-           #
-         @endif" class="dropdown-item"> Komputer </a>
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-handphone
-         @else
-           #
-         @endif" class="dropdown-item"> Handphone </a>
-        <a href=
-        "@if(Session::get('username') != null)
-           /kategori-makanminum
-         @else
-           #
-         @endif" class="dropdown-item"> Makanan & Minuman </a>
+        <a href="/kategori-komputer" class="dropdown-item"> Komputer </a>
+        <a href="/kategori-handphone" class="dropdown-item"> Handphone </a>
+        <a href="/kategori-makanminum" class="dropdown-item"> Makanan & Minuman </a>
       </div>
     </div>
 
     <! SEARCH BOX>
-      {{ Form::open(['url'=>'/pencarian-item']) }}
+      {{ Form::open(['url'=>'/pencarian-item', 'method'=>'get']) }}
       {{ csrf_field() }}
         <div class="input-group">
           <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
           placeholder="masukkan nama/kategori barang" required>
-          <button type="submit" class="btn-orange1 mr-5" name="submitCari">
+          <button type="submit" class="btn-orange1 mr-5">
             <img src="img/search.png" width="20">
           </button>
         </div>
       {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <button type="button" class="no-border bg-light kanan mr-2" name="button">
-        <img src="img/keranjang.png" width="20">
-      </button>
-      <button type="button" class="no-border bg-light" name="button">
-        <img src="img/message.png" width="20">
-      </button>
+      <a href="/transaksi" class="keranjangchat kanan mr-3" title="Transaksi">
+        <img src="{{ asset('img/keranjang.png') }}" width="20">
+      </a>
+      <a href="#" class="keranjangchat" title="Chat">
+        <img src="{{ asset('img/message.png') }}" width="20">
+      </a>
 
       {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
         btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
@@ -119,55 +98,52 @@
 
 <body class="bg-navy">
 
-  <div class="m-4 text-light">
-    {{ Form::open(['url' => '/keranjang-satu']) }}
-    {{ csrf_field() }}
-    <table >
-      <tr>
-        <td rowspan="7">
-          <img id="gbr_barang" class="rounded" src="{{ asset('img/').'/'.$barang2[0]->gambar }}" alt="a gambar" width="400px">
-        </td>
-      </tr>
+  <div class="m-5 text-light">
 
-      <! DETAIL BARANG >
-      <tr>
-        <td class="nama-barang" colspan="6">
-          <input class="w-100" type="text" name="nama_barang" value="{{ $barang2[0]->nama }}" readonly>
-          <input id="test" type="hidden" name="gbr_barang" value="">
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td>Terjual 0 Produk</td>
-        <td colspan="5">0x Dilihat</td>
-      </tr>
-      <tr class="tr-line">
-        <td colspan="6">
-          Harga: Rp <input type="text" name="harga_barang" value="{{ number_format($barang2[0]->harga) }}" readonly>
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td colspan="5">
-          Jumlah: <input class="rounded" type="number" name="jml_barang" value="0" min="1" max="99">
-        </td>
-      </tr>
-      <tr class="tr-line">
-        <td> Info Produk </td>
-        <td> Berat <br> {{ $barang2[0]->berat }} </td>
-        <td> Kondisi <br> {{ $barang2[0]->kondisi }} </td>
-        <td> Asuransi <br> <font color='lime'> Tentu tidak </font> </td>
-        <td> Kategori <br> {{ $barang2[0]->kategori }} </td>
-      </tr>
-      <tr>
-        <td colspan="5"> Ongkos Kirim:
-          <font color='yellow'>klik beli dulu, biar tau</font>
-        </td>
-        <td>
-          <button class="btn bg-green1 float-right" type="submit" name="lanjutBeli"> Beli </button>
-        </td>
-      </tr>
-    </table>
-    {{ Form::close() }}
+    <h4> Transaksi </h4>
+    <br>
+
+    @foreach($status as $t)
+      @if( Session::get('username') === $t->username )
+      <div class="row col-md-8 bg-blue2 text-brown p-3">
+        <div class="col-md">
+          <span class="smaller text-blue"> NO. TAGIHAN </span> <br>
+          <span> {{ $t->kode_transaksi }} </span> <br>
+          <span class="small text-blue"> {{ $t->batas_waktu }} </span>
+        </div>
+        <div class="col-md">
+          <span class="smaller text-blue"> TOTAL TAGIHAN </span> <br>
+          <span> Rp {{ $t->total_bayar }} </span>
+        </div>
+        <div class="col-md">
+          <span class="smaller text-blue"> STATUS TAGIHAN </span> <br>
+          <span class="status"> {{ $t->batas_waktu3 }} </span>
+        </div>
+      </div>
+
+      <div class="row col-md-8 bg-green3 text-brown p-3">
+        <div class="col-md">
+          <span class="smaller text-blue"> BARANG </span> <br>
+          <span> {{ $t->nama_barang }} </span> <br>
+        </div>
+        <div class="col-md">
+          <span class="smaller text-blue"> PELAPAK </span> <br>
+          <span> Abang Iggy </span>
+        </div>
+        <div class="col-md mt-3">
+          <a href="/transaksi-detail" class="p-2 text-dark bg-wat rounded" style="text-decoration: none;">
+            Lihat Detail
+          </a>
+        </div>
+      </div>
+      <br>
+      @endif
+    @endforeach
+
   </div>
+
+  @include('modal-login')
+  @include('modal-register')
 
 </body>
 
@@ -178,11 +154,20 @@
   </div>
 </footer>
 
-<script src="{{ asset('js/logoutButton.js') }}"></script>
+<script src="js/logoutButton.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    var src = $('#gbr_barang').attr('src');
-    document.getElementById('test').value = src;
+  //   var waktu = $('.waktu').val();
+  //   var tes = new Date(waktu);
+  //   $('.waktu2').val(tes1);
+  //   if (tes2 >= tes) {
+  //     $('.status').html("Kedaluwarsa");
+  //     $('.status2').html("Dibatalkan");
+  //   }
+  //   else if (tes2 < tes) {
+  //     $('.status').html("Cepetan bayar atuh");
+  //     $('.status2').html("Niat beli gk?");
+  //   }
   });
 </script>
 

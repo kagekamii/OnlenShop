@@ -29,7 +29,10 @@ class CreateTbMaster extends Migration
           $table->string('total_bayar');
           $table->string('metode_bayar');
           $table->string('batas_waktu');
+          $table->string('batas_waktu2');
+          $table->string('batas_waktu3');
           $table->string('kode_transaksi');
+          $table->longText('catatan')->nullable();
       });
     }
 

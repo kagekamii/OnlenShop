@@ -116,6 +116,29 @@
           </td>
         </tr>
       </table>
+
+      <input type="hidden" name="username3" value="{{ Session::get('username') }}">
+      <input type="hidden" name="nohp3" value="{{ Session::get('nohp') }}">
+
+      <input type="hidden" name="alamat_rumah3" value="{{ Session::get('alamat_rumah') }}">
+      <input type="hidden" name="kecamatan3" value="{{ Session::get('kecamatan') }}">
+      <input type="hidden" name="kota3" value="{{ Session::get('kota') }}">
+      <input type="hidden" name="provinsi3" value="{{ Session::get('provinsi') }}">
+
+      <input type="hidden" name="nama_barang3" value="{{ Session::get('nama_barang') }}">
+      <input type="hidden" name="jml_barang3" value="{{ Session::get('jml_barang') }}">
+      <input type="hidden" name="catatan3" value="{{ Session::get('catatan') }}">
+      <input type="hidden" name="kurir3" value="{{ Session::get('kurir') }}">
+
+      <input type="hidden" name="total_harga3" value="{{ Session::get('subhargaBarang') }}">
+      <input type="hidden" name="ongkos_kirim3" value="{{ Session::get('ongkosKirim') }}">
+      <input type="hidden" name="total_bayar3" value="{{ Session::get('totalBayar') }}">
+
+      <input type="hidden" name="metode_bayar3" value="{{ Session::get('metode_bayar') }}">
+      <input type="hidden" name="batas_waktu3" id="timer" value="">
+      <input type="hidden" name="batas_waktu4" id="timer2" value="">
+      <input type="hidden" name="kode_transaksi3" id="kode" value="">
+
       {{ Form::close() }}
     </div>
 
@@ -126,10 +149,11 @@
 <footer>
   <div class="bg-info">
     &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
-    <strong class="float-right mr-1"> [Copyright, Master Paladin 2020] </strong>
+    <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
   </div>
 </footer>
 
+<script src="{{ asset('js/batasWaktu.js') }}"></script>
 <script type="text/javascript">
   var a = $('#virtual').val();
   $('#pilihan').html(a);
