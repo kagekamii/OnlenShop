@@ -148,7 +148,9 @@
         Pembelianmu dicatat dengan nomor tagihan pembayaran <span class="text-turquoise">{{ $getKode }}</span>.
         Jika kamu menghadapi kendala mengenai pembayaran, silahkan langsung berdoa kepada Yang Maha Kuasa.
       </p>
-      <button class="btn btn-danger w-100" type="button" name="button"> Lihat Tagihan Pembayaran </button>
+      <button class="btn btn-danger w-100" type="button" onclick="window.location.href='/transaksi2'">
+        Lihat Tagihan Pembayaran
+      </button>
     </div>
 
   </div>
@@ -166,5 +168,6 @@
 </footer>
 
 <script src="{{ asset('js/popover.js') }}"></script>
+<script src="js/logoutButton.js"></script>
 
 </html>

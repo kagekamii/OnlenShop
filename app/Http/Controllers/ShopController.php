@@ -159,11 +159,25 @@ class ShopController extends Controller
     Session::put('subhargaBarang', $request->subhargaBarang2);
     Session::put('ongkosKirim', $request->ongkosKirim);
     Session::put('totalBayar', $request->totalBayar);
+
     return redirect('keranjang-dua');
   }
 
   public function keranjangDua()
   {
+    $nama = ["Logitech G402 Hyperion Fury", "WD SSD Green Sata3 240gb",
+            "Monitor Dell 19 inch", "Nvidia GTX650", "Charger Baseus Fast Charging",
+            "Case Iphone 6/6s/7", "Powerbank UNEED 10k mAH", "Redmi Note 9 4/64",
+            "Baso Aci Tulang Rungu", "Kombucha HEAL X BURGREENS", "Chikiballs Keju",
+            "Susu F&N evaporasi 390gr"];
+    $nama_len = count($nama);
+    // ID BARANG
+    for ($i=0; $i < $nama_len; $i++) {
+      if( Session::get('nama_barang') == $nama[$i] ) {
+        Session::put('id_barang', $i+=1);
+      }
+    }
+
     return view('keranjang-dua');
   }
 
@@ -191,6 +205,8 @@ class ShopController extends Controller
     $batas_waktu3 = $request->batas_waktu3;
     $batas_waktu4 = $request->batas_waktu4;
     $kode_transaksi3 = $request->kode_transaksi3;
+    // ID BARANG
+    $id_barang3 = Session::get('id_barang');
 
     Master::create([
       'username' => $username3,
@@ -201,6 +217,7 @@ class ShopController extends Controller
       'kota' => $kota3,
       'provinsi' => $provinsi3,
 
+      'barang_id' => $id_barang3,
       'nama_barang' => $nama_barang3,
       'jml_barang' => $jml_barang3,
       'kurir' => $kurir3,
@@ -258,9 +275,9 @@ class ShopController extends Controller
     return view('transaksi2', ['status'=>$status]);
   }
 
-  public function transaksiDetail()
+  public function transaksiDetail($id)
   {
-    $status1 = Master::all();
+    $status1 = Master::where('id', $id)->get();
     return view('transaksi-detail', ['status'=>$status1]);
   }
 }

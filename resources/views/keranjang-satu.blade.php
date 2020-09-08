@@ -23,9 +23,6 @@
 </head>
 
 <style media="screen">
-  .atas {
-    vertical-align: top;
-  }
   hr {
     background-color: #ddd;
   }
@@ -54,10 +51,10 @@
       {{ Form::open(['url' => '/keranjang-satuhalf', 'method' => 'get']) }}
       {{ csrf_field() }}
         <img class="mb-1 invert" src="{{ asset('img/rumah.png') }}" alt="rumah" width="20"> Alamat Pengiriman:<br>
-        <input class="alamat" type="text" name="alamat_rumah" value="" readonly><br>
-        <input class="alamat small" type="text" name="kecamatan" value="" readonly><br>
-        <input class="alamat small" type="text" name="kota" value="" readonly><br>
-        <input class="alamat small" type="text" name="provinsi" value="" readonly><br>
+        <input class="alamat" type="text" name="alamat_rumah" value="" readonly required><br>
+        <input class="alamat small" type="text" name="kecamatan" value="" readonly required><br>
+        <input class="alamat small" type="text" name="kota" value="" readonly required><br>
+        <input class="alamat small" type="text" name="provinsi" value="" readonly required><br>
         <hr class="mb-1">
         <a class="text-green1" href="#" id="resetAlamat"> Reset Alamat </a> -
         <a class="text-green1" href="#myAlamat" data-toggle="modal"> Edit Alamat </a>
@@ -197,28 +194,28 @@
               <div class="">
 
                 <div class="input-group mb-3">
-                  <input id="alamat_rumah2" type="text" class="form-control" placeholder="isi nama jalan, nomor rumah" required>
+                  <input id="alamat_rumah2" type="text" class="form-control" placeholder="isi nama jalan, nomor rumah" autofocus>
                   <div class="input-group-append w-25">
                     <span class="input-group-text"> Alamat rumah </span>
                   </div>
                 </div>
 
                 <div class="input-group mb-3">
-                  <input id="kecamatan2" type="text" class="form-control" placeholder="kecamatan" required>
+                  <input id="kecamatan2" type="text" class="form-control" placeholder="kecamatan">
                   <div class="input-group-append w-25">
                     <span class="input-group-text"> Kecamatan </span>
                   </div>
                 </div>
 
                 <div class="input-group mb-3">
-                  <input id="kota2" type="text" class="form-control" placeholder="kota tempat tinggal" required>
+                  <input id="kota2" type="text" class="form-control" placeholder="kota tempat tinggal">
                   <div class="input-group-append w-25">
                     <span class="input-group-text"> Kota </span>
                   </div>
                 </div>
 
                 <div class="input-group mb-3">
-                  <input id="provinsi2" type="text" class="form-control" placeholder="provinsi & kodepos. contoh: Banten 15443" required>
+                  <input id="provinsi2" type="text" class="form-control" placeholder="provinsi & kodepos. contoh: Banten 15443">
                   <div class="input-group-append w-25">
                     <span class="input-group-text"> Provinsi </span>
                   </div>
@@ -251,5 +248,6 @@
 <script src="{{ asset('js/resetAlamat.js') }}"></script>
 <script src="{{ asset('js/rincianHarga.js') }}"></script>
 <script src="{{ asset('js/popover.js') }}"></script>
+<script src="{{ asset('js/autofocusModal.js') }}"></script>
 
 </html>

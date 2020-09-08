@@ -48,4 +48,4 @@ Route::get('/pencarian-item', 'ShopController@pencarianItem');
 //-------------ROUTE TRANSAKSI------------
 Route::get('/transaksi', 'ShopController@transaksi');
 Route::get('/transaksi2', 'ShopController@transaksi2');
-Route::get('/transaksi-detail', 'ShopController@transaksiDetail');
+Route::get('/transaksi-detail/{id}', 'ShopController@transaksiDetail');

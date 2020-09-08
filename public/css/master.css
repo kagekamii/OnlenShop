@@ -119,6 +119,11 @@
   border: 0;
 }
 
+.no-border2 {
+  border: 0;
+  background-color: inherit;
+}
+
 .nama-barang {
   font-size: 24px;
   vertical-align: bottom;
@@ -199,6 +204,10 @@ footer {
 
 .smaller {
   font-size: 11px;
+}
+
+.atas {
+  vertical-align: top;
 }
 /* ------------------------------------------------ */
 /*------------------ CAROUSEL ----------------------*/

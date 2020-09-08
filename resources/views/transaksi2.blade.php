@@ -104,7 +104,7 @@
     <br>
 
     @foreach($status as $t)
-      @if( Session::get('username') === $t->username )
+      @if( Session::get('username') == $t->username )
       <div class="row col-md-8 bg-blue2 text-brown p-3">
         <div class="col-md">
           <span class="smaller text-blue"> NO. TAGIHAN </span> <br>
@@ -131,7 +131,8 @@
           <span> Abang Iggy </span>
         </div>
         <div class="col-md mt-3">
-          <a href="/transaksi-detail" class="p-2 text-dark bg-wat rounded" style="text-decoration: none;">
+          <a href="/transaksi-detail/{{ $t->id }}"
+            class="p-2 text-dark bg-wat rounded" style="text-decoration: none;">
             Lihat Detail
           </a>
         </div>
