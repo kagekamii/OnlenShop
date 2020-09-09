@@ -241,7 +241,8 @@ class ShopController extends Controller
     $getData = Master::latest('id')->first();
     return view('keranjang-tiga', ['getTime'=>$getData->batas_waktu,
                                   'getTagihan'=>$getData->total_bayar,
-                                  'getKode'=>$getData->kode_transaksi]);
+                                  'getKode'=>$getData->kode_transaksi,
+                                  'getCara'=>$getData->metode_bayar]);
   }
 
   public function pencarianItem(Request $request)

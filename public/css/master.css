@@ -191,6 +191,7 @@ footer {
 .caraBayar:hover {
   border-radius: 5px;
   background-color: rgba(191,255,79, 0.4);
+  cursor: pointer;
 }
 
 .keranjangchat {

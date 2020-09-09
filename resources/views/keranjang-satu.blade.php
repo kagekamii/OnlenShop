@@ -51,10 +51,10 @@
       {{ Form::open(['url' => '/keranjang-satuhalf', 'method' => 'get']) }}
       {{ csrf_field() }}
         <img class="mb-1 invert" src="{{ asset('img/rumah.png') }}" alt="rumah" width="20"> Alamat Pengiriman:<br>
-        <input class="alamat" type="text" name="alamat_rumah" value="" readonly required><br>
-        <input class="alamat small" type="text" name="kecamatan" value="" readonly required><br>
-        <input class="alamat small" type="text" name="kota" value="" readonly required><br>
-        <input class="alamat small" type="text" name="provinsi" value="" readonly required><br>
+        <input class="alamat" type="text" name="alamat_rumah" readonly><br>
+        <input class="alamat small" type="text" name="kecamatan" readonly><br>
+        <input class="alamat small" type="text" name="kota" readonly><br>
+        <input class="alamat small" type="text" name="provinsi" readonly><br>
         <hr class="mb-1">
         <a class="text-green1" href="#" id="resetAlamat"> Reset Alamat </a> -
         <a class="text-green1" href="#myAlamat" data-toggle="modal"> Edit Alamat </a>

@@ -117,7 +117,7 @@
 
     <div class="col-md-8 bg-light content-center border p-3 mt-4">
       <span class="text-dark" style="font-size: large; font-weight: 600;">
-        Pembayaran via {{ Session::get('metode_bayar') }}
+        Pembayaran via {{ $getCara }}
       </span>
     </div>
     <div class="col-md-8 bg-secondary text-center content-center border p-3">

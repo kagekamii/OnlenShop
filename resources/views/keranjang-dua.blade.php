@@ -26,6 +26,28 @@
   hr {
     background-color: #ddd;
   }
+  .setengah {
+    overflow: hidden;
+    height: 70px;
+  }
+  .setengah.show {
+    height: auto;
+  }
+  .nocopy {
+    user-select: none;
+  }
+  input[type=radio] {
+    appearance: none;
+  }
+  .segitiga-bawah {
+    width: 0;
+    height: 0;
+    top: 20px;
+    position: relative;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+  }
 </style>
 
 <header>
@@ -46,8 +68,8 @@
         <hr>
         <label class="caraBayar w-100 p-2 pb-3" for="virtual">
           <div class="">
-            <input type="radio" id="virtual" name="caraBayar" value="Virtual Account" onclick="bayarDengan(event);" checked>
-            Virtual Account <br>
+            <input type="radio" id="virtual" name="caraBayar" value="Virtual Account" onclick="pilihCara();">
+            <span class="ml-2"> Virtual Account </span> <br>
             <img class="ml-3" src="{{ asset('img/bayar-bank.png') }}" alt="">
           </div>
         </label>
@@ -57,25 +79,47 @@
       <div class="col-md bg-secondary p-3 rounded">
         <h5> Metode bayar yang lain </h5>
         <hr>
-        <label class="caraBayar w-100 p-2 pb-3" for="transfer">
-          <div class="">
-            <input type="radio" id="transfer" name="caraBayar" value="Transfer Bank" onclick="bayarDengan(event);">
-            Transfer Bank <br>
-            <img class="ml-3" src="{{ asset('img/bayar-bank.png') }}" alt="">
-          </div>
-        </label>
 
-        <label class="caraBayar w-100 p-2 pb-3" for="gerai">
-          <div class="">
-            <input type="radio" id="gerai" name="caraBayar" value="Gerai" onclick="bayarDengan(event);">
-            Gerai <br>
+        <div class="transfer setengah nocopy">
+          <label class="caraBayar w-100 p-2 pb-3" for="transfer">
+            <input type="radio" id="transfer" name="caraBayar" value="" onclick="bayarDengan(event);">
+            <span class="ml-2"> Transfer Bank </span> <br>
+            <img class="ml-3" src="{{ asset('img/bayar-bank.png') }}" alt="">
+            <span class="segitiga-bawah ml-1"></span>
+            <div class="ml-2 mt-3 pl-2">
+              <select class="form-control w-50" name="transfer" onchange="pilihCara1();">
+                <option value="" selected> -- pilih -- </option>
+                <option value="BCA"> BCA </option>
+                <option value="Mandiri"> Mandiri </option>
+                <option value="BRI Virtual Akun"> BRI Virtual Akun </option>
+                <option value="BNI"> BNI </option>
+                <option value="BNI Syariah"> BNI Syariah </option>
+              </select>
+            </div>
+          </label>
+        </div>
+
+        <div class="gerai setengah nocopy">
+          <label for="gerai" class="caraBayar w-100 p-2 pb-3">
+            <input type="radio" id="gerai" name="caraBayar" value="" onclick="bayarDengan(event);">
+            <span class="ml-2"> Gerai </span> <br>
             <img class="ml-3" src="{{ asset('img/bayar-indomaret.png') }}" alt="">
             <img class="ml-1" src="{{ asset('img/bayar-alfamart.png') }}" alt="" width="210px">
-          </div>
-          <div class="gerai">
+            <span class="segitiga-bawah ml-1"></span>
+            <div class="ml-2 mt-3 pl-2">
+              <select class="form-control w-50" name="gerai" onchange="pilihCara2();">
+                <option value="" selected> -- pilih -- </option>
+                <option value="Indomaret"> Indomaret </option>
+                <option value="Alfamart"> Alfamart </option>
+                <option value="Alfamidi"> Alfamidi </option>
+                <option value="DANDAN"> DANDAN </option>
+                <option value="Lawson"> Lawson </option>
+              </select>
+            </div>
+          </label>
+        </div>
 
-          </div>
-        </label>
+
 
       </div>
     </div>
@@ -134,7 +178,6 @@
       <input type="hidden" name="ongkos_kirim3" value="{{ Session::get('ongkosKirim') }}">
       <input type="hidden" name="total_bayar3" value="{{ Session::get('totalBayar') }}">
 
-      <input type="hidden" name="metode_bayar3" value="{{ Session::get('metode_bayar') }}">
       <input type="hidden" name="batas_waktu3" id="timer" value="">
       <input type="hidden" name="batas_waktu4" id="timer2" value="">
       <input type="hidden" name="kode_transaksi3" id="kode" value="">
@@ -154,21 +197,36 @@
 </footer>
 
 <script src="{{ asset('js/batasWaktu.js') }}"></script>
+<script src="{{ asset('js/popover.js') }}"></script>
 <script type="text/javascript">
-  var a = $('#virtual').val();
-  $('#pilihan').html(a);
-    function bayarDengan(ev) {
-      var a = ev.target.value;
-      var b = ev.target.id;
-      // $('#'+b).focus(function() {
-      //   $('.'+b).html('<p>aaa</p>');
-      // }).blur(function() {
-      //   $('.'+b).html('');
-      // });
-
-      $('#pilihan').html(a);
+  function bayarDengan(ev) {
+    var b = ev.target.id;
+    $('.'+b).toggleClass('show');
+  }
+</script>
+<script type="text/javascript">
+  function pilihCara() {
+    let c = $('#virtual').val();
+    $('#pilihan').html(c);
+  }
+</script>
+<script type="text/javascript">
+  function pilihCara1() {
+    let d = $("select[name=transfer]");
+    if( d.click() ) {
+      $('#transfer').val(d.val());
+      $('#pilihan').html(d.val());
     }
-
+  }
+</script>
+<script type="text/javascript">
+  function pilihCara2() {
+    let e = $("select[name=gerai]");
+    if( e.click() ) {
+      $('#gerai').val(e.val());
+      $('#pilihan').html(e.val());
+    }
+  }
 </script>
 
 </html>
