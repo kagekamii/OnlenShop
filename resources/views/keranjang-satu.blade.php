@@ -51,10 +51,10 @@
       {{ Form::open(['url' => '/keranjang-satuhalf', 'method' => 'get']) }}
       {{ csrf_field() }}
         <img class="mb-1 invert" src="{{ asset('img/rumah.png') }}" alt="rumah" width="20"> Alamat Pengiriman:<br>
-        <input class="alamat" type="text" name="alamat_rumah" readonly><br>
-        <input class="alamat small" type="text" name="kecamatan" readonly><br>
-        <input class="alamat small" type="text" name="kota" readonly><br>
-        <input class="alamat small" type="text" name="provinsi" readonly><br>
+        <input class="alamat req_alamat" type="text" name="alamat_rumah" readonly><br>
+        <input class="alamat small req_alamat" type="text" name="kecamatan" readonly><br>
+        <input class="alamat small req_alamat" type="text" name="kota" readonly><br>
+        <input class="alamat small req_alamat" type="text" name="provinsi" readonly><br>
         <hr class="mb-1">
         <a class="text-green1" href="#" id="resetAlamat"> Reset Alamat </a> -
         <a class="text-green1" href="#myAlamat" data-toggle="modal"> Edit Alamat </a>
@@ -89,7 +89,7 @@
           </tr>
           <tr>
             <td colspan="3" class="text-right">
-              <select class="rounded inconsolata" id="kurir" name="kurir" onchange="gantiKurir();">
+              <select class="rounded inconsolata req_kurir" id="kurir" name="kurir" onchange="gantiKurir();">
 
                 <option value="">--- Pilih Kurir ---</option selected>
                 <option value="jne2d-14000">
@@ -166,7 +166,7 @@
         </tr>
         <tr>
           <td colspan="2" class="text-center">
-            {{ Form::submit('Pilih metode bayar', ['class'=>'btn btn-danger mt-3']) }}
+            {{ Form::submit('Pilih metode bayar', ['class'=>'btn btn-danger mt-3', 'id'=>'submitSatu']) }}
           </td>
         </tr>
       </table>
@@ -249,5 +249,6 @@
 <script src="{{ asset('js/rincianHarga.js') }}"></script>
 <script src="{{ asset('js/popover.js') }}"></script>
 <script src="{{ asset('js/autofocusModal.js') }}"></script>
+<script src="{{ asset('js/requiredInputs.js') }}"></script>
 
 </html>

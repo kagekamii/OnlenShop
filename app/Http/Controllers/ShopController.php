@@ -27,13 +27,23 @@ class ShopController extends Controller
 
   public function daftar(Request $request)
   {
-    //DAFTAR AKUN
-    Akun::create([
-      'username' => $request->username,
-      'password' => $request->password,
-      'nohp' => $request->nohp
-    ]);
-    return redirect()->back();
+    if(Akun::where('username', $request->username)->exists()) {
+      Session::flash('regisFail', "<b>Daftar Gagal!</b> <br> Username <b><i>".$request->username."</b></i>
+                                  sudah ada! <br> Tolong jangan plagiat (h3h3).");
+      return redirect()->back()->with(compact('regisFail'));
+    }
+    else {
+      //DAFTAR AKUN
+      Akun::create([
+        'username' => $request->username,
+        'password' => $request->password,
+        'nohp' => $request->nohp
+      ]);
+      Session::flash('regisSucc', "<b>Berhasil terdaftar</b> <br>
+                                    sebagai <b><i>".$request->username."</i></b> (h3h3).");
+      return redirect()->back()->with(compact('regisSucc'));
+    }
+
   }
 
   public function login(Request $request)
@@ -60,7 +70,8 @@ class ShopController extends Controller
 
     // check ke db sama ga datanya, belajar perbedaan get() sama first() ji sekalian
     $data = Akun::where('username', $username)->where('password', $password)->first();
-
+    $data2 = Akun::where('username', $username)->first();
+    $data3 = Akun::where('password', $password)->first();
     // ini if buat ngecheck ada ga datanya
     // btw if ini returnnya false/true jadi kalo ada data (hasil search ga kosong) return nya True
     if ($data) {
@@ -70,11 +81,16 @@ class ShopController extends Controller
       Session::put('username', $data->username);
       Session::put('nohp', $data->nohp);
       return redirect()->back();
-    } else {
+    }
+    elseif (!$data2) {
       // false (data kosong)
-
+      Session::flash('userSalah', "Username <b><i>".$request->username."</i></b> tidak terdaftar.");
       // nanti gua bikin contoh buat ngasih pesan jika username / pass salah. sementara redirect tanpa pesan
-      return redirect()->back();
+      return redirect()->back()->with(compact('userSalah'));
+    }
+    elseif (!$data3) {
+      Session::flash('passSalah', "Password tidak sesuai.");
+      return redirect()->back()->with(compact('passSalah'));
     }
   }
 
@@ -121,11 +137,11 @@ class ShopController extends Controller
   //   return view('item-handphone', ['barang2'=>$handphoneItem]);
   // }
   //
-  public function makanminumItem($id)
-  {
-    $makanminumItem = Barang::where('id',$id)->get();
-    return view('item-makanminum', ['barang2'=>$makanminumItem]);
-  }
+  // public function makanminumItem($id)
+  // {
+  //   $makanminumItem = Barang::where('id',$id)->get();
+  //   return view('item-makanminum', ['barang2'=>$makanminumItem]);
+  // }
 
   public function keranjangSatu(Request $request)
   {

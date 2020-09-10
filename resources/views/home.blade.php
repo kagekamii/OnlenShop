@@ -95,6 +95,32 @@
 
 <body class="bg-navy">
 
+  @if( Session::get('regisFail') )
+  <div class="overlay"></div>
+  <div class="alert alert-danger alert-dismissible alerting">
+    <button type="button" class="close removeOverlay" data-dismiss="alert">&times;</button>
+    {!! Session::get('regisFail') !!}
+  </div>
+  @elseif( Session::get('regisSucc') )
+  <div class="overlay"></div>
+  <div class="alert alert-success alert-dismissible alerting">
+    <button type="button" class="close removeOverlay" data-dismiss="alert">&times;</button>
+    {!! Session::get('regisSucc') !!}
+  </div>
+  @elseif( Session::get('userSalah') )
+  <div class="overlay"></div>
+  <div class="alert alert-danger alert-dismissible alerting">
+    <button type="button" class="close removeOverlay" data-dismiss="alert">&times;</button>
+    {!! Session::get('userSalah') !!}
+  </div>
+  @elseif( Session::get('passSalah') )
+  <div class="overlay"></div>
+  <div class="alert alert-danger alert-dismissible alerting">
+    <button type="button" class="close removeOverlay" data-dismiss="alert">&times;</button>
+    {!! Session::get('passSalah') !!}
+  </div>
+  @endif
+
   <div class="row m-4">
 
     <! Slideshow>
@@ -204,6 +230,17 @@
       $("#ubahLogout").load("js/logoutButton.php");
     }
   });
+</script>
+<script type="text/javascript">
+  $('.removeOverlay').click(function() {
+    $(".alerting").addClass('fade');
+    $('.overlay').css('display','none');
+  });
+  setTimeout(function() {
+    $(".alerting").addClass('fade');
+    $(".alert").alert('close');
+    $('.overlay').css('display','none');
+  }, 3000);
 </script>
 
 </html>

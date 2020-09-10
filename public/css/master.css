@@ -210,6 +210,26 @@ footer {
 .atas {
   vertical-align: top;
 }
+
+.overlay {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.alerting {
+  z-index: 2;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+}
+
+.alerting.fade {
+  transition: ease-out .7s;
+}
 /* ------------------------------------------------ */
 /*------------------ CAROUSEL ----------------------*/
 /* ------------------------------------------------ */

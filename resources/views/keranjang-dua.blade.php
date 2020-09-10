@@ -154,7 +154,7 @@
         </tr>
         <tr>
           <td colspan="2" class="text-center">
-            <button class="btn btn-danger mt-3" type="submit" name="bayarin">
+            <button id="submitDua" class="btn btn-danger mt-3" type="submit">
                Bayar dengan <span id="pilihan"></span>
              </button>
           </td>
@@ -198,16 +198,20 @@
 
 <script src="{{ asset('js/batasWaktu.js') }}"></script>
 <script src="{{ asset('js/popover.js') }}"></script>
+<script src="{{ asset('js/requiredInputs.js') }}"></script>
+
+<!~~~~~~~~~~~~~~~~~~~NANTI GW PINDAHIN, JANGAN DIUBAH SCRIPT DI BAWAH~~~~~~~~~~~~~~~>
 <script type="text/javascript">
   function bayarDengan(ev) {
     var b = ev.target.id;
+    $('#pilihan').html("");
     $('.'+b).toggleClass('show');
   }
 </script>
 <script type="text/javascript">
   function pilihCara() {
-    let c = $('#virtual').val();
-    $('#pilihan').html(c);
+    let c = $('#virtual');
+    $('#pilihan').html(c.val());
   }
 </script>
 <script type="text/javascript">
@@ -227,6 +231,9 @@
       $('#pilihan').html(e.val());
     }
   }
+</script>
+<script type="text/javascript">
+
 </script>
 
 </html>
