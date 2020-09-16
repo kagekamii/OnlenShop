@@ -28,6 +28,9 @@
     margin-bottom: 5px;
     margin-top: -10px;
   }
+  td:nth-child(1n+2) {
+    border-left: 1px dashed;
+  }
 </style>
 
 <header>
@@ -131,15 +134,62 @@
     <div class="bg-sky h-100 p-2 ml-5 rounded">
       <h5> <pre>Panduan chatbot</pre> </h5>
       <hr>
-      <span class="">bot hanya bisa menjawap kalimat:</span>
+      bot bisa menjawap
+      <!-- <span class=""></span>
+      <ul class="ml-n3">
+        <li> punten </li>
+        <li> halo </li>
+        <li> assalamualaikum </li>
+        <li> permisi </li>
+      </ul>
+
+      <span class=""></span>
       <ul class="ml-n3">
         <li> barang ready? </li>
+        <li> barang apa aja yang ready? </li>
         <li> stock masih ada? </li>
-        <li> barang sudah saya bayar </li>
       </ul>
-      <hr>
+
+      <span class=""></span>
+      <ul class="ml-n3">
+        <li> barang sudah saya bayar </li>
+        <li> tolong diproses barang saya </li>
+      </ul> -->
+
+      <table class="table-striped bg-wheat rounded" cellpadding="5px">
+        <tr>
+          <td> <u>KATA SALAM</u> </td>
+          <td> <u>KESIAPAN BARANG</u> </td>
+          <td> <u>KONFIRMASI PEMBELIAN</u> </td>
+        </tr>
+
+        <tr>
+          <td> punten </td>
+          <td> barang ready? </td>
+          <td> barang sudah saya bayar </td>
+        </tr>
+
+        <tr>
+          <td> halo </td>
+          <td> barang apa aja yang ready? </td>
+          <td> tolong diproses barang saya </td>
+        </tr>
+
+        <tr>
+          <td> assalamualaikum </td>
+          <td> stock masih ada? </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td> permisi </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </table>
+
       <small> <b>*huruf besar/kecil tidak berpengaruh</b> </small> <br>
-      <small> <b>*bot masih dalam pengembangan</b> </small>
+      <small> <b>*bot cukup baik 99% (menurut saia)</b> </small>
     </div>
   </div>
 
@@ -197,7 +247,7 @@
             /*0*/["mangga..", "sae euy", "kumaha damang", "wa'alaikumsalam"],
             /*1*/["Ready bos!", "Stock lagi kosong.", "Tinggal nabati vanila sama teh gelas euy."],
             /*2*/["Pesanannya akan kami proses.", "Sabar atuh, yang beli banyak."],
-            /*3*/["mestilah!", "korone / haachama? h3h3"]
+            /*3*/["Mestilah!", "<i>korone / haachama? h3h3"]
                 ];
 
   const alternatif = ["anjay", "misqueen bilang bos.", "betuah punya budak!"];
