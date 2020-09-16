@@ -181,16 +181,32 @@
 
 <script type="text/javascript">
   let divOutput = $('#chatOutput1'),
-      divScroll = document.querySelector('#chatOutput1'),
-      chatBotArr = {"punten":"mangga..",
-                    "barang ready?":"Redy bos!",
-                    "stock masih ada?":"Stock sedang kosong.",
-                    "barang sudah saya bayar":"Pesanannya akan kami proses."};
+      divScroll = document.querySelector('#chatOutput1');
+      // chatBotArr = {"punten" : "mangga..",
+      //               "barang ready?" : "Redy bos!",
+      //               "stock masih ada?" : "Stock sedang kosong.",
+      //               "barang sudah saya bayar" : "Pesanannya akan kami proses."};
+  const userArr = [
+            /*0*/["punten", "halo", "assalamualaikum", "permisi"],
+            /*1*/["barang ready?", "barang apa aja yang ready?", "stock masih ada?"],
+            /*2*/["barang sudah saya bayar", "tolong diproses barang saya"],
+            /*3*/["korone no.1", "haachama no.1"]
+                ];
+
+  const botArr = [
+            /*0*/["mangga..", "sae euy", "kumaha damang", "wa'alaikumsalam"],
+            /*1*/["Ready bos!", "Stock lagi kosong.", "Tinggal nabati vanila sama teh gelas euy."],
+            /*2*/["Pesanannya akan kami proses.", "Sabar atuh, yang beli banyak."],
+            /*3*/["mestilah!", "korone / haachama? h3h3"]
+                ];
+
+  const alternatif = ["anjay", "misqueen bilang bos.", "betuah punya budak!"];
+
   $('.chat-bawah').on('keyup', function(e) {
     if(e.keyCode === 13) {
       let textInput = $('#chatInput').val();
       let divUser = $("<div>", {"class":"mb-3 text-right"});
-      let chatUser = $("<div>", {"class":"border rounded p-1 chat-atas"});
+      let chatUser = $("<div>", {"class":"border rounded p-1 mr-2 chat-atas"});
 
       let divBot = $("<div>", {"class":"mb-3 text-left"});
       let chatBot = $("<div>", {"class":"border rounded p-1 chat-atas"});
@@ -206,19 +222,34 @@
 
         $('#chatOutput1').append(divBot);
         $(divBot).html(chatBot);
+        divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
 
-        $.each(chatBotArr, function(key,val) {
-          if(textInput.toLowerCase() === key) {
-            setTimeout(function() {
-              $(chatBot).html(val);
-              divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
-            }, 400);
+        let textKecil = textInput.toLowerCase();
+        let reply;
+        let alter;
+
+        for (var x = 0; x < userArr.length; x++) {
+          for (var y = 0; y < botArr.length; y++) {
+            if ( userArr[x][y] == textKecil ) {
+              replies = botArr[x];
+              reply = replies[Math.round(Math.random() * replies.length)];
+            }
           }
-        });
+        }
         setTimeout(function() {
-          $(chatBot).html("misqueen bilang bos.");
-          divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
-        }, 399);
+          $(chatBot).html(reply);
+        }, 400);
+
+        // $.each(chatBotArr, function(key,val) {
+        //   if(textInput.toLowerCase() === key) {
+            // setTimeout(function() {
+            //   $(chatBot).html(val);
+            // }, 400);
+        //   }
+        // });
+        // setTimeout(function() {
+        //   $(chatBot).html("misqueen bilang bos.");
+        // }, 399);
       }
     }
   });
@@ -227,7 +258,7 @@
 
     let textInput = $('#chatInput').val();
     let divUser = $("<div>", {"class":"mb-3 text-right"});
-    let chatUser = $("<div>", {"class":"border rounded p-1 chat-atas"});
+    let chatUser = $("<div>", {"class":"border rounded p-1 mr-2 chat-atas"});
 
     let divBot = $("<div>", {"class":"mb-3 text-left"});
     let chatBot = $("<div>", {"class":"border rounded p-1 chat-atas"});
@@ -242,18 +273,17 @@
 
       $('#chatOutput1').append(divBot);
       $(divBot).html(chatBot);
+      divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
 
       $.each(chatBotArr, function(key,val) {
         if(textInput.toLowerCase() === key) {
           setTimeout(function() {
             $(chatBot).html(val);
-            divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
           }, 400);
         }
       });
       setTimeout(function() {
         $(chatBot).html("misqueen bilang bos.");
-        divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
       }, 399.9);
     }
   });
