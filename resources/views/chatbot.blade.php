@@ -226,13 +226,12 @@
 
         let textKecil = textInput.toLowerCase();
         let reply;
-        let alter;
 
         for (var x = 0; x < userArr.length; x++) {
           for (var y = 0; y < botArr.length; y++) {
             if ( userArr[x][y] == textKecil ) {
               replies = botArr[x];
-              reply = replies[Math.round(Math.random() * replies.length)];
+              reply = replies[Math.floor(Math.random() * replies.length)];
             }
           }
         }
@@ -251,6 +250,10 @@
         //   $(chatBot).html("misqueen bilang bos.");
         // }, 399);
       }
+      setTimeout(function() {
+        reply = alternatif[Math.floor(Math.random() * alternatif.length)];
+        $(chatBot).html(reply);
+      }, 399.99);
     }
   });
   $('.chat-bawah2').click(function() {
@@ -275,17 +278,25 @@
       $(divBot).html(chatBot);
       divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
 
-      $.each(chatBotArr, function(key,val) {
-        if(textInput.toLowerCase() === key) {
-          setTimeout(function() {
-            $(chatBot).html(val);
-          }, 400);
+      let textKecil = textInput.toLowerCase();
+      let reply;
+
+      for (var x = 0; x < userArr.length; x++) {
+        for (var y = 0; y < botArr.length; y++) {
+          if ( userArr[x][y] == textKecil ) {
+            replies = botArr[x];
+            reply = replies[Math.floor(Math.random() * replies.length)];
+          }
         }
-      });
+      }
       setTimeout(function() {
-        $(chatBot).html("misqueen bilang bos.");
-      }, 399.9);
+        $(chatBot).html(reply);
+      }, 400);
     }
+    setTimeout(function() {
+      reply = alternatif[Math.floor(Math.random() * alternatif.length)];
+      $(chatBot).html(reply);
+    }, 399.99);
   });
 </script>
 
