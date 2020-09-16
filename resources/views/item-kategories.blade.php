@@ -32,11 +32,17 @@
     background-color: inherit;
     color: white;
   }
+  hr {
+    background-color: #ddd;
+  }
 </style>
 
 <header>
   <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+    <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
+    data-placement="right" data-content="punten">
+      Tentang OnlenShop
+    </a>
   </div>
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
@@ -157,6 +163,14 @@
       </tr>
     </table>
     {{ Form::close() }}
+  </div>
+
+  <div class="text-light m-5">
+    <h5> Deskripsi </h5>
+    <hr>
+    <div class="">
+      {!! $barang2[0]->deskripsi !!}
+    </div>
   </div>
 
   @include('modal-login')

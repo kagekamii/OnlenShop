@@ -21,6 +21,7 @@ class CreateTbBarang extends Migration
           $table->string('kategori');
           $table->integer('harga');
           $table->string('lokasi');
+          $table->text('deskripsi');
           $table->string('filter1');
           $table->string('filter2');
           $table->string('filter3');

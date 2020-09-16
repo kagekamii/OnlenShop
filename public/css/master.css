@@ -27,8 +27,14 @@
   color: DarkSlateBlue;
 }
 
-.text-brown {
-  color: saddlebrown;
+.text-khaki {
+  color: khaki;
+}
+
+.footer-text {
+  background-image: linear-gradient(to right, lime, yellow, yellow);
+  color: transparent;
+  background-clip: text;
 }
 
 .bg-kuning {
@@ -92,11 +98,6 @@
 
 .invert { filter: invert(100%); }
 
-.footer-text {
-  background-image: linear-gradient(to right, lime, yellow, yellow);
-  color: transparent;
-  background-clip: text;
-}
 /* ----------------------------------------------- */
 /*----------------- UTILITIES ---------------------*/
 /* ----------------------------------------------- */
@@ -139,6 +140,7 @@ input[type='number'] {
 }
 
 body {
+  overflow-x: hidden;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -196,6 +198,17 @@ footer {
 
 .keranjangchat {
   padding: 0 5px 0 5px;
+  position: relative;
+}
+
+.keranjangchat .notifikasi {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 8px;
+  border-radius: 50%;
+  background: red;
+  color: white;
 }
 
 .content-center {
@@ -229,6 +242,84 @@ footer {
 
 .alerting.fade {
   transition: ease-out .7s;
+}
+
+.segitiga-bawah {
+  width: 0;
+  height: 0;
+  top: 20px;
+  position: relative;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+}
+
+.setengah {
+  overflow: hidden;
+  max-height: 70px;
+  transition: max-height .7s ease;
+}
+.setengah.show {
+  max-height: 130px;
+  transition: max-height .7s ease;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  color: black;
+  padding: 20px;
+  width: 100%;
+  border: 0px;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: lightgreen;
+}
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 10px 12px;
+  width: 500px;
+  height: 400px;
+  border: 1px solid;
+}
+.chat-atas {
+  display: inline-block;
+}
+.chat-bawah {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+  text-align: right;
+}
+.chat-bawah2 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 30px;
+}
+.bisa-scroll {
+  padding-top: 15px;
+  max-height: 360px;
+  width: 480px;
+  overflow-y: scroll;
+}
+.dari-bawah {
+  height: 360px;
+  display: table-cell;
+  vertical-align: bottom;
 }
 /* ------------------------------------------------ */
 /*------------------ CAROUSEL ----------------------*/

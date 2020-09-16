@@ -17,7 +17,9 @@ class ShopController extends Controller
   {
     $apaan = Barang::find([1,2,5,6,9,10]);
     $apaan2 = $apaan->shuffle();
-    return view('home', ['apaan'=>$apaan2]);
+
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    return view('home', ['apaan'=>$apaan2, 'jml_notif'=>$jml_notif]);
   }
 
   public function about()
@@ -71,7 +73,7 @@ class ShopController extends Controller
     // check ke db sama ga datanya, belajar perbedaan get() sama first() ji sekalian
     $data = Akun::where('username', $username)->where('password', $password)->first();
     $data2 = Akun::where('username', $username)->first();
-    $data3 = Akun::where('password', $password)->first();
+    $data3 = Akun::where('username', $username)->where('password', '!=', $password)->first();
     // ini if buat ngecheck ada ga datanya
     // btw if ini returnnya false/true jadi kalo ada data (hasil search ga kosong) return nya True
     if ($data) {
@@ -80,7 +82,8 @@ class ShopController extends Controller
       // session::put artinya nyimpen value ($data->username) ke Session username
       Session::put('username', $data->username);
       Session::put('nohp', $data->nohp);
-      return redirect()->back();
+      Session::put('chat', ' ');
+      return redirect()->back()->with(compact('chat'));
     }
     elseif (!$data2) {
       // false (data kosong)
@@ -88,7 +91,7 @@ class ShopController extends Controller
       // nanti gua bikin contoh buat ngasih pesan jika username / pass salah. sementara redirect tanpa pesan
       return redirect()->back()->with(compact('userSalah'));
     }
-    elseif (!$data3) {
+    elseif ($data3) {
       Session::flash('passSalah', "Password tidak sesuai.");
       return redirect()->back()->with(compact('passSalah'));
     }
@@ -296,5 +299,25 @@ class ShopController extends Controller
   {
     $status1 = Master::where('id', $id)->get();
     return view('transaksi-detail', ['status'=>$status1]);
+  }
+
+  public function transaksiBatal($id)
+  {
+    $batal = Master::where('id', $id)->first();
+    $batal->batas_waktu3 = 'Kedaluwarsa';
+    $batal->save();
+    return redirect()->back();
+  }
+
+  public function transaksiHapus($id)
+  {
+    $hapus = Master::where('id', $id)->first();
+    $hapus->delete();
+    return redirect('/transaksi2');
+  }
+
+  public function chat()
+  {
+    return view('chatbot');
   }
 }

@@ -26,37 +26,26 @@
   hr {
     background-color: #ddd;
   }
-  .setengah {
-    overflow: hidden;
-    height: 70px;
-  }
-  .setengah.show {
-    height: auto;
-  }
   .nocopy {
     user-select: none;
   }
   input[type=radio] {
     appearance: none;
   }
-  .segitiga-bawah {
-    width: 0;
-    height: 0;
-    top: 20px;
-    position: relative;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid white;
-  }
 </style>
 
 <header>
   <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+    <a href="#" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
+    data-placement="right" data-content="punten">
+      Tentang OnlenShop
+    </a>
   </div>
 </header>
 
 <body class="bg-navy">
+
+  <div id="alertBox"></div>
 
   <div class="row m-5 text-light justify-content-center">
 

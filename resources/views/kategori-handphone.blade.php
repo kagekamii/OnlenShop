@@ -29,7 +29,10 @@
 
 <header>
   <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+    <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
+    data-placement="right" data-content="punten">
+      Tentang OnlenShop
+    </a>
   </div>
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">

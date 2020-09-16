@@ -25,7 +25,7 @@
 <header>
   <div class="col-md bg-kuning text-right">
     <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
-    data-placement="right" data-content="korone no.1 fix">
+    data-placement="right" data-content="punten">
       Tentang OnlenShop
     </a>
   </div>
@@ -60,12 +60,21 @@
       {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <a href="/transaksi" class="keranjangchat kanan mr-3" title="Transaksi">
+      <a href="/transaksi" class="keranjangchat chat-atas kanan mr-3" title="Transaksi">
         <img src="{{ asset('img/keranjang.png') }}" width="20">
+        <span class="notifikasi smaller"><b> {{ $jml_notif or '0' }} </b></span>
       </a>
-      <a href="#" class="keranjangchat" title="Chat">
+
+      @if(Session::get('chat') != null)
+      <a href="/chat" class="keranjangchat" title="Chat">
         <img src="{{ asset('img/message.png') }}" width="20">
       </a>
+      @else
+      <a href="//" class="keranjangchat" title="Chat">
+        <img src="{{ asset('img/message.png') }}" width="20">
+      </a>
+      @endif
+
 
       {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
         btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}

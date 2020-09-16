@@ -30,7 +30,10 @@
 
 <header>
   <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+    <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
+    data-placement="right" data-content="punten">
+      Tentang OnlenShop
+    </a>
   </div>
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
@@ -105,7 +108,7 @@
 
     @foreach($status as $t)
       @if( Session::get('username') == $t->username )
-      <div class="row col-md-8 bg-blue2 text-brown p-3">
+      <div class="row col-md-8 bg-blue2 text-dark p-3">
         <div class="col-md">
           <span class="smaller text-blue"> NO. TAGIHAN </span> <br>
           <span> {{ $t->kode_transaksi }} </span> <br>
@@ -121,7 +124,7 @@
         </div>
       </div>
 
-      <div class="row col-md-8 bg-green3 text-brown p-3">
+      <div class="row col-md-8 bg-green3 text-dark p-3">
         <div class="col-md">
           <span class="smaller text-blue"> BARANG </span> <br>
           <span> {{ $t->nama_barang }} </span> <br>

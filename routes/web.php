@@ -49,3 +49,7 @@ Route::get('/pencarian-item', 'ShopController@pencarianItem');
 Route::get('/transaksi', 'ShopController@transaksi');
 Route::get('/transaksi2', 'ShopController@transaksi2');
 Route::get('/transaksi-detail/{id}', 'ShopController@transaksiDetail');
+Route::get('/transaksi-batal/{id}', 'ShopController@transaksiBatal');
+Route::get('/transaksi-hapus/{id}', 'ShopController@transaksiHapus');
+//-------------ROUTE CHATBOT------------
+Route::get('/chat', 'ShopController@chat');

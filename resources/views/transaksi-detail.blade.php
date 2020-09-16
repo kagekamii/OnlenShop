@@ -33,7 +33,10 @@
 
 <header>
   <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small"> Tentang OnlenShop </a>
+    <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
+    data-placement="right" data-content="punten">
+      Tentang OnlenShop
+    </a>
   </div>
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
@@ -249,6 +252,21 @@
           </table>
 
         </div>
+        <button type="button" class="btn btn-sm btn-primary mt-2 float-left" onclick="window.location.href='/transaksi2'">
+          Kembali
+        </button>
+
+        @if( $s->batas_waktu3 == 'Kedaluwarsa' )
+          <button type="button" class="btn btn-sm btn-warning mt-2" disabled> Batalkan transaksi </button>
+          <button type="button" class="btn btn-sm btn-danger mt-2" onclick="window.location.href='/transaksi-hapus/{{ $s->id }}'">
+            Hapus transaksi
+          </button>
+        @else
+          <button type="button" class="btn btn-sm btn-warning mt-2" onclick="window.location.href='/transaksi-batal/{{ $s->id }}'">
+            Batalkan transaksi
+          </button>
+          <button type="button" class="btn btn-sm btn-danger mt-2" disabled> Hapus transaksi </button>
+        @endif
       </div>
 
     </div>
