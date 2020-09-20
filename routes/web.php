@@ -39,7 +39,6 @@ Route::post('/keranjang-satu', 'ShopController@keranjangSatu');
 Route::get('/keranjang-satuhalf', 'ShopController@keranjangSatuHalf');
 Route::get('/keranjang-dua', 'ShopController@keranjangDua');
 Route::get('/insertData', 'ShopController@insertData');
-Route::post('/insertData2', 'ShopController@insertData2');
 Route::get('/keranjang-tiga', 'ShopController@keranjangTiga');
 
 //--------------ROUTE SEARCH-------------
@@ -53,3 +52,27 @@ Route::get('/transaksi-batal/{id}', 'ShopController@transaksiBatal');
 Route::get('/transaksi-hapus/{id}', 'ShopController@transaksiHapus');
 //-------------ROUTE CHATBOT------------
 Route::get('/chat', 'ShopController@chat');
+
+//----------------ENGLISH PAGE------------------ENGLISH PAGE--------------ENGLISH PAGE-----------
+//-------------ROUTE HOME--------------
+Route::get('/en-home', 'ShopController@enHome');
+Route::post('/en-home/daftar', 'ShopController@enDaftar');
+Route::post('/en-home/login', 'ShopController@enLogin');
+
+//----------------------ROUTE LOGOUT------------------
+Route::get('/en-logout', 'ShopController@enLogout');
+
+//--------------------ROUTE KATEGORI------------------
+Route::get('/en-kategori-komputer', 'ShopController@enKomputer');
+Route::get('/en-kategori-handphone', 'ShopController@enHandphone');
+Route::get('/en-kategori-makanminum', 'ShopController@enMakanminum');
+
+//----------------ROUTE BARANG---------------------
+Route::get('/en-kategori-item/{id}', 'ShopController@enKategoriesItem');
+
+//----------------ROUTE KERANJANG----------------------
+Route::post('/en-keranjang-satu', 'ShopController@enKeranjangSatu');
+Route::get('/en-keranjang-satuhalf', 'ShopController@enKeranjangSatuHalf');
+Route::get('/en-keranjang-dua', 'ShopController@enKeranjangDua');
+Route::get('/en-insertData', 'ShopController@enInsertData');
+Route::get('/en-keranjang-tiga', 'ShopController@enKeranjangTiga');

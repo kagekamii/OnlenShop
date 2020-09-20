@@ -106,9 +106,9 @@
 
 <body class="bg-navy">
 
-  <div class=" row mt-5 ml-5">
+  <div class="row mt-5 ml-5">
 
-    <div class="col-md-6 row bg-wat">
+    <div class="col-md-6 row h-100 bg-wat">
       <div class="tab bg-sky m-2">
         <button class="tablinks bg-grey" onclick="openChat(event, 'chatbot1')" id="defaultOpen">Abang Iggy</button>
         <br>
@@ -120,7 +120,7 @@
 
           <div id="chatOutput1" class="bisa-scroll"></div>
 
-          <input type="text" id="chatInput" class="chat-bawah w-75" autofocus>
+          <input type="text" id="chatInput" class="chat-bawah w-75" placeholder="ketik sesuai isi tabel" autofocus>
           <button type="button" class="chat-bawah2 w-25"> Kirim </button>
 
         </div>
@@ -131,58 +131,43 @@
       </div>
     </div>
 
-    <div class="bg-sky h-100 p-2 ml-5 rounded">
+    <div class="col-md-5 bg-sky h-100 ml-5 p-2 rounded">
       <h5> <pre>Panduan chatbot</pre> </h5>
       <hr>
       bot bisa menjawap
-      <!-- <span class=""></span>
-      <ul class="ml-n3">
-        <li> punten </li>
-        <li> halo </li>
-        <li> assalamualaikum </li>
-        <li> permisi </li>
-      </ul>
 
-      <span class=""></span>
-      <ul class="ml-n3">
-        <li> barang ready? </li>
-        <li> barang apa aja yang ready? </li>
-        <li> stock masih ada? </li>
-      </ul>
-
-      <span class=""></span>
-      <ul class="ml-n3">
-        <li> barang sudah saya bayar </li>
-        <li> tolong diproses barang saya </li>
-      </ul> -->
-
-      <table class="table-striped bg-wheat rounded" cellpadding="5px">
+      <table class="table-striped bg-wheat rounded w-100 small" cellpadding="3px">
         <tr>
           <td> <u>KATA SALAM</u> </td>
-          <td> <u>KESIAPAN BARANG</u> </td>
-          <td> <u>KONFIRMASI PEMBELIAN</u> </td>
+          <td> <u>KESIAPAN</u> </td>
+          <td> <u>KONFIRMASI</u> </td>
+          <td> <u>PENGIRIMAN</u> </td>
         </tr>
 
         <tr>
           <td> punten </td>
           <td> barang ready? </td>
           <td> barang sudah saya bayar </td>
+          <td> bisa dikirim hari ini? </td>
         </tr>
 
         <tr>
           <td> halo </td>
           <td> barang apa aja yang ready? </td>
           <td> tolong diproses barang saya </td>
+          <td>  </td>
         </tr>
 
         <tr>
           <td> assalamualaikum </td>
           <td> stock masih ada? </td>
           <td> </td>
+          <td> </td>
         </tr>
 
         <tr>
           <td> permisi </td>
+          <td>  </td>
           <td> </td>
           <td> </td>
         </tr>

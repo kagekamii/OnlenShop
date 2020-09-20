@@ -30,13 +30,13 @@
       data-placement="right" data-content="punten">
         About OnlenShop
       </a>
-      <span class="text-ungu1 mr-2 small dropdown-toggle" data-toggle="dropdown"> Bahasa </span>
+      <span class="text-ungu1 mr-2 small dropdown-toggle" data-toggle="dropdown"> Language </span>
 
       <div class="dropdown-menu">
-        <a href="//" class="text-ungu1 mr-2 small dropdown-item">
+        <a href="/home" class="text-ungu1 mr-2 small dropdown-item">
           Indonesia
         </a>
-        <a href="/en-home" class="text-ungu1 mr-2 small dropdown-item">
+        <a href="//" class="text-ungu1 mr-2 small dropdown-item">
           English
         </a>
       </div>
@@ -46,18 +46,18 @@
 
   <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
     <! LOGO>
-    <a href="/home" class="mr-5">
+    <a href="/en-home" class="mr-5">
       <img src="{{ asset('img/logo2.png') }}" alt="" width="70px">
     </a>
 
     <! KATEGORI>
     <div class="dropdown">
-      <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
+      <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Category
       </button>
       <div class="dropdown-menu bg-sky">
-        <a href="/kategori-komputer" class="dropdown-item"> Komputer </a>
-        <a href="/kategori-handphone" class="dropdown-item"> Handphone </a>
-        <a href="/kategori-makanminum" class="dropdown-item"> Makanan & Minuman </a>
+        <a href="/en-kategori-komputer" class="dropdown-item"> Computer </a>
+        <a href="/en-kategori-handphone" class="dropdown-item"> Handphone </a>
+        <a href="/en-kategori-makanminum" class="dropdown-item"> Food & Drink </a>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
       {{ csrf_field() }}
         <div class="input-group">
           <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
-          placeholder="masukkan nama/kategori barang" required>
+          placeholder="insert item name/category" required>
           <button type="submit" class="btn-orange1 mr-5">
             <img src="img/search.png" width="20">
           </button>
@@ -74,7 +74,7 @@
       {{ Form::close() }}
 
     <! KERANJANG & CHAT>
-      <a href="/transaksi" class="keranjangchat chat-atas kanan mr-3" title="Transaksi">
+      <a href="/transaksi" class="keranjangchat chat-atas kanan mr-3" title="Transaction">
         <img src="{{ asset('img/keranjang.png') }}" width="20">
         <span class="notifikasi smaller"><b> {{ $jml_notif or '0' }} </b></span>
       </a>
@@ -104,7 +104,7 @@
         @else
         {{-- kallo null tampilin tombol daftar dan login --}}
         <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
-          Daftar
+          Register
         </button>
         <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin">
           Login
@@ -198,12 +198,12 @@
             @if(Session::get('username') != null)
             {{Session::get('username')}}
             @else
-            <a data-toggle="modal" href="#myLogin">silahkan login</a>
+            <a data-toggle="modal" href="#myLogin"> ~ </a>
             @endif
 
             <br>
-            Sisa Saldo : 0 <br>
-            Kupon Saya : 0
+            Remaining balance : 0 <br>
+            My coupon : 0
           </p>
         </div>
 
@@ -213,11 +213,13 @@
     <! List Barang >
     @foreach($apaan as $a)
     <div class="card" style="width:200px">
-      <a href="/kategori-item/{{ $a->id }}">
+      <a href="/en-kategori-item/{{ $a->id }}">
         <img class="card-img-top" src="img/{{ $a->gambar }}" alt="Card image" style="width:100%">
       </a>
       <div class="card-body">
-        <a href="/kategori-item/{{ $a->id }}" class="text-dark"> {{ $a->nama }} </a>
+        <a href="/en-kategori-item/{{ $a->id }}" class="text-dark">
+          {{ str_replace($namaLama, $namaBaru, $a->nama) }}
+        </a>
         <h5 class="card-text"> Rp {{ number_format($a->harga) }} </h5>
       </div>
       <div class="card-footer">
@@ -230,14 +232,14 @@
   </div>
 
   {{-- modal gua pindahin ke bawah ga usah deketan sama buttonya ko pusing aing liatnya disimpen diatas --}}
-  @include('modal-login')
-  @include('modal-register')
+  @include('english.en-modal-login')
+  @include('english.en-modal-register')
 
 </body>
 
 <footer>
   <div class="bg-info">
-    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
+    &emsp;start 11 august 2020, but not everyday doin this :'v
     <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
   </div>
 </footer>

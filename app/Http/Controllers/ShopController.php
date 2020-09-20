@@ -320,4 +320,229 @@ class ShopController extends Controller
   {
     return view('chatbot');
   }
+  // EEEEEEEE    NNN    NN      GGGGGG     LL          II    SSSSSS    HH     HH
+  // EEE         NNNNN  NN    GGG          LL          II    SS        HH     HH
+  // EEEEEEEE    NN  NN NN   GG    GGGG    LL          II    SSSSSS    HHHHHHHHH
+  // EEE         NN   NNNN    GG     GG    LL          II        SS    HH     HH
+  // EEEEEEEE    NN    NNN     GGGGGGG     LLLLLLLL    II    SSSSSS    HH     HH
+  public function enHome()
+  {
+    $apaan = Barang::find([3,4,7,8,11,12]);
+    $apaan2 = $apaan->shuffle();
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+
+    $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr"];
+    $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr"];
+    return view('english.en-home',
+                ['apaan'=>$apaan2, 'jml_notif'=>$jml_notif, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama]);
+  }
+
+  public function enDaftar(Request $request)
+  {
+    if(Akun::where('username', $request->username)->exists()) {
+      Session::flash('regisFail', "<b>Register Fail!</b> <br> Username <b><i>".$request->username."</b></i>
+                                  exists! <br> Please don't imitate (h3h3).");
+      return redirect()->back()->with(compact('regisFail'));
+    }
+    else {
+      //DAFTAR AKUN
+      Akun::create([
+        'username' => $request->username,
+        'password' => $request->password,
+        'nohp' => $request->nohp
+      ]);
+      Session::flash('regisSucc', "<b>Register success</b> <br>
+                                    as <b><i>".$request->username."</i></b> (h3h3).");
+      return redirect()->back()->with(compact('regisSucc'));
+    }
+
+  }
+
+  public function enLogin(Request $request)
+  {
+    $username = $request->input('username');
+    $password = $request->input('password');
+
+    $data = Akun::where('username', $username)->where('password', $password)->first();
+    $data2 = Akun::where('username', $username)->first();
+    $data3 = Akun::where('username', $username)->where('password', '!=', $password)->first();
+
+    if ($data) {
+      Session::put('username', $data->username);
+      Session::put('nohp', $data->nohp);
+      Session::put('chat', ' ');
+      return redirect()->back()->with(compact('chat'));
+    }
+    elseif (!$data2) {
+      Session::flash('userSalah', "Username <b><i>".$request->username."</i></b> not listed.");
+      return redirect()->back()->with(compact('userSalah'));
+    }
+    elseif ($data3) {
+      Session::flash('passSalah', "Password incorrect.");
+      return redirect()->back()->with(compact('passSalah'));
+    }
+  }
+
+  public function enLogout()
+  {
+    Session::flush();
+    return redirect('/en-home');
+  }
+
+  public function enKomputer()
+  {
+    $komputer = Barang::find([1,2,3,4]);
+    return view('english.en-kategori-komputer', ['barang'=>$komputer]);
+  }
+
+  public function enHandphone()
+  {
+    $handphone = Barang::find([5,6,7,8]);
+    return view('english.en-kategori-handphone', ['barang'=>$handphone]);
+  }
+
+  public function enMakanminum()
+  {
+    $makanminum = Barang::find([9,10,11,12]);
+    $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr", "Baso Aci Tulang Rungu"];
+    $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr", "Sago Flour Meatballs Rangu Bones"];
+    return view('english.en-kategori-makanminum',
+                ['barang'=>$makanminum, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama]);
+  }
+
+  public function enKategoriesItem($id)
+  {
+    $kategoriesItem = Barang::where('id',$id)->get();
+    $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr", "Baso Aci Tulang Rungu"];
+    $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr", "Sago Flour Meatballs Rangu Bones"];
+    $infoLama = ["baru", "bekas", "komputer", "makanan", "minuman"];
+    $infoBaru = ["new", "secondhand", "computer", "food", "drink"];
+    return view('english.en-item-kategories',
+                ['barang2'=>$kategoriesItem, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama,
+                'infoBaru'=>$infoBaru, 'infoLama'=>$infoLama]);
+  }
+
+  public function enKeranjangSatu(Request $request)
+  {
+    $nama_barang = $request->nama_barang;
+    Session::put('nama_barang', $request->nama_barang);
+
+    $jml_barang = $request->jml_barang;
+    Session::put('jml_barang', $request->jml_barang);
+
+    $harga_barang = filter_var($request->harga_barang, FILTER_SANITIZE_NUMBER_INT);
+    Session::put('harga_barang', $harga_barang);
+    $gbr_barang = $request->gbr_barang;
+    return view('english.en-keranjang-satu', ['nama_barang'=>$nama_barang,
+                                  'jml_barang'=>$jml_barang,
+                                  'harga_barang'=>$harga_barang,
+                                  'gbr_barang'=>$gbr_barang]);
+  }
+
+  public function enKeranjangSatuHalf(Request $request)
+  {
+    Session::put('alamat_rumah', $request->alamat_rumah);
+    Session::put('kecamatan', $request->kecamatan);
+    Session::put('kota', $request->kota);
+    Session::put('provinsi', $request->provinsi);
+
+    Session::put('catatan', $request->catatan);
+    $kurir = $request->kurir;
+    $kurirOnly = explode('-',$kurir);
+    Session::put('kurir', $kurirOnly[0]);
+    // RINCIAN HARGA
+    Session::put('subhargaBarang', $request->subhargaBarang2);
+    Session::put('ongkosKirim', $request->ongkosKirim);
+    Session::put('totalBayar', $request->totalBayar);
+
+    return redirect('en-keranjang-dua');
+  }
+
+  public function enKeranjangDua()
+  {
+    $nama = ["Logitech G402 Hyperion Fury", "WD SSD Green Sata3 240gb",
+            "Monitor Dell 19 inch", "Nvidia GTX650", "Charger Baseus Fast Charging",
+            "Case Iphone 6/6s/7", "Powerbank UNEED 10k mAH", "Redmi Note 9 4/64",
+            "Sago Flour Meatballs Rangu Bones", "Kombucha HEAL X BURGREENS", "Chikiballs Cheese",
+            "Evaporated F&N Milk 390gr"];
+    $nama_len = count($nama);
+    // ID BARANG
+    for ($i=0; $i < $nama_len; $i++) {
+      if( Session::get('nama_barang') == $nama[$i] ) {
+        Session::put('id_barang', $i+=1);
+      }
+    }
+
+    return view('english.en-keranjang-dua');
+  }
+
+  public function enInsertData(Request $request)
+  {
+    // IDENTITAS
+    $username3 = $request->username3;
+    $nohp3 = $request->nohp3;
+    // ALAMAT
+    $alamat_rumah3 = $request->alamat_rumah3;
+    $kecamatan3 = $request->kecamatan3;
+    $kota3 = $request->kota3;
+    $provinsi3 = $request->provinsi3;
+    // DETAIL BARANG
+    $nama_barang3 = $request->nama_barang3;
+    $jml_barang3 = $request->jml_barang3;
+    $catatan3 = $request->catatan3;
+    $kurir3 = $request->kurir3;
+    // RINCIAN BAYAR
+    $total_harga3 = $request->total_harga3;
+    $ongkos_kirim3 = $request->ongkos_kirim3;
+    $total_bayar3 = $request->total_bayar3;
+    // ENTAHLAH APAAN NAMANYA
+    $metode_bayar3 = $request->caraBayar;
+    $batas_waktu3 = $request->batas_waktu3;
+    $batas_waktu4 = $request->batas_waktu4;
+    $kode_transaksi3 = $request->kode_transaksi3;
+    // ID BARANG
+    $id_barang3 = Session::get('id_barang');
+
+    Master::create([
+      'username' => $username3,
+      'nohp' => $nohp3,
+
+      'alamat_rumah' => $alamat_rumah3,
+      'kecamatan' => $kecamatan3,
+      'kota' => $kota3,
+      'provinsi' => $provinsi3,
+
+      'barang_id' => $id_barang3,
+      'nama_barang' => $nama_barang3,
+      'jml_barang' => $jml_barang3,
+      'kurir' => $kurir3,
+
+      'total_harga' => $total_harga3,
+      'ongkos_kirim' => $ongkos_kirim3,
+      'total_bayar' => $total_bayar3,
+
+      'metode_bayar' => $metode_bayar3,
+      'batas_waktu' => $batas_waktu3,
+      'batas_waktu2' => $batas_waktu4,
+      'batas_waktu3' => 'Buruan bayar atuh',
+      'kode_transaksi' => $kode_transaksi3,
+      'catatan' => $catatan3
+    ]);
+    return redirect('en-keranjang-tiga');
+  }
+
+  public function enKeranjangTiga(Request $request)
+  {
+    $getData = Master::latest('id')->first();
+    $bulanLama = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+                  "Agustus", "September", "Oktober", "November", "Desember"];
+    $bulanBaru = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];
+    return view('english.en-keranjang-tiga', ['getTime'=>$getData->batas_waktu,
+                                  'getTagihan'=>$getData->total_bayar,
+                                  'getKode'=>$getData->kode_transaksi,
+                                  'getCara'=>$getData->metode_bayar,
+                                  'bulanLama'=>$bulanLama,
+                                  'bulanBaru'=>$bulanBaru]);
+  }
 }
