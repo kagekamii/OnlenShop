@@ -36,7 +36,7 @@
   }
 </style>
 
-@include('header1')
+@include('english.en-header1')
 
 <body class="bg-navy">
 
@@ -47,15 +47,15 @@
       <div class="bg-light text-dark text-left">
 
         <ul class="tanpa-dot" id="filters">
-          Kondisi
+          Condition
           <li>
             <input type="checkbox" id="filter-kategoria" value="baru" checked>
-            <label for="filter-kategoria"> Baru </label>
+            <label for="filter-kategoria"> New </label>
           </li>
           <li>
             <input type="checkbox" id="filter-kategorib" value="bekas" checked>
-            <label for="filter-kategorib"> Bekas </label>
-          </li>BAPAK KAW DI FILTER
+            <label for="filter-kategorib"> Secondhand </label>
+          </li>
         </ul>
 
       </div>
@@ -64,11 +64,13 @@
     <div class="div-fixed row ml-5">
       @foreach($acakBarangs as $bs)
         <div class="card ml-5 mb-5 {{ $bs->kondisi }}" style="width:200px">
-          <a href="/kategori-item/{{ $bs->id }}">
+          <a href="/en-kategori-item/{{ $bs->id }}">
             <img class="" src="{{ asset('img/').'/'.$bs->gambar }}" alt="" width="100%">
           </a>
           <div class="card-body">
-            <a href="/kategori-item/{{ $bs->id }}" class="text-dark"> {{ $bs->nama }} </a>
+            <a href="/en-kategori-item/{{ $bs->id }}" class="text-dark">
+              {{ str_replace($namaLama, $namaBaru, $bs->nama) }}
+            </a>
             <h5 class="card-text"> Rp {{ number_format($bs->harga) }} </h5>
           </div>
           <div class="card-footer">
@@ -85,7 +87,7 @@
 
 </body>
 
-@include('footer')
+@include('english.en-footer')
 
 <script src="{{ asset('js/popover.js') }}"></script>
 

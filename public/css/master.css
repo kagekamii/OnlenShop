@@ -333,6 +333,31 @@ footer {
   display: table-cell;
   vertical-align: bottom;
 }
+
+.vtuber {
+  width: 350px;
+  clip-path: circle(140px at 170px 180px);
+}
+.kejutan {
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+  animation: slideDown 1s 1;
+}
+@keyframes slideDown{
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 350px;
+    opacity: 1;
+  }
+}
+.kejutan.fade {
+  transition: ease-out .4s;
+}
+
 /* ------------------------------------------------ */
 /*------------------ CAROUSEL ----------------------*/
 /* ------------------------------------------------ */

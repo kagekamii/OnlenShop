@@ -33,76 +33,7 @@
   }
 </style>
 
-<header>
-  <div class="col-md bg-kuning text-right">
-    <a href="/about" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
-    data-placement="right" data-content="punten">
-      Tentang OnlenShop
-    </a>
-  </div>
-
-  <nav class="col-md navbar navbar-expand-md bg-light justify-content-center border">
-    <! LOGO>
-    <a href="/home" class="mr-5">
-      <img src="{{ asset('img/logo2.png') }}" alt="" width="70px">
-    </a>
-
-    <! KATEGORI>
-    <div class="dropdown">
-      <button type="button" class="btn btn-orange2 btn-sm dropdown-toggle" data-toggle="dropdown"> Kategori
-      </button>
-      <div class="dropdown-menu bg-sky">
-        <a href="/kategori-komputer" class="dropdown-item"> Komputer </a>
-        <a href="/kategori-handphone" class="dropdown-item"> Handphone </a>
-        <a href="/kategori-makanminum" class="dropdown-item"> Makanan & Minuman </a>
-      </div>
-    </div>
-
-    <! SEARCH BOX>
-      {{ Form::open(['url'=>'/pencarian-item', 'method'=>'get']) }}
-      {{ csrf_field() }}
-        <div class="input-group">
-          <input class="searchbox" type="text" name="kolomCari" value="{{ isset($keyword) ? $keyword:null }}"
-          placeholder="masukkan nama/kategori barang" required>
-          <button type="submit" class="btn-orange1 mr-5">
-            <img src="img/search.png" width="20">
-          </button>
-        </div>
-      {{ Form::close() }}
-
-    <! KERANJANG & CHAT>
-      <a href="/transaksi" class="keranjangchat kanan mr-3" title="Transaksi">
-        <img src="{{ asset('img/keranjang.png') }}" width="20">
-      </a>
-      <a href="#" class="keranjangchat" title="Chat">
-        <img src="{{ asset('img/message.png') }}" width="20">
-      </a>
-
-      {{-- kalo mau nampilin div pake if aja ga usah manggil ajax. tapi divnya gua simpen dulu aja ya
-        btw anjing gua simpen modal daftar sama login dibawah deket </body>  --}}
-      <div id="ubahLogout" class="{{ session('tab2_active') ? 'active' : null }}">
-
-        {{-- if ini nge check SESSION dengan varibale USERNAME ada VALUENYA atau null --}}
-        @if(Session::get('username') != null)
-        {{-- kalo ada valuenya tampilin tombol logout --}}
-        <div class="kanan">
-          {{ Session::get('username') }}
-          <button id="routeLogout" class="no-border bg-kuning2 rounded"> Logout </button>
-        </div>
-        @else
-        {{-- kallo null tampilin tombol daftar dan login --}}
-        <button type="button" class="kanan mr-2 no-border bg-kuning2 rounded" data-toggle="modal"href="#myRegister">
-          Daftar
-        </button>
-        <button type="button" class="no-border bg-green2 rounded" data-toggle="modal" href="#myLogin">
-          Login
-        </button>
-        @endif
-
-      </div>
-
-  </nav>
-</header>
+@include('header1')
 
 <body class="bg-navy">
 
@@ -116,6 +47,7 @@
       </div>
 
       <div id="chatbot1" class="col-md tabcontent bg-dark text-light m-2 mr-n1">
+        <div id="vtuber"></div>
         <div class="dari-bawah">
 
           <div id="chatOutput1" class="bisa-scroll"></div>
@@ -131,50 +63,24 @@
       </div>
     </div>
 
-    <div class="col-md-5 bg-sky h-100 ml-5 p-2 rounded">
+    <div class="col-md-4 bg-sky h-100 ml-5 p-2 rounded">
       <h5> <pre>Panduan chatbot</pre> </h5>
       <hr>
-      bot bisa menjawap
+      Silahkan klik tombol di bawah: <br>
+      <button type="button" class="btn bg-wat m-2" data-toggle="modal" href="#myTable1">
+        List Pertanyaan
+      </button>
+      <button type="button" class="btn bg-wat" data-toggle="modal" href="#myTable2">
+        List Jawaban
+      </button>
 
-      <table class="table-striped bg-wheat rounded w-100 small" cellpadding="3px">
-        <tr>
-          <td> <u>KATA SALAM</u> </td>
-          <td> <u>KESIAPAN</u> </td>
-          <td> <u>KONFIRMASI</u> </td>
-          <td> <u>PENGIRIMAN</u> </td>
-        </tr>
+      <br>
+      <strong style="font-family: Times;">
+        *I don't translate chatbot to English.
+      </strong>
 
-        <tr>
-          <td> punten </td>
-          <td> barang ready? </td>
-          <td> barang sudah saya bayar </td>
-          <td> bisa dikirim hari ini? </td>
-        </tr>
-
-        <tr>
-          <td> halo </td>
-          <td> barang apa aja yang ready? </td>
-          <td> tolong diproses barang saya </td>
-          <td>  </td>
-        </tr>
-
-        <tr>
-          <td> assalamualaikum </td>
-          <td> stock masih ada? </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-
-        <tr>
-          <td> permisi </td>
-          <td>  </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-      </table>
-
-      <small> <b>*huruf besar/kecil tidak berpengaruh</b> </small> <br>
-      <small> <b>*bot cukup baik 99% (menurut saia)</b> </small>
+      @include('modal-chatbot1')
+      @include('modal-chatbot2')
     </div>
   </div>
 
@@ -183,156 +89,11 @@
 
 </body>
 
-<footer>
-  <div class="bg-info">
-    &emsp;start 11 agustus 2020, tapi gk tiap hari dikerjain :'v
-    <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
-  </div>
-</footer>
+@include('footer')
 
-<script src="js/logoutButton.js"></script>
-<!tablinks gerbong>
-<script>
-  function openChat(evt, botName) {
-    var i, tabcontent, tablinks;
 
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    document.getElementById(botName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-</script>
-
-<script type="text/javascript">
-  let divOutput = $('#chatOutput1'),
-      divScroll = document.querySelector('#chatOutput1');
-      // chatBotArr = {"punten" : "mangga..",
-      //               "barang ready?" : "Redy bos!",
-      //               "stock masih ada?" : "Stock sedang kosong.",
-      //               "barang sudah saya bayar" : "Pesanannya akan kami proses."};
-  const userArr = [
-            /*0*/["punten", "halo", "assalamualaikum", "permisi"],
-            /*1*/["barang ready?", "barang apa aja yang ready?", "stock masih ada?"],
-            /*2*/["barang sudah saya bayar", "tolong diproses barang saya"],
-            /*3*/["korone no.1", "haachama no.1"]
-                ];
-
-  const botArr = [
-            /*0*/["mangga..", "sae euy", "kumaha damang", "wa'alaikumsalam"],
-            /*1*/["Ready bos!", "Stock lagi kosong.", "Tinggal nabati vanila sama teh gelas euy."],
-            /*2*/["Pesanannya akan kami proses.", "Sabar atuh, yang beli banyak."],
-            /*3*/["Mestilah!", "<i>korone / haachama? h3h3"]
-                ];
-
-  const alternatif = ["anjay", "misqueen bilang bos.", "betuah punya budak!"];
-
-  $('.chat-bawah').on('keyup', function(e) {
-    if(e.keyCode === 13) {
-      let textInput = $('#chatInput').val();
-      let divUser = $("<div>", {"class":"mb-3 text-right"});
-      let chatUser = $("<div>", {"class":"border rounded p-1 mr-2 chat-atas"});
-
-      let divBot = $("<div>", {"class":"mb-3 text-left"});
-      let chatBot = $("<div>", {"class":"border rounded p-1 chat-atas"});
-
-      if(textInput == '' ) {
-        return false;
-      }
-      else {
-        $('#chatOutput1').append(divUser);
-        $(divUser).html(chatUser);
-        $(chatUser).html(textInput);
-        $('#chatInput').val('');
-
-        $('#chatOutput1').append(divBot);
-        $(divBot).html(chatBot);
-        divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
-
-        let textKecil = textInput.toLowerCase();
-        let reply;
-
-        for (var x = 0; x < userArr.length; x++) {
-          for (var y = 0; y < botArr.length; y++) {
-            if ( userArr[x][y] == textKecil ) {
-              replies = botArr[x];
-              reply = replies[Math.floor(Math.random() * replies.length)];
-            }
-          }
-        }
-        setTimeout(function() {
-          $(chatBot).html(reply);
-        }, 400);
-
-        // $.each(chatBotArr, function(key,val) {
-        //   if(textInput.toLowerCase() === key) {
-            // setTimeout(function() {
-            //   $(chatBot).html(val);
-            // }, 400);
-        //   }
-        // });
-        // setTimeout(function() {
-        //   $(chatBot).html("misqueen bilang bos.");
-        // }, 399);
-      }
-      setTimeout(function() {
-        reply = alternatif[Math.floor(Math.random() * alternatif.length)];
-        $(chatBot).html(reply);
-      }, 399.99);
-    }
-  });
-  $('.chat-bawah2').click(function() {
-    let entah = $('.dari-bawah');
-
-    let textInput = $('#chatInput').val();
-    let divUser = $("<div>", {"class":"mb-3 text-right"});
-    let chatUser = $("<div>", {"class":"border rounded p-1 mr-2 chat-atas"});
-
-    let divBot = $("<div>", {"class":"mb-3 text-left"});
-    let chatBot = $("<div>", {"class":"border rounded p-1 chat-atas"});
-    if(textInput == '' ) {
-      return false;
-    }
-    else {
-      $('#chatOutput1').append(divUser);
-      $(divUser).html(chatUser);
-      $(chatUser).html(textInput);
-      $('#chatInput').val('');
-
-      $('#chatOutput1').append(divBot);
-      $(divBot).html(chatBot);
-      divScroll.scrollTop = divScroll.scrollHeight - divScroll.clientHeight;
-
-      let textKecil = textInput.toLowerCase();
-      let reply;
-
-      for (var x = 0; x < userArr.length; x++) {
-        for (var y = 0; y < botArr.length; y++) {
-          if ( userArr[x][y] == textKecil ) {
-            replies = botArr[x];
-            reply = replies[Math.floor(Math.random() * replies.length)];
-          }
-        }
-      }
-      setTimeout(function() {
-        $(chatBot).html(reply);
-      }, 400);
-    }
-    setTimeout(function() {
-      reply = alternatif[Math.floor(Math.random() * alternatif.length)];
-      $(chatBot).html(reply);
-    }, 399.99);
-  });
-</script>
+<script src="{{ asset('js/logoutButton.js') }}"></script>
+<script src="{{ asset('js/tabvertical.js') }}"></script>
+<script src="{{ asset('js/chatbot.js') }}"></script>
 
 </html>

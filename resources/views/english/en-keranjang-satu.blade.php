@@ -34,14 +34,7 @@
   }
 </style>
 
-<header>
-  <div class="col-md bg-kuning text-right">
-    <a href="#" class="text-ungu1 mr-2 small" data-toggle="popover" data-trigger="hover"
-    data-placement="right" data-content="punten">
-      Tentang OnlenShop
-    </a>
-  </div>
-</header>
+@include('english.en-header2')
 
 <body class="bg-navy">
 
@@ -242,12 +235,7 @@
 
 </body>
 
-<footer>
-  <div class="bg-info">
-    &emsp;start 11 august 2020, but not everyday doin this :'v
-    <strong class="float-right mr-1 footer-text"> [Copyright, Master Paladin 2020] </strong>
-  </div>
-</footer>
+@include('english.en-footer')
 
 <script src="{{ asset('js/alamat.js') }}"></script>
 <script src="{{ asset('js/resetAlamat.js') }}"></script>

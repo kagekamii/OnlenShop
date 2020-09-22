@@ -17,9 +17,9 @@ class ShopController extends Controller
   {
     $apaan = Barang::find([1,2,5,6,9,10]);
     $apaan2 = $apaan->shuffle();
-
+    $ruteNow = '/en-home';
     $jml_notif = Master::where('username', Session::get('username'))->count();
-    return view('home', ['apaan'=>$apaan2, 'jml_notif'=>$jml_notif]);
+    return view('home', ['apaan'=>$apaan2, 'jml_notif'=>$jml_notif, 'ruteNow'=>$ruteNow]);
   }
 
   public function about()
@@ -107,25 +107,41 @@ class ShopController extends Controller
   public function komputer()
   {
     $komputer = Barang::find([1,2,3,4]);
-    return view('kategori-komputer', ['barang'=>$komputer]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/en-kategori-komputer';
+    return view('kategori-komputer', ['barang'=>$komputer,
+                                      'ruteNow'=>$ruteNow,
+                                      'jml_notif'=>$jml_notif]);
   }
 
   public function handphone()
   {
     $handphone = Barang::find([5,6,7,8]);
-    return view('kategori-handphone', ['barang'=>$handphone]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/en-kategori-handphone';
+    return view('kategori-handphone', ['barang'=>$handphone,
+                                      'ruteNow'=>$ruteNow,
+                                      'jml_notif'=>$jml_notif]);
   }
 
   public function makanminum()
   {
     $makanminum = Barang::find([9,10,11,12]);
-    return view('kategori-makanminum', ['barang'=>$makanminum]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/en-kategori-makanminum';
+    return view('kategori-makanminum', ['barang'=>$makanminum,
+                                        'ruteNow'=>$ruteNow,
+                                        'jml_notif'=>$jml_notif]);
   }
 
   public function kategoriesItem($id)
   {
     $kategoriesItem = Barang::where('id',$id)->get();
-    return view('item-kategories', ['barang2'=>$kategoriesItem]);
+    $ruteNow = '/en-kategori-item/'.$id;
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    return view('item-kategories', ['barang2'=>$kategoriesItem,
+                                    'ruteNow'=>$ruteNow,
+                                    'jml_notif'=>$jml_notif]);
   }
 
   // public function komputerItem($id)
@@ -258,18 +274,27 @@ class ShopController extends Controller
   public function keranjangTiga(Request $request)
   {
     $getData = Master::latest('id')->first();
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/en-keranjang-tiga';
     return view('keranjang-tiga', ['getTime'=>$getData->batas_waktu,
                                   'getTagihan'=>$getData->total_bayar,
                                   'getKode'=>$getData->kode_transaksi,
-                                  'getCara'=>$getData->metode_bayar]);
+                                  'getCara'=>$getData->metode_bayar,
+                                  'ruteNow'=>$ruteNow,
+                                  'jml_notif'=>$jml_notif]);
   }
 
   public function pencarianItem(Request $request)
   {
     $keyword = $request->kolomCari;
+    $ruteNow = '/en-pencarian-item?kolomCari='.$keyword;
     $barangs = Barang::where('nama', 'like', '%'.$keyword.'%')->orWhere('kategori', 'like', '%'.$keyword.'%')->get();
     // $acakBarangs = $barangs->shuffle();
-    return view('pencarian-item', ['acakBarangs'=>$barangs, 'keyword'=>$keyword]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    return view('pencarian-item', ['acakBarangs'=>$barangs,
+                                  'keyword'=>$keyword,
+                                  'ruteNow'=>$ruteNow,
+                                  'jml_notif'=>$jml_notif]);
   }
 
   public function transaksi()
@@ -292,13 +317,15 @@ class ShopController extends Controller
   public function transaksi2()
   {
     $status = Master::all();
-    return view('transaksi2', ['status'=>$status]);
+    $ruteNow = '/en-transaksi';
+    return view('transaksi2', ['status'=>$status, 'ruteNow'=>$ruteNow]);
   }
 
   public function transaksiDetail($id)
   {
     $status1 = Master::where('id', $id)->get();
-    return view('transaksi-detail', ['status'=>$status1]);
+    $ruteNow = '/en-transaksi-detail/'.$id;
+    return view('transaksi-detail', ['status'=>$status1, 'ruteNow'=>$ruteNow]);
   }
 
   public function transaksiBatal($id)
@@ -313,12 +340,13 @@ class ShopController extends Controller
   {
     $hapus = Master::where('id', $id)->first();
     $hapus->delete();
-    return redirect('/transaksi2');
+    return redirect('/transaksi');
   }
 
   public function chat()
   {
-    return view('chatbot');
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    return view('chatbot', ['jml_notif'=>$jml_notif]);
   }
   // EEEEEEEE    NNN    NN      GGGGGG     LL          II    SSSSSS    HH     HH
   // EEE         NNNNN  NN    GGG          LL          II    SS        HH     HH
@@ -333,8 +361,12 @@ class ShopController extends Controller
 
     $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr"];
     $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr"];
-    return view('english.en-home',
-                ['apaan'=>$apaan2, 'jml_notif'=>$jml_notif, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama]);
+    $ruteNow = '/home';
+    return view('english.en-home', ['apaan'=>$apaan2,
+                                    'jml_notif'=>$jml_notif,
+                                    'namaBaru'=>$namaBaru,
+                                    'namaLama'=>$namaLama,
+                                    'ruteNow'=>$ruteNow]);
   }
 
   public function enDaftar(Request $request)
@@ -392,34 +424,50 @@ class ShopController extends Controller
   public function enKomputer()
   {
     $komputer = Barang::find([1,2,3,4]);
-    return view('english.en-kategori-komputer', ['barang'=>$komputer]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/kategori-komputer';
+    return view('english.en-kategori-komputer', ['barang'=>$komputer,
+                                                'ruteNow'=>$ruteNow,
+                                                'jml_notif'=>$jml_notif]);
   }
 
   public function enHandphone()
   {
     $handphone = Barang::find([5,6,7,8]);
-    return view('english.en-kategori-handphone', ['barang'=>$handphone]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/kategori-handphone';
+    return view('english.en-kategori-handphone', ['barang'=>$handphone,
+                                                  'ruteNow'=>$ruteNow,
+                                                  'jml_notif'=>$jml_notif]);
   }
 
   public function enMakanminum()
   {
     $makanminum = Barang::find([9,10,11,12]);
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/kategori-makanminum';
     $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr", "Baso Aci Tulang Rungu"];
     $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr", "Sago Flour Meatballs Rangu Bones"];
-    return view('english.en-kategori-makanminum',
-                ['barang'=>$makanminum, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama]);
+    return view('english.en-kategori-makanminum', ['barang'=>$makanminum,
+                                                  'namaBaru'=>$namaBaru,
+                                                  'namaLama'=>$namaLama,
+                                                  'ruteNow'=>$ruteNow,
+                                                  'jml_notif'=>$jml_notif]);
   }
 
   public function enKategoriesItem($id)
   {
     $kategoriesItem = Barang::where('id',$id)->get();
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/kategori-item/'.$id;
     $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr", "Baso Aci Tulang Rungu"];
     $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr", "Sago Flour Meatballs Rangu Bones"];
     $infoLama = ["baru", "bekas", "komputer", "makanan", "minuman"];
     $infoBaru = ["new", "secondhand", "computer", "food", "drink"];
-    return view('english.en-item-kategories',
-                ['barang2'=>$kategoriesItem, 'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama,
-                'infoBaru'=>$infoBaru, 'infoLama'=>$infoLama]);
+    return view('english.en-item-kategories', ['barang2'=>$kategoriesItem,
+                                              'namaBaru'=>$namaBaru, 'namaLama'=>$namaLama,
+                                              'infoBaru'=>$infoBaru, 'infoLama'=>$infoLama,
+                                              'ruteNow'=>$ruteNow, 'jml_notif'=>$jml_notif]);
   }
 
   public function enKeranjangSatu(Request $request)
@@ -466,7 +514,7 @@ class ShopController extends Controller
             "Sago Flour Meatballs Rangu Bones", "Kombucha HEAL X BURGREENS", "Chikiballs Cheese",
             "Evaporated F&N Milk 390gr"];
     $nama_len = count($nama);
-    // ID BARANG
+    // BARANG_ID
     for ($i=0; $i < $nama_len; $i++) {
       if( Session::get('nama_barang') == $nama[$i] ) {
         Session::put('id_barang', $i+=1);
@@ -534,6 +582,8 @@ class ShopController extends Controller
   public function enKeranjangTiga(Request $request)
   {
     $getData = Master::latest('id')->first();
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    $ruteNow = '/keranjang-tiga';
     $bulanLama = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
                   "Agustus", "September", "Oktober", "November", "Desember"];
     $bulanBaru = ["January", "February", "March", "April", "May", "June", "July",
@@ -543,6 +593,82 @@ class ShopController extends Controller
                                   'getKode'=>$getData->kode_transaksi,
                                   'getCara'=>$getData->metode_bayar,
                                   'bulanLama'=>$bulanLama,
-                                  'bulanBaru'=>$bulanBaru]);
+                                  'bulanBaru'=>$bulanBaru,
+                                  'ruteNow'=>$ruteNow,
+                                  'jml_notif'=>$jml_notif]);
+  }
+
+  public function enTransaksi()
+  {
+    $tes = Master::all();
+    foreach($tes as $t) {
+      $waktu2 = Carbon::now('Asia/Jakarta');
+      if ($waktu2 > $t->batas_waktu2) {
+        $t->batas_waktu3 = 'Kedaluwarsa';
+        $t->save();
+      }
+      else {
+        $t->batas_waktu3 = 'Go get ur mom credit card.';
+        $t->save();
+      }
+    }
+    return redirect('en-transaksi2');
+  }
+
+  public function enTransaksi2()
+  {
+    $status = Master::all();
+    $ruteNow = '/transaksi';
+    $bulanLama = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+                  "Agustus", "September", "Oktober", "November", "Desember"];
+    $bulanBaru = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];
+    return view('english.en-transaksi2',['status'=>$status,
+                                        'bulanLama'=>$bulanLama,
+                                        'bulanBaru'=>$bulanBaru,
+                                        'ruteNow'=>$ruteNow]);
+  }
+
+  public function enTransaksiDetail($id)
+  {
+    $status1 = Master::where('id', $id)->get();
+    $ruteNow = '/transaksi-detail/'.$id;
+    return view('english.en-transaksi-detail', ['status'=>$status1,
+                                                'ruteNow'=>$ruteNow]);
+  }
+
+  public function enTransaksiBatal($id)
+  {
+    $batal = Master::where('id', $id)->first();
+    $batal->batas_waktu3 = 'Kedaluwarsa';
+    $batal->save();
+    return redirect()->back();
+  }
+
+  public function enTransaksiHapus($id)
+  {
+    $hapus = Master::where('id', $id)->first();
+    $hapus->delete();
+    return redirect('/en-transaksi');
+  }
+
+  public function enPencarianItem(Request $request)
+  {
+    $ruteNow = '/pencarian-item?kolomCari='.$request->kolomCari;
+    $keyword = strtolower($request->kolomCari);
+    $infoLama = ["komputer", "makanan", "minuman"];
+    $infoBaru = ["computer", "food", "drink"];
+    $filterKeyword = str_replace($infoBaru, $infoLama, $keyword);
+    $barangs = Barang::where('nama', 'like', '%'.$filterKeyword.'%')->orWhere('kategori', 'like', '%'.$filterKeyword.'%')->get();
+
+    $namaLama = ["Chikiballs Keju", "Susu F&N evaporasi 390gr", "Baso Aci Tulang Rungu"];
+    $namaBaru = ["Chikiballs Cheese", "Evaporated F&N Milk 390gr", "Sago Flour Meatballs Rangu Bones"];
+    $jml_notif = Master::where('username', Session::get('username'))->count();
+    return view('english.en-pencarian-item', ['acakBarangs'=>$barangs,
+                                              'keyword'=>$keyword,
+                                              'namaLama'=>$namaLama,
+                                              'namaBaru'=>$namaBaru,
+                                              'ruteNow'=>$ruteNow,
+                                              'jml_notif'=>$jml_notif]);
   }
 }

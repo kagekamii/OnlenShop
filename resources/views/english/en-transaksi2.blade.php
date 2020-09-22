@@ -28,46 +28,46 @@
   }
 </style>
 
-@include('header1')
+@include('english.en-header1')
 
 <body class="bg-navy">
 
   <div class="m-5 text-light">
 
-    <h4> Transaksi </h4>
+    <h4> Transaction </h4>
     <br>
 
     @foreach($status as $t)
       @if( Session::get('username') == $t->username )
       <div class="row col-md-8 bg-blue2 text-dark p-3">
         <div class="col-md">
-          <span class="smaller text-blue"> NO. TAGIHAN </span> <br>
+          <span class="smaller text-blue"> BILL NUMBER </span> <br>
           <span> {{ $t->kode_transaksi }} </span> <br>
-          <span class="small text-blue"> {{ $t->batas_waktu }} </span>
+          <span class="small text-blue"> {{ str_replace($bulanLama, $bulanBaru, $t->batas_waktu) }} </span>
         </div>
         <div class="col-md">
-          <span class="smaller text-blue"> TOTAL TAGIHAN </span> <br>
+          <span class="smaller text-blue"> TOTAL BILL </span> <br>
           <span> Rp {{ $t->total_bayar }} </span>
         </div>
         <div class="col-md">
-          <span class="smaller text-blue"> STATUS TAGIHAN </span> <br>
-          <span class="status"> {{ $t->batas_waktu3 }} </span>
+          <span class="smaller text-blue"> BILL STATUS </span> <br>
+          <span class="status"> {{ str_replace("Kedaluwarsa", "Expired", $t->batas_waktu3) }} </span>
         </div>
       </div>
 
       <div class="row col-md-8 bg-green3 text-dark p-3">
         <div class="col-md">
-          <span class="smaller text-blue"> BARANG </span> <br>
+          <span class="smaller text-blue"> GOODS </span> <br>
           <span> {{ $t->nama_barang }} </span> <br>
         </div>
         <div class="col-md">
-          <span class="smaller text-blue"> PELAPAK </span> <br>
+          <span class="smaller text-blue"> STALL </span> <br>
           <span> Abang Iggy </span>
         </div>
         <div class="col-md mt-3">
-          <a href="/transaksi-detail/{{ $t->id }}"
+          <a href="/en-transaksi-detail/{{ $t->id }}"
             class="p-2 text-dark bg-wat rounded" style="text-decoration: none;">
-            Lihat Detail
+            See Details
           </a>
         </div>
       </div>
@@ -82,7 +82,7 @@
 
 </body>
 
-@include('footer')
+@include('english.en-footer')
 
 <script src="js/logoutButton.js"></script>
 <script type="text/javascript">

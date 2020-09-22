@@ -76,3 +76,13 @@ Route::get('/en-keranjang-satuhalf', 'ShopController@enKeranjangSatuHalf');
 Route::get('/en-keranjang-dua', 'ShopController@enKeranjangDua');
 Route::get('/en-insertData', 'ShopController@enInsertData');
 Route::get('/en-keranjang-tiga', 'ShopController@enKeranjangTiga');
+
+//-------------ROUTE TRANSAKSI------------
+Route::get('/en-transaksi', 'ShopController@enTransaksi');
+Route::get('/en-transaksi2', 'ShopController@enTransaksi2');
+Route::get('/en-transaksi-detail/{id}', 'ShopController@enTransaksiDetail');
+Route::get('/en-transaksi-batal/{id}', 'ShopController@enTransaksiBatal');
+Route::get('/en-transaksi-hapus/{id}', 'ShopController@enTransaksiHapus');
+
+//--------------ROUTE SEARCH-------------
+Route::get('/en-pencarian-item', 'ShopController@enPencarianItem');
