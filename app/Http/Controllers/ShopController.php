@@ -655,7 +655,7 @@ class ShopController extends Controller
   public function enPencarianItem(Request $request)
   {
     $ruteNow = '/pencarian-item?kolomCari='.$request->kolomCari;
-    $keyword = strtolower($request->kolomCari);
+    $keyword = $request->kolomCari;
     $infoLama = ["komputer", "makanan", "minuman"];
     $infoBaru = ["computer", "food", "drink"];
     $filterKeyword = str_replace($infoBaru, $infoLama, $keyword);

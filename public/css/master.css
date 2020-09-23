@@ -345,11 +345,11 @@ footer {
   animation: slideDown 1s 1;
 }
 @keyframes slideDown{
-  from {
+  0% {
     max-height: 0;
     opacity: 0;
   }
-  to {
+  100% {
     max-height: 350px;
     opacity: 1;
   }

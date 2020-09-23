@@ -21,7 +21,7 @@ class CreateTbMaster extends Migration
           $table->string('kecamatan');
           $table->string('kota');
           $table->string('provinsi');
-          $table->integer('barang_id', 10);
+          $table->integer('barang_id')->length(10);
           $table->string('nama_barang');
           $table->string('jml_barang');
           $table->string('kurir');
